@@ -1,0 +1,16 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    background-color: blue;
+}
+
+.container .nav {
+    background-color: orange;
+}
+
+.container.nav.li {
+    list-style-type: none;
+}
