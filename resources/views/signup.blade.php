@@ -35,8 +35,8 @@
                     </div>
   
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 btn-lg" type="button">Log
-                        in</button> <br>
+                      <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 btn-lg" type="button">Sign Up
+                        </button> <br>
                       
                     </div>
   
