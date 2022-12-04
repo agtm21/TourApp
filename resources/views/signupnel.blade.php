@@ -1,5 +1,5 @@
 @extends('layouts.sign',['title'=>'Sign Up'])
-@section('signup')
+@section('signupnel')
 <section class="vh-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,7 +19,7 @@
                   <form action="/register" method="POST">
                     {{-- CSRF: Protection From Laravel (Read Documentation For Details!) --}}
                     @csrf
-                    <input type="hidden" id="role" value="traveler" name="role">
+                    <input type="hidden" id="role" value="nelayan" name="role">
                     <div class="form-outline mb-4">
                         <label class="form-label" for="username">Username</label>
                         <input type="text" name ="username" id="username" class="form-control" placeholder="Username" @error('username') is-invalid @enderror value = "{{ old('username') }}" />
@@ -44,7 +44,7 @@
                             <div class="text-danger" id="password">{{ $message }}</div>
                         @enderror
                     </div>
-
+                    
                     <div class="form-outline mb-4 text-center">
                       <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 btn-lg" type="submit">Sign Up</button>
                     </div>

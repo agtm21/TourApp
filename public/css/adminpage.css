@@ -25,9 +25,41 @@ p {
 }
 
 .icon {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .icon:hover {
     color: black;
+}
+
+#order {
+    background-color: rgb(219, 31, 50);
+}
+
+#order:hover {
+    background-color: rgb(223, 39, 57);
+}
+
+#newuser {
+    background-color: rgb(23, 112, 71);
+}
+
+#newuser:hover {
+    background-color: rgb(41, 139, 94);
+}
+
+#nelayan {
+    background-color: rgb(13, 110, 253);
+}
+
+#nelayan:hover {
+    background-color: rgb(45, 124, 241);
+}
+
+#traveler {
+    background-color: rgb(231, 175, 4);
+}
+
+#traveler:hover {
+    background-color: rgb(231, 183, 39);
 }

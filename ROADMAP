@@ -1,16 +1,30 @@
-FIRST PHASE:
-FRONTEND:
-SIGN IN/SIGN UP PAGE
-HOME PAGE(BEFORE LOGIN)
-HOME PAGE(AFTER LOGIN)
-BOOK PAGE
-ADMIN PAGE
-NELAYAN PAGE
-SECOND PHASE:
-BACKEND:
-PAYMENT
-LOGIN DATA
-SERVICE DATA
+Catatan:
+Login untuk 3 user: admin, traveler(nama sementara), nelayan
 
+-   User(Admin) punya page tersendiri dan punya hak untuk mengakses data nelayan (User admin ditambahkan
+    manual pada database hanya User(traveler dan Nelayan yang dapat mendaftar))
+-   User (traveler) ke homepage khusus agar bisa membooking
+-   User(nelayan) Page mirip adminpage
 
+Controller:
+Controller merupakan suatu bagian penting dari pemrograman MVC yang berfungsi sebagai penghubung antara View dan model. Didalam controller akan terdapat banyak logika-logika pemrograman untuk menyusun fungsi tertentu. Berbagai pemprosesan juga pada umumnya dilakukan didalam controller. Contohnya fungsi "index" untuk menampilkan view dan fungsi logout
 
+-   AdminPageController : Controller untuk Page Admin
+-   HomepageController : Controller untuk Page User (Traveler)
+-   LoginController : Controller untuk Login User berdasarkan role
+-   RegistrationController : Controller untuk Registrasi User (Traveler dan Nelayan)
+
+Model:
+Model / Eloquent pada laravel digunakan untuk mewakili pemanggilan tabel (pada database). Dengan demikian, model merupakan bagian yang utama dimana kita akan berinteraksi ke tabel yang bersangkutan melalui model yang dibuat.
+
+-   User: Tabel Untuk User
+-   Booking : Tabel untuk Booking (sementara belom terisi)
+
+Middleware:
+
+-   UserAuthenticate: middleware untuk mengecek User yang login apakah admin atau bukan berdasarkan role
+-   Authenticate : middleware untuk authenticate user
+
+Database:
+
+-   Seeders: membuat 3 user
