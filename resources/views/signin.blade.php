@@ -2,7 +2,7 @@
 @extends('layouts.sign',['title'=>'Sign In'])
 @section('signin')
 <section class="vh-100 gradient-form" style="background-color: #eee;">
-    <div class="container py-5 h-100">
+    <div class="container h-100">
       
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-10">
@@ -55,11 +55,11 @@
                       <a class="text-muted" href="#!">Forgot password?</a>
                     </div>
   
-                    <div class="d-flex align-items-center justify-content-center pb-4">
+                    <div class="d-flex align-items-center justify-content-center">
                       <p class="mb-0 me-2">Don't have an account?</p>
                       <a href="/signup">Sign Up</a>
                     </div>
-  
+                    
                   </form>
   
                 </div>

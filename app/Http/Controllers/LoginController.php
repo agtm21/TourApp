@@ -27,6 +27,8 @@ class LoginController extends Controller
             } elseif ($user->role == 'traveler') {
                 $request->session()->regenerate();
                 return redirect()->intended('/homepage');
+            } elseif ($user->role == 'nelayan') {
+                return redirect()->intended('/homepagenel');
             }
             return redirect()->intended('/');
         }

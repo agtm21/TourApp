@@ -6,6 +6,7 @@ use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
+use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
 
 /*
@@ -46,9 +47,13 @@ Route::get('/homepage', function () {
     return view('homepage');
 });
 
+Route::get('/homepagenel', function () {
+    return view('homepagenel');
+});
+
 // ADMIN PAGE
 Route::get('/adminpage', function () {
-    return view('adminpage');
+    return view('Adminlayouts.adminpage');
 })->name('adminpage');
 
 Route::get('/profile', function () {
@@ -57,12 +62,17 @@ Route::get('/profile', function () {
 // Admin Group Controller
 Route::controller([AdminPageController::class])->group(function () {
     Route::get('/adminpage', [AdminPageController::class, 'index'])->middleware('auth', 'authuser:admin')->name('adminpage');
+    Route::get('/datauser', [AdminPageController::class, 'datauser'])->middleware('auth', 'authuser:admin');
+    Route::delete('Adminlayouts/datauser/{id}', [AdminPageController::class, 'destroy']);
+    Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
     Route::post('/logout', [AdminPageController::class, 'logout']);
 });
+
 // Homepage role as traveler Controller
 Route::controller([HomepageController::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index'])->middleware('auth', 'authuser:traveler')->name('tvlhomepage');
     Route::post('/logout', [HomepageController::class, 'logout']);
+    Route::get('/homepagenel', [HomepageController::class, 'indexnel'])->middleware('auth', 'authuser:nelayan')->name('homenelayan');
 });
 
 // middleware untuk membatasi page dan mencegah page dibuka melalu url langsung dan mengharuskan adanya login

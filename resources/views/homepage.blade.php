@@ -2,11 +2,13 @@
 @section('packagelist')
 
   <div class="row">
+    @for ($i = 0; $i < 6; $i++)    
       <div class="col">
           <div class="card shadow p-3 mb-5 rounded" style="width: 18rem;">
             <div class="p-4">
               <img src="img/Cardboard_pile_of_boxes_art_illustration.jpg" alt="package-box" class="card-img-top">
             </div>
+            
               <div class="card-title">
                   <div class="d-flex justify-content-between mx-3">
                       <h5>Packet 1</h5>
@@ -22,6 +24,7 @@
               </div>
           </div>
       </div>
+      @endfor
   </div>
 @endsection
 {{-- 

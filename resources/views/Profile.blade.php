@@ -1,4 +1,4 @@
-@extends('layouts.adminmain',['title'=>'Profile'])
+@extends('Adminlayouts.adminmain',['title'=>'Profile'])
 @section('profile')
     <div class="row justify-content-center mt-4">
         <div class="col col-md-7">
@@ -6,11 +6,11 @@
                 <div class="card-header text-light fw-bold bg-info">Account Details</div>
                 <div class="card-body text-dark shadow">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" value="username">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" value={{ auth()->user()->username }}>
                     <label for="exampleFormControlInput1" class="form-label my-3">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" value="email@example.com">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" value={{ auth()->user()->email }}>
                     <label for="exampleFormControlInput1" class="form-label my-3">Password</label>
-                    <input type="password" class="form-control" id="exampleFormControlInput1" value="password">
+                    <input type="password" class="form-control" id="exampleFormControlInput1" value={{ auth()->user()->password }}>
                     <a class="btn btn-info my-3 " href="#">Save Changes</a>
                 </div>
             </div>

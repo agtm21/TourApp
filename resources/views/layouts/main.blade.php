@@ -39,7 +39,7 @@
           </ul>
             <div class="dropdown">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile image" height="30" width="30">User</a>
+                  <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile image" height="30" width="30">{{ auth()->user()->username }}</a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
                     {{-- @auth : ketika user login eksekusi kode berikut  --}}
