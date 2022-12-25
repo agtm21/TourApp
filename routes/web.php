@@ -61,10 +61,12 @@ Route::get('/profile', function () {
 });
 // Admin Group Controller
 Route::controller([AdminPageController::class])->group(function () {
+    Route::resource('/Admin', AdminPageController::class)->middleware('auth', 'authuser:admin');
     Route::get('/adminpage', [AdminPageController::class, 'index'])->middleware('auth', 'authuser:admin')->name('adminpage');
     Route::get('/datauser', [AdminPageController::class, 'datauser'])->middleware('auth', 'authuser:admin');
     Route::delete('Adminlayouts/datauser/{id}', [AdminPageController::class, 'destroy']);
-    Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
+    //Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
+    Route::get('/create', [AdminPageController::class, 'create'])->middleware('auth', 'authuser:admin');
     Route::post('/logout', [AdminPageController::class, 'logout']);
 });
 

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPageController extends Controller
 {
@@ -18,20 +19,50 @@ class AdminPageController extends Controller
     public function datauser()
     {
 
-        $users = User::all();
+        $users = DB::Table('users')->paginate(5);
+        //$users = User::all();
 
         return view('Adminlayouts.DataUser', compact('users'));
     }
-    public function edit(Request $request, $id)
+    public function create()
     {
-        // $user = User::findorFail($id);
-        // $user->update($request->all());
-        // return redirect()->route('datauser')->with('success', 'Data Updated Successfully!');
-        // $model = MyModel::findOrFail($id);
-        // $model->update($request->all());
-
-        // return redirect()->route('my_route')
-        //     ->with('success', 'The model has been updated successfully.');
+        return view('Adminlayouts.create');
+    }
+    public function store(Request $request)
+    {
+        // return $request;
+        $validateData = $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required'
+        ]);
+        $validateData['password'] = bcrypt($validateData['password']);
+        $cuser = User::create($validateData);
+        if ($cuser) {
+            return redirect('/datauser')->with('success', 'User Created!');
+        } else {
+            return back()->with('error', 'Input User Error, Coba Lagi!');
+        }
+    }
+    public function edit($id)
+    {
+        $users = User::find($id);
+        return view('Adminlayouts.edit', compact('users'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        $usr = User::find($id);
+        $usr->username =  $request->get('username');
+        $usr->email = $request->get('email');
+        $usr->password = $request->get('password');
+        $usr->save();
+        return redirect('/datauser')->with('success', 'Data Has Been Updated!');
     }
     public function destroy(User $id)
     {
