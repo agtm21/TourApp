@@ -1,6 +1,7 @@
 {{-- After Sign Up The Page Should be Go To Login Again --}}
 @extends('layouts.sign',['title'=>'Sign In'])
 @section('signin')
+
 <section class="vh-100 gradient-form" style="background-color: #eee;">
     <div class="container h-100">
       

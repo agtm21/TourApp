@@ -47,6 +47,7 @@
                   {{-- {{ auth()->user()->username }} --}}
                 </a>
                 <div class="dropdown-menu">
+                  <form action="/profile"></form>
                   <a class="dropdown-item" href="/profile">Profile</a>
                   <form action="/logout" method="POST">
                     @csrf

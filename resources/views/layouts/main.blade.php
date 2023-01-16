@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/homepage.css">
+    {{-- <link rel="stylesheet" href="css/homepage.css"> --}}
     <script src="https://kit.fontawesome.com/04c6e6ed2a.js" crossorigin="anonymous"></script>
   <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -31,14 +31,14 @@
               <a class="nav-link fs-4" href="/homepage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fs-4 mx-4" href="#">Penyewaan</a>
+              <a class="nav-link fs-4 mx-4" href="/penyewaan">Penyewaan</a>
             </li>
             <li class="nav-item">
               <a class="nav-link fs-4" href="#">About</a>
             </li>
           </ul>
             <div class="dropdown">
-                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle text-light" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                   <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile image" height="30" width="30">{{ auth()->user()->username }}</a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
@@ -46,11 +46,11 @@
                     @auth
                       <img class="img-md rounded-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile image" width="100" height="100">
                       {{-- memanggil user yang telah terauth dari tabel user yang ada di database --}}
-                      <p class="mb-1 mt-3 font-weight-semibold">{{ auth()->user()->username }}</p>
+                      <p class="mb-1 mt-3 font-weight-semibold ">{{ auth()->user()->username }}</p>
                       <p class="font-weight-light text-muted mb-0">{{ auth()->user()->email }}</p>    
                     @endauth
                   </div>
-                  <a class="dropdown-item"><i class="fa-solid fa-user"></i> My Profile</a>
+                  <a class="dropdown-item " href="/profile/user"><i class="fa-solid fa-user" ></i> My Profile</a>
                   <a class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> My Order History</a>
                   <a class="dropdown-item"><i class="fa-solid fa-calendar-check"></i> Activity</a>
                   <a class="dropdown-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
@@ -78,26 +78,13 @@
         </div>
     </nav>
     {{-- End of navigator bar --}}
-    {{-- search box --}}
-    <div class="container my-5">
-        <form class="d-flex">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="" class="form-label">Cari</label>
-                    <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
-                    <small id="helpId" class="text-muted">Ketik nama ...</small>
-                </div>
-            </div>
-        </form>
-    </div>
-    {{-- end of search box --}}
+    
 
     {{-- packet list --}}
     <div class="container">
-        <div class="fs-1 fw-bold">
-            <p>Trend Spot</p>
-        </div>
+      <div class="mt-5"></div>
         @yield('packagelist')
+        @yield('container')
     </div>
     {{-- end of packet list --}}
     {{-- <div class="container">

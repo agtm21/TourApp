@@ -17,12 +17,14 @@ class UserAuthenticate
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (!Auth::check()) {
-            return redirect('login');
+        $roles = array_slice(func_get_args(), 2);
+        foreach ($roles as $role) {
+            $user = Auth::user()->role;
+            if ($user == $role) {
+                return $next($request);
+            }
+
+            return redirect('login')->with('error', 'you do not have authorization!');
         }
-        if (Auth::user()->role == $role) {
-            return $next($request);
-        }
-        return redirect('login')->with('error', 'you do not have authorization!');
     }
 }

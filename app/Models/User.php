@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     // variable guarded berfungsi agar kolom yang disebutkan tidak diisi, kalau fillable yang bisa diisi
-    protected $guarded = ['id'];
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -28,6 +28,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    protected $fillable = ['uuid', 'username', 'email', 'password'];
 
     /**
      * The attributes that should be cast.
@@ -37,12 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     /**
      * @param string $role
      * @return bool
      */
-    public function hasRole(string $role): bool
-    {
-        return $this->getAttribute('role') === $role;
-    }
 }

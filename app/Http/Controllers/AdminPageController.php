@@ -18,11 +18,14 @@ class AdminPageController extends Controller
     }
     public function datauser()
     {
-
-        $users = DB::Table('users')->paginate(5);
-        //$users = User::all();
-
-        return view('Adminlayouts.DataUser', compact('users'));
+        //cari data di user dan urutkan ke yang paling baru
+        $cari = request('cari');
+        //paginate(n) = batas data yang ditampilkan sebanyak n
+        $users = User::latest()->paginate(6);
+        if ($cari) {
+            $users->where('username', 'like' . $cari . '%');
+        }
+        return view('Adminlayouts.DataUser', ['users' => $users]);
     }
     public function create()
     {
@@ -48,6 +51,7 @@ class AdminPageController extends Controller
     public function edit($id)
     {
         $users = User::find($id);
+
         return view('Adminlayouts.edit', compact('users'));
     }
     public function update(Request $request, $id)
@@ -61,6 +65,7 @@ class AdminPageController extends Controller
         $usr->username =  $request->get('username');
         $usr->email = $request->get('email');
         $usr->password = $request->get('password');
+        $usr['password'] = bcrypt($usr['password']);
         $usr->save();
         return redirect('/datauser')->with('success', 'Data Has Been Updated!');
     }

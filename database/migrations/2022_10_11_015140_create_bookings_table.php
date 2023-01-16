@@ -15,12 +15,11 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('product_name');
-            $table->string('img_path');
-            $table->text('product-desc');
-            $table->string('price');
-            
+            $table->string('img_path')->nullable();
+            $table->text('product_desc');
+            $table->decimal('price', 10, 2);
+            $table->timestamps();
         });
     }
 

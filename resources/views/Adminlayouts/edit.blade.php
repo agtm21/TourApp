@@ -21,7 +21,7 @@
                 @enderror
             </div>
             <div class="form-floating mb-3 col-md-6">
-                <input type="password" class="form-control" id="floatingPassword" @error('password') is-invalid @enderror placeholder="Password" name="password" value="{{ $users->password }}" required>
+                <input type="password" class="form-control" id="floatingPassword" @error('password') is-invalid @enderror placeholder="Password" name="password" required>
                 <label for="floatingPassword">Password</label>
                 @error('password')
                     <div class="text-danger" id="floatingPassword">{{ $message }}</div>

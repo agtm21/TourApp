@@ -130,4 +130,20 @@
       </div>
     </div> --}}
   {{-- End Of Small Box --}}
+
+  {{-- User Log --}}
+  <div class="row mt-4">
+    <div class="col-6">
+      <div class="card vh-50">
+        <h5 class="card-header">User Log</h5>
+        <div class="card-body">
+          <div class="d-inline">
+            <strong>User</strong> <span>has login</span>
+            <span class="float-end">1 minute ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- End of User Log --}}
 @endsection
