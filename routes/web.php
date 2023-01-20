@@ -44,13 +44,13 @@ Route::get('/signupnel', function () {
     return view('signupnel');
 });
 
-Route::get('/homepage', function () {
-    return view('homepage');
-});
+// Route::get('/homepage', function () {
+//     return view('homepage');
+// });
 
-Route::get('/homepagenel', function () {
-    return view('homepagenel');
-});
+// Route::get('/homepagenel', function () {
+//     return view('homepagenel');
+// });
 
 // ADMIN PAGE
 Route::get('/adminpage', function () {
@@ -61,6 +61,7 @@ Route::controller([UserProfileController::class])->group(function () {
     Route::get('/profile', [UserProfileController::class, 'index']);
     Route::post('/update/{id}', [UserProfileController::class, 'update']);
 });
+
 // Admin Group Controller
 Route::controller([AdminPageController::class])->group(function () {
     Route::resource('/Admin', AdminPageController::class)->middleware('role:admin');
@@ -72,6 +73,7 @@ Route::controller([AdminPageController::class])->group(function () {
     Route::post('/logout', [AdminPageController::class, 'logout']);
 });
 
+
 // Homepage role as traveler Controller
 Route::controller([HomepageController::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index'])->middleware('role:traveler')->name('tvlhomepage');
@@ -79,6 +81,7 @@ Route::controller([HomepageController::class])->group(function () {
     Route::get('/homepagenel', [HomepageController::class, 'indexnel'])->middleware('role:nelayan')->name('homenelayan');
     Route::get('/penyewaan', [HomepageController::class, 'penyewaan'])->middleware('role:traveler');
     Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'konfirmasipaket'])->middleware('role:traveler');
+    Route::get('/langs/{locale}', [HomepageController::class, 'langs'])->middleware('role:traveler');
 });
 
 // middleware untuk membatasi page dan mencegah page dibuka melalu url langsung dan mengharuskan adanya login

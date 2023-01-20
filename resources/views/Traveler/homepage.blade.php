@@ -6,7 +6,7 @@
   <form class="d-flex">
       <div class="col">
           <div class="mb-3">
-              <label for="" class="form-label">Cari</label>
+              <label for="" class="form-label">@lang('pages.search')</label>
               <input type="text" name="search" id="search" class="form-control" placeholder="" aria-describedby="helpId">
               <small id="helpId" class="text-muted">Cari Paket...</small>
           </div>
@@ -15,7 +15,7 @@
 </div>
 {{-- end of search box --}}
 <div class="fs-1 fw-bold">
-  <p>Trend Spot</p>
+  <p>@lang('pages.title')</p>
 </div>
   <div class="row">
     @foreach($bookings as $books)
@@ -38,7 +38,7 @@
                   <p class="card-text text-dark">{{ $books->product_desc }}</p>
                   <a href="/prosespenyewaan/{{ $books->id }}" class="btn btn-warning rounded px-4">
                   <i class="fa-regular fa-credit-card"></i>  
-                  Order
+                  @lang('pages.order')
                 </a>  
               </div>
           </div>

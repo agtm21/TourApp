@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\booking;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +11,9 @@ class HomepageController extends Controller
 {
     public function index()
     {
+        if ($locale = session('locale')) {
+            app()->setLocale($locale);
+        }
         $booking = booking::latest()->paginate(9);
         return view('Traveler.homepage', [
             'bookings' => $booking
@@ -31,6 +34,11 @@ class HomepageController extends Controller
         $bookings = booking::findOrFail($id);
         // dd($bookings);
         return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id]);
+    }
+    public function langs($locale)
+    {
+        Session::put('locale', $locale);
+        return redirect()->back();
     }
     public function logout(Request $request)
     {
