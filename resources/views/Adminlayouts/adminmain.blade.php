@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/04c6e6ed2a.js"crossorigin="anonymous"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>      
-    
+    <script src="public\js\modal.js"></script>
     {{-- <link rel="stylesheet" href="css/adminpage.css"> --}}
     <title>Admin Page | @isset($title){{ $title }}@endisset</title>
 </head>
@@ -32,8 +32,17 @@
               <button class="list-group-item list-group-item-action py-2 ripple bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                 <i class="fas fa-chart-area fa-fw me-3"></i><span>Database</span>
               </button>
+              {{-- Data User Button --}}
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
                 <a href="/datauser" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Data User</a>
+              </div>
+              {{-- manage package button --}}
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <a href="/managepackage" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Manage Package</a>
+              </div>
+              {{-- manage booking --}}
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <a href="/managepackage" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Manage Booking</a>
               </div>
               {{-- <div class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
                 <li>Something</li>

@@ -58,7 +58,7 @@
   
                     <div class="d-flex align-items-center justify-content-center">
                       <p class="mb-0 me-2">Don't have an account?</p>
-                      <a href="/signup">Sign Up</a>
+                      <a href="/signup">@lang('pages.sign.signin')</a>
                     </div>
                     
                   </form>

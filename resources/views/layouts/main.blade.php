@@ -129,12 +129,15 @@
 
                             <p class="mb-1 mt-3 font-weight-semibold ">{{ auth()->user()->username }}</p>
                             <p class="font-weight-light text-muted mb-0">{{ auth()->user()->email }}</p>
+                            <p>Balance: {{ auth()->user()->currency }} Sail-Pay</p>
+                            
                             @endauth
                         </div>
                         <a class="dropdown-item " href="/profile/user"><i class="fa-solid fa-user"></i> @lang('auth.profile.profil')</a>
                         <a class="dropdown-item"><i class="fa-solid fa-cart-shopping"></i> @lang('auth.profile.history')</a>
                         <a class="dropdown-item"><i class="fa-solid fa-calendar-check"></i> @lang('auth.profile.activities')</a>
                         <a class="dropdown-item"><i class="fa-solid fa-circle-question"></i> @lang('auth.profile.faq')</a>
+                        <a class="dropdown-item" href="/topup"><i class="fa-solid fa-money-check-dollar"></i> Topup</a>
                         <form action="/logout" method="POST">
                             @csrf
                             <button class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i>@lang('auth.profile.out')</button>
@@ -150,6 +153,18 @@
     {{-- packet list --}}
     <div class="container">
         <div class="mt-5"></div>
+        @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ session('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>    
+      @endif
+      @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ session('loginerror') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>    
+      @endif
         @yield('packagelist')
         @yield('container')
     </div>

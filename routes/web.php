@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManagePackageController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserProfileController;
 use Faker\Guesser\Name;
@@ -21,13 +22,21 @@ use GuzzleHttp\Middleware;
 |
 */
 
+// Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->middleware('setlocale')->group(function () {
+
+// });
+
 Route::get('/', function () {
+    if ($locale = session('locale')) {
+        app()->setLocale($locale);
+    }
     return view('Landing');
+    // return redirect(app()->getLocale());
 });
 
-Route::get('/booking', function () {
-    return view('Booking');
-});
+// Route::get('/booking', function () {
+//     return view('Booking');
+// });
 
 Route::get('/about', function () {
     return view('About');
@@ -62,12 +71,21 @@ Route::controller([UserProfileController::class])->group(function () {
     Route::post('/update/{id}', [UserProfileController::class, 'update']);
 });
 
+Route::controller([ManagePackageController::class])->middleware('role:admin')->group(function () {
+    Route::resource('manage', ManagePackageController::class);
+    Route::get('managepackage', [ManagePackageController::class, 'index']);
+    Route::get('create', [ManagePackageController::class, 'create']);
+    Route::get('edit', [ManagePackageController::class, 'create']);
+});
 // Admin Group Controller
 Route::controller([AdminPageController::class])->group(function () {
     Route::resource('/Admin', AdminPageController::class)->middleware('role:admin');
     Route::get('/adminpage', [AdminPageController::class, 'index'])->middleware('role:admin')->name('adminpage');
     Route::get('/datauser', [AdminPageController::class, 'datauser'])->middleware('role:admin');
     Route::delete('Adminlayouts/datauser/{id}', [AdminPageController::class, 'destroy']);
+    Route::get('managebooking', [AdminPageController::class, 'managebooking']);
+    Route::get('nelayanbook', [AdminPageController::class, 'nelayanbook']);
+    // Route::get('/managepackage', [AdminPageController::class, 'managepackage']);
     //Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
     Route::get('/create', [AdminPageController::class, 'create'])->middleware('role:admin');
     Route::post('/logout', [AdminPageController::class, 'logout']);
@@ -80,8 +98,11 @@ Route::controller([HomepageController::class])->group(function () {
     Route::post('/logout', [HomepageController::class, 'logout']);
     Route::get('/homepagenel', [HomepageController::class, 'indexnel'])->middleware('role:nelayan')->name('homenelayan');
     Route::get('/penyewaan', [HomepageController::class, 'penyewaan'])->middleware('role:traveler');
-    Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'konfirmasipaket'])->middleware('role:traveler');
+    Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket'])->middleware('role:traveler');
     Route::get('/langs/{locale}', [HomepageController::class, 'langs'])->middleware('role:traveler');
+    Route::get('landing/langs/{locale}', [HomepageController::class, 'langs']);
+    Route::get('/topup', [HomepageController::class, 'topup']);
+    Route::post('/confirm', [HomepageController::class, 'konfirmasipaket'])->middleware('role:traveler');
 });
 
 // middleware untuk membatasi page dan mencegah page dibuka melalu url langsung dan mengharuskan adanya login
@@ -90,10 +111,12 @@ Route::controller([HomepageController::class])->group(function () {
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'grab_data');
+    Route::get('/login/langs/{locale}', 'langs');
 });
 
 Route::controller(RegistrationController::class)->group(function () {
     Route::get('/register', 'index_signup');
     Route::post('/register', 'store_data');
     Route::get('/register', 'index_nel');
+    Route::get('/register/langs/{locale}');
 });

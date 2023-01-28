@@ -15,7 +15,7 @@
 </div>
 {{-- end of search box --}}
 <div class="fs-1 fw-bold">
-  <p>@lang('pages.title')</p>
+  <p>@lang('pages.title.homepage')</p>
 </div>
   <div class="row">
     @foreach($bookings as $books)

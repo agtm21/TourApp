@@ -6,5 +6,15 @@ return [
     'greets' => 'Selamat Datang',
     'search' => 'Cari',
     'order' => 'Pesan',
-    'title' => 'Sedang Tren'
+    'title' => [
+        'homepage' => 'Sedang Tren',
+        'landing' => 'Berlayar Bersama Kami!'
+    ],
+    'sign' => [
+        'signin' => 'Masuk',
+        'signup' => 'Mendaftar',
+        'traveler' => 'Daftar sebagai Pelanggan',
+        'fisherman' => 'Daftar sebagai Nelayan'
+    ]
+    
 ];

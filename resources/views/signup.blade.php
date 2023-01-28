@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-center ">
                       <p class="mb-0 me-2">Already have an account?</p>
-                      <a href="/signin">Sign In</a>
+                      <a href="/signin">@lang('pages.sign.traveler')</a>
                     </div>
                   </form>
   

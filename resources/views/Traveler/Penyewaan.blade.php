@@ -1,22 +1,38 @@
 @extends('layouts.main', ['title'=>'Penyewaan'])
 @section('container')
 
-@if($paket)
+@foreach($order as $orderitem)
+{{-- cek status order berdasarkan id_user --}}
+@if($orderitem->status == 1) 
     <div class="container">
        <div class="card">
         <div class="card-header">
-            Daftar Paket
+            Your Order
         </div>
         <div class="card-body">
-            <div class="card-title d-flex justify-content-between">
-                <p>Nama Paket</p>
-                <p>Status: On Process</p>
+            <div class="row justify-content-center align-items-center g-2">
+                <div class="col col-md-2">
+                    <ul style="list-style-type: none">
+                        <li>Nama Paket</li>
+                        <li>Harga</li>
+                        <li>Fasilitas</li>
+                        <li>Tanggal</li>
+                        <li>Waktu</li>
+                    </ul>
+                </div>
+                <div class="col col-md-7">
+                    <ul style="list-style-type: none">
+                        <li>: {{ $orderitem->product_name }}</li>
+                        <li>: {{ $orderitem->price }}</li>
+                        <li>: {{ $orderitem->product_desc }}</li>
+                        <li>: {{ $orderitem->date }}</li>
+                        <li>: {{ $orderitem->time }}</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <img src="{{ $orderitem->img_path }}" alt="img-order" class="img-fluid" style="width:300px">
+                </div>
             </div>
-            <div class="card-text d-flex justify-content-between">
-                Detail Pesanan
-                <a href="#" class="btn btn-danger">Batalkan</a>
-            </div>
-            
         </div>
        </div>
     </div>
@@ -30,4 +46,5 @@
         </div>
     </div>
 @endif
+@endforeach
 @endsection

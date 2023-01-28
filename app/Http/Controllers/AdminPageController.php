@@ -82,4 +82,14 @@ class AdminPageController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function managebooking()
+    {
+        $status = 1;
+        return view('Adminlayouts.ManageBooking', ['status' => $status]);
+    }
+    public function nelayanbook()
+    {
+        return view('Adminlayouts.nelayanbook');
+    }
 }

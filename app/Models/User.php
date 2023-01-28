@@ -43,4 +43,8 @@ class User extends Authenticatable
      * @param string $role
      * @return bool
      */
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }
