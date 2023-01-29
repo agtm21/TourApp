@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -85,11 +86,27 @@ class AdminPageController extends Controller
 
     public function managebooking()
     {
-        $status = 1;
-        return view('Adminlayouts.ManageBooking', ['status' => $status]);
+        $order = Order::get();
+
+        return view('Adminlayouts.ManageBooking', ['order' => $order]);
     }
     public function nelayanbook()
     {
-        return view('Adminlayouts.nelayanbook');
+        $order = Order::get();
+        $user = User::where('role', 'nelayan')->get();
+        return view('Adminlayouts.nelayanbook', ['order' => $order, 'user' => $user]);
+    }
+    public function konfirmasi_order(Request $request)
+    {
+        $id = $request->get('id_order');
+        $newVal = $request->get('nelayanfield');
+
+        Order::where('id_order', $id)
+            ->update([
+                'nama_nelayan' => $newVal,
+                'status' => 0
+            ]);
+
+        return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }
 }

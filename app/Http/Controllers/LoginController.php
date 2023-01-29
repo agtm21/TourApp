@@ -29,7 +29,7 @@ class LoginController extends Controller
                 $request->session()->regenerate();
                 return redirect()->intended('/homepage');
             } elseif ($user->role == 'nelayan') {
-                return redirect()->intended('/homepagenel');
+                return redirect()->intended('/nelayan/homepage');
             }
             return redirect()->intended('/');
         }

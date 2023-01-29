@@ -19,7 +19,7 @@
             <a class="navbar-brand text-light" href="/"><img src="img/dolphinlogo.jpg" alt="logo" width="30" height="24"
                     style="margin-right:10px;">Dolphin Tour</a>
             <div class="d-flex me-5">
-                
+
 
 
                 <div class="dropdown me-2">
@@ -56,7 +56,7 @@
     {{-- Content --}}
     <div class="text-light">
         <div class="container" id="content">
-            <div class="row mt-4">
+            <div class="row mt-4 ">
                 <div class="col col-md-6">
                     <h1 class="fs-2 mb-4">@lang('pages.title.landing')</h1>
                     <h4 class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis voluptatem
@@ -68,9 +68,9 @@
                                 <a href="/signup" class="btn btn-warning "><i
                                         class="fa-solid fa-user-plus pe-2"></i>@lang('pages.sign.traveler')</a>
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 <span class="fs-3 p-2">or</span>
-                            </div>
+                            </div> --}}
                             <div class="col">
                                 <a href="/signupnel" class="btn btn-warning "><i
                                         class="fa-solid fa-user-plus pe-2"></i>@lang('pages.sign.fisherman')</a>
@@ -78,17 +78,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col col-md-2"></div>
-            <div class="col col-md-4">
-                <div class="img">
-                    <img src="img/dillus.jpg" class="img-fluid rounded float-end" alt="dolphin-img-landingpage"
-                        width="300" height="300">
+                <div class="col col-md-2"></div>
+                <div class="col col-md-4">
+                    <div class="img">
+                        <img src="img/dillus.jpg" class="img-fluid rounded float-end" alt="dolphin-img-landingpage"
+                            width="300" height="300">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  
+
 
     {{-- Bootstrap JavaScript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

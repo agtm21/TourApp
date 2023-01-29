@@ -11,21 +11,18 @@ use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if ($locale = session('locale')) {
             app()->setLocale($locale);
         }
-        $users = User::get();
+
         $booking = booking::latest()->paginate(9);
         return view('Traveler.homepage', [
             'bookings' => $booking
         ]);
     }
-    public function indexnel()
-    {
-        return view('/homepagenel');
-    }
+   
     public function penyewaan()
     {
         $auth = Auth::id(); //mendapatkan id user yang login saat ini
@@ -36,6 +33,7 @@ class HomepageController extends Controller
             'order' => $order
         ]);
     }
+
     public function orderpaket($id)
     {
         // dd($id);
@@ -83,6 +81,13 @@ class HomepageController extends Controller
         } else {
             return redirect()->back()->with('error', 'Paket gagal Dipesan!');
         }
+    }
+    public function history()
+    {
+        $auth = Auth::id();
+        $history = Order::where('id_user', $auth)->get();
+
+        return view('Traveler.History', ['history' => $history]);
     }
     public function logout(Request $request)
     {

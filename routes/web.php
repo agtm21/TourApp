@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\HomepageController;
-
+use App\Http\Controllers\HomepagenelController as ControllersHomepagenelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManagePackageController;
+use App\Http\Controllers\Nelayan\HomepagenelController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserProfileController;
 use Faker\Guesser\Name;
@@ -87,6 +88,7 @@ Route::controller([AdminPageController::class])->group(function () {
     Route::get('nelayanbook', [AdminPageController::class, 'nelayanbook']);
     // Route::get('/managepackage', [AdminPageController::class, 'managepackage']);
     //Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
+    Route::post('/confirm/nelayan', [AdminPageController::class, 'konfirmasi_order'])->middleware('role:admin');
     Route::get('/create', [AdminPageController::class, 'create'])->middleware('role:admin');
     Route::post('/logout', [AdminPageController::class, 'logout']);
 });
@@ -96,15 +98,22 @@ Route::controller([AdminPageController::class])->group(function () {
 Route::controller([HomepageController::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index'])->middleware('role:traveler')->name('tvlhomepage');
     Route::post('/logout', [HomepageController::class, 'logout']);
-    Route::get('/homepagenel', [HomepageController::class, 'indexnel'])->middleware('role:nelayan')->name('homenelayan');
+
     Route::get('/penyewaan', [HomepageController::class, 'penyewaan'])->middleware('role:traveler');
     Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket'])->middleware('role:traveler');
     Route::get('/langs/{locale}', [HomepageController::class, 'langs'])->middleware('role:traveler');
     Route::get('landing/langs/{locale}', [HomepageController::class, 'langs']);
     Route::get('/topup', [HomepageController::class, 'topup']);
+    Route::get('/history', [HomepageController::class, 'history'])->middleware('role:traveler');
     Route::post('/confirm', [HomepageController::class, 'konfirmasipaket'])->middleware('role:traveler');
+    Route::get('/search', [HomepageController::class, 'index']);
 });
 
+Route::controller([ControllersHomepagenelController::class])->middleware('role:nelayan')->group(function () {
+    Route::get('/nelayan/homepage', [ControllersHomepagenelController::class, 'index']);
+    Route::get('/nelayan/order', [ControllersHomepagenelController::class, 'Order']);
+    Route::get('/logout', [ControllersHomepagenelController::class, 'logout']);
+});
 // middleware untuk membatasi page dan mencegah page dibuka melalu url langsung dan mengharuskan adanya login
 
 // Group Controller : route yang sama ada dalam 1 controller bisa dijadikan grup

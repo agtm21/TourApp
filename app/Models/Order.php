@@ -23,4 +23,8 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function nelayan()
+    {
+        return $this->hasOne(nelayan::class);
+    }
 }

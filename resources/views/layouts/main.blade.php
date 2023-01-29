@@ -89,6 +89,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/penyewaan">@lang('pages.book')</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/history">History</a>
+                    </li>
                     {{-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown

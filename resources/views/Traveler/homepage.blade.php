@@ -6,9 +6,11 @@
   <form class="d-flex">
       <div class="col">
           <div class="mb-3">
+            <form action="/search" method="GET">
               <label for="" class="form-label">@lang('pages.search')</label>
               <input type="text" name="search" id="search" class="form-control" placeholder="" aria-describedby="helpId">
               <small id="helpId" class="text-muted">Cari Paket...</small>
+            </form>
           </div>
       </div>
   </form>
