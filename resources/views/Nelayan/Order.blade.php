@@ -1,23 +1,36 @@
 @extends('Nelayan.Homepage')
 @section('container')
     <div class="container">
-        <h1>Notifikasi Pesanan</h1>
+        
         <div class="card">
+            <div class="card-header">
+              <h3>Notifikasi</h3>
+            </div>
             <div class="card-body bg-secondary">
                 {{-- outer --}}
+                @forelse ($notifications as $notification)
+                {{-- <a href="#" class="mark-as-read" data-id="{{ $notification->id }}">Mark as Read</a> --}}
+
                 <div class="card mb-3">
                     {{-- inner --}}
-                    <button class="card-body p-1 shadow rounded btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-
-                        <div class="d-flex justify-content-between ms-3">
-                            <div class="d-inline-flex align-items-center">
-                                <i class="fa-solid fa-envelope"></i>
-                                <p class="fw-bold mt-3 ms-3">Text Here</p>
-                            </div>
-                            <p class="me-3 mt-3">date</p>
-                        </div>
+                    <button class="card-body p-1 shadow rounded btn btn-outline-primary mark-as-read" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          
+                      <div class="d-flex justify-content-between ms-3">
+                          <div class="d-inline-flex align-items-center">
+                              <i class="fa-solid fa-envelope"></i>
+                              <p class="mt-3 ms-3">
+                                {{-- nama nelayan --}}
+                                Anda Mendapatkan Pesanan!
+                                
+                              </p>
+                          </div>
+                          <a  href="/notifications/{{ $notification->id }}/read" class="text-decoration-none">Mark As Read</a>
+                      </div>
                     </button>
-                </div>
+                  </div>
+                      @empty
+                          <p class="text-center text-light">Tidak ada Notifikasi</p>
+                      @endforelse
                 
             </div>
             
@@ -32,8 +45,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Anda Menangani Pelanggan Bernama (nama_user) pada tanggal (date) Jam(waktu)
-
+              <div class="container text-center">
+                @foreach ($notifications as $notification)
+                    
+                {{ $notification->data['nama'] }} 
+                {{ $notification->data['message'] }}
+                <b>
+                  {{ $notification->data['pemesan'] }}
+                </b>
+                {{ $notification->data['date'] }}
+                {{ $notification->data['time'] }}
+                @endforeach
+                
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -42,4 +66,5 @@
           </div>
         </div>
       </div>
+      
 @endsection

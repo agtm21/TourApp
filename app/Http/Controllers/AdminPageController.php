@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\Controller;
+use App\Models\booking;
+use Illuminate\Support\Str;
+use App\Notifications\NotifyNelayan;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPageController extends Controller
@@ -14,19 +17,21 @@ class AdminPageController extends Controller
     public function index()
     {
         $countuser = User::count();
-
-        return view('Adminlayouts.adminpage');
+        $ordercount = Order::where('status', 1)->count();
+        $doneorder = Order::where('status', 0)->count();
+        return view('Adminlayouts.adminpage', ['order' => $ordercount, 'doneorder' => $doneorder]);
     }
     public function datauser()
     {
         //cari data di user dan urutkan ke yang paling baru
         $cari = request('cari');
         //paginate(n) = batas data yang ditampilkan sebanyak n
-        $users = User::latest()->paginate(6);
+        $traveler = User::where('role', 'traveler')->paginate(3);
+        $nelayan = User::where('role', 'nelayan')->paginate(3);
         if ($cari) {
-            $users->where('username', 'like' . $cari . '%');
+            $traveler->where('username', 'like', '%' . $cari . '%');
         }
-        return view('Adminlayouts.DataUser', ['users' => $users]);
+        return view('Adminlayouts.DataUser', ['traveler' => $traveler, 'nelayan' => $nelayan]);
     }
     public function create()
     {
@@ -34,14 +39,18 @@ class AdminPageController extends Controller
     }
     public function store(Request $request)
     {
+        $uuid = Str::uuid();
         // return $request;
         $validateData = $request->validate([
+            'uuid',
             'username' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role' => 'required'
         ]);
+        $validateData['uuid'] = $uuid;
         $validateData['password'] = bcrypt($validateData['password']);
+
         $cuser = User::create($validateData);
         if ($cuser) {
             return redirect('/datauser')->with('success', 'User Created!');
@@ -98,15 +107,28 @@ class AdminPageController extends Controller
     }
     public function konfirmasi_order(Request $request)
     {
-        $id = $request->get('id_order');
-        $newVal = $request->get('nelayanfield');
 
+        $id = $request->get('id_order');
+        $iduser = $request->get('id_user');
+        $newVal = $request->get('nelayanfield');
+        $trvl = User::where('id', $iduser)->first();
         Order::where('id_order', $id)
             ->update([
                 'nama_nelayan' => $newVal,
                 'status' => 0
             ]);
-
+        //cari username nelayan
+        $user = User::where('username', $newVal)->first();
+        //pesan yang akan di kirim
+        // dd($trvl->username, $iduser);
+        $msg = [
+            'nama' => $newVal,
+            'message' => 'Anda Mendapatkan Pesanan! dari',
+            'pemesan' => $trvl->username,
+            'date' => 'date',
+            'time' => 'time'
+        ];
+        Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }
 }

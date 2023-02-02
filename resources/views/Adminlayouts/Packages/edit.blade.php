@@ -12,7 +12,7 @@
             <h1>Edit Package</h1>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7 w-50 v-100">
         <form action="#" method="#">
             {{-- @csrf --}}
             {{-- product name --}}

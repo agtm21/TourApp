@@ -94,6 +94,7 @@ Route::controller([AdminPageController::class])->group(function () {
 });
 
 
+
 // Homepage role as traveler Controller
 Route::controller([HomepageController::class])->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index'])->middleware('role:traveler')->name('tvlhomepage');
@@ -113,6 +114,7 @@ Route::controller([ControllersHomepagenelController::class])->middleware('role:n
     Route::get('/nelayan/homepage', [ControllersHomepagenelController::class, 'index']);
     Route::get('/nelayan/order', [ControllersHomepagenelController::class, 'Order']);
     Route::get('/logout', [ControllersHomepagenelController::class, 'logout']);
+    Route::get('/notifications/{notification}/read', [ControllersHomepagenelController::class, 'markAsRead']);
 });
 // middleware untuk membatasi page dan mencegah page dibuka melalu url langsung dan mengharuskan adanya login
 

@@ -16,7 +16,7 @@
 <body>
     
     <div class="main-container d-flex">
-      <div class="sidebar bg-dark vh-100 w-25" id="side_nav">
+      <div class="sidebar bg-dark vh-100 w-25" id="side_nav" style="overflow-y: auto">
         <div class="header p-2 text-light">
           <h1 class="fs-1"> Dolphin Tour</h1>
           <h1 class="fs-3">Admin Page</h1>
@@ -30,19 +30,19 @@
                 <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
               </a>
               <button class="list-group-item list-group-item-action py-2 ripple bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                <i class="fas fa-chart-area fa-fw me-3"></i><span>Database</span>
+                <i class="fas fa-chart-area fa-fw me-3"></i><span>Manage</span>
               </button>
               {{-- Data User Button --}}
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                <a href="/datauser" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Data User</a>
+                <a href="/datauser" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x me-2"></i> Manage User</a>
               </div>
               {{-- manage package button --}}
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                <a href="/managepackage" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Manage Package</a>
+                <a href="/managepackage" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress fa-0.5x me-2"></i>  Manage Package</a>
               </div>
               {{-- manage booking --}}
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                <a href="/managebooking" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-solid fa-user fa-0.5x"></i>Manage Booking</a>
+                <a href="/managebooking" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> Manage Booking</a>
               </div>
               {{-- <div class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
                 <li>Something</li>

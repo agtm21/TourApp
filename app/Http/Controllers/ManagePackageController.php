@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\booking;
 
 class ManagePackageController extends Controller
 {
     public function index()
     {
-        return view('Adminlayouts.Packages.ManagePackage');
+        $booking = booking::get();
+        return view('Adminlayouts.Packages.ManagePackage', compact('booking'));
     }
     public function create()
     {
@@ -16,6 +18,10 @@ class ManagePackageController extends Controller
     }
     public function edit()
     {
+
         return view('Adminlayouts.Packages.edit');
+    }
+    public function update($id)
+    {
     }
 }

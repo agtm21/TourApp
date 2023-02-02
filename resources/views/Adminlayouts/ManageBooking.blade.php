@@ -8,6 +8,7 @@
         <table class="table table-hover">
             <thead>
                 {{-- <td>Username</td> --}}
+                <td>ID Product</td>
                 <td>Product Name</td>
                 <td>Price</td>
                 <td>Time</td>
@@ -19,6 +20,9 @@
             <tbody>
                 @foreach($order as $orderitem)
                 @if($orderitem->status == '1')
+                {{-- <input type="hidden" name="id_order" value="{{ $orderitem->id_order }}"> --}}
+                    <td>{{ $orderitem->id_order }}</td>
+                    
                     {{-- <td>{{$user->username }}</td> --}}
                     <td>{{$orderitem->product_name }}</td>
                     <td>{{ $orderitem->price }}</td>
@@ -28,6 +32,7 @@
                     <td>Menunggu</td>
                     <td><a class="btn btn-success" href="nelayanbook">Pilih Nelayan</a></td>
                 @else
+                <td>{{ $orderitem->id_order }}</td>
                 <td>{{$orderitem->product_name }}</td>
                     <td>{{ $orderitem->price }}</td>
                     <td>{{ $orderitem->time }}</td>

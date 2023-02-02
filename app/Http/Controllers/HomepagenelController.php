@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use app\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\NotifyNelayan;
+
 
 class HomepagenelController extends Controller
 {
@@ -12,13 +14,20 @@ class HomepagenelController extends Controller
     {
         $title = 'Dashboard';
         $user = User::get();
+
         return view('Nelayan.Dashboard', ['title' => $title, 'users' => $user]);
     }
     public function Order()
     {
         $title = 'Order';
         $user = User::get();
-        return view('Nelayan.Order', ['title' => $title, 'users' => $user]);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('Nelayan.Order', ['title' => $title, 'users' => $user, 'notifications' => $notifications]);
+    }
+    public function markAsRead(Request $request, $id)
+    {
+        auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+        return redirect()->back();
     }
     public function logout(Request $request)
     {

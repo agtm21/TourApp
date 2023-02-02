@@ -37,8 +37,8 @@
           <div class="row">
             <div class="col-md-7">
               <div class="inner">
-                <h3 class="fs-3 fw-bold">1500</h3>
-                <p class="fs-5">Sales</p>
+                <h3 class="fs-3 fw-bold">{{ $order }}</h3>
+                <p class="fs-5">Waiting Order</p>
               </div>
             </div>
             <div class="col-md-4">
@@ -59,8 +59,8 @@
           <div class="row">
             <div class="col-md-7">
               <div class="inner">
-                <h3 class="fs-3 fw-bold">1500</h3>
-                <p class="fs-5">New Users</p>
+                <h3 class="fs-3 fw-bold">{{ $doneorder }}</h3>
+                <p class="fs-5">Done Order</p>
               </div>
             </div>
             <div class="col-md-4">

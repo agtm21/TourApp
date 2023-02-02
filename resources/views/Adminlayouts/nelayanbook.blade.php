@@ -24,6 +24,7 @@
                     <div class="col">
                         @foreach ($order as $item)
                         <input type="hidden" name="id_order" value="{{ $item->id_order }}">
+                        <input type="hidden" name="id_user" value="{{ $item->id_user }}">
                         <ul style="list-style-type: none">
                             <li>: {{ $item->product_name }}</li>
                             <li>: {{ $item->price }}</li>
