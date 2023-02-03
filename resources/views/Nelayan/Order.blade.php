@@ -8,26 +8,47 @@
             </div>
             <div class="card-body bg-secondary">
                 {{-- outer --}}
-                @forelse ($notifications as $notification)
-                {{-- <a href="#" class="mark-as-read" data-id="{{ $notification->id }}">Mark as Read</a> --}}
+              
 
-                <div class="card mb-3">
-                    {{-- inner --}}
+                @forelse ($notifications as $notification)
+                  @if (!$notification->read_at)
+                      
+                  <div class="card mb-3">
+                      <button class="card-body p-1 shadow rounded btn btn-outline-primary mark-as-read" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            
+                        <div class="d-flex justify-content-between ms-3">
+                            <div class="d-inline-flex align-items-center">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p class="fw-bold mt-3 ms-3">
+                                  
+                                  Anda Mendapatkan Pesanan!
+                                  
+                                </p>
+                            </div>
+                            <a  href="/notifications/{{ $notification->id }}/read" class="text-decoration-none">Mark As Read</a>
+                        </div>
+                      </button>
+                    </div>
+                  @else
+                  <div class="card mb-3">
                     <button class="card-body p-1 shadow rounded btn btn-outline-primary mark-as-read" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           
                       <div class="d-flex justify-content-between ms-3">
                           <div class="d-inline-flex align-items-center">
-                              <i class="fa-solid fa-envelope"></i>
+                              <i class="fa-solid fa-envelope-open"></i>
                               <p class="mt-3 ms-3">
-                                {{-- nama nelayan --}}
+                                
                                 Anda Mendapatkan Pesanan!
                                 
                               </p>
                           </div>
-                          <a  href="/notifications/{{ $notification->id }}/read" class="text-decoration-none">Mark As Read</a>
+                          
                       </div>
                     </button>
                   </div>
+                  @endif
+
+                {{-- inner --}}
                       @empty
                           <p class="text-center text-light">Tidak ada Notifikasi</p>
                       @endforelse

@@ -19,7 +19,8 @@ class AdminPageController extends Controller
         $countuser = User::count();
         $ordercount = Order::where('status', 1)->count();
         $doneorder = Order::where('status', 0)->count();
-        return view('Adminlayouts.adminpage', ['order' => $ordercount, 'doneorder' => $doneorder]);
+        $bookingcount = booking::count();
+        return view('Adminlayouts.adminpage', ['countuser' => $countuser, 'order' => $ordercount, 'doneorder' => $doneorder, 'booking' => $bookingcount]);
     }
     public function datauser()
     {
