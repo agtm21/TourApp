@@ -7,22 +7,14 @@
             <h1 class="fs-1 fw-bold text-dark">Data Traveler</h1>
             
             <div class="row justify-content-between ">
-                <div class="col">
-                    <form action="/datauser">
-                        <div class="input-group mb-3">
-                        
-                            <input type="text" class="form-control" placeholder="Cari User..." aria-label="Recipient's username" aria-describedby="button-addon2" name="cari">
-                            <a class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa-solid fa-search"></i></a>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-2">
+                
+                <div class="col-md-2 mb-3">
 
                     <a href="/Admin/create" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i>Tambah User</a>
                 </div>
             </div>
             <table class="table table-hover table-bordered text-center">
-                <thead>
+                <thead class="bg-dark text-light">
                     <tr>
                         {{-- <th>id</th> --}}
                         <th>Username</th>
@@ -36,7 +28,10 @@
                     @foreach ($traveler as $tvl)
                     <tr>
                         {{-- <td>{{ $user->id }}</td> --}}
-                        <td>{{ $tvl->username }}</td>
+                        <td>
+                            <img src="{{ $tvl->image }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            {{ $tvl->username }}
+                        </td>
                         <td>{{ $tvl->email }}</td>
                         <td>{{ $tvl->image }}</td>
                         <td>{{ $tvl->role }}</td>
@@ -66,22 +61,14 @@
             <h1 class="fs-1 fw-bold text-dark">Data Nelayan</h1>
             
             <div class="row justify-content-between ">
-                <div class="col">
-                    <form action="/datauser">
-                        <div class="input-group mb-3">
-                        
-                            <input type="text" class="form-control" placeholder="Cari User..." aria-label="Recipient's username" aria-describedby="button-addon2" name="cari">
-                            <a class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa-solid fa-search"></i></a>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-2">
+                
+                <div class="col-md-2 mb-3">
 
                     <a href="/Admin/create" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i>Tambah User</a>
                 </div>
             </div>
             <table class="table table-hover table-bordered text-center">
-                <thead>
+                <thead class="bg-dark text-light">
                     <tr>
                         {{-- <th>id</th> --}}
                         <th>Username</th>
@@ -95,7 +82,10 @@
                     @foreach ($nelayan as $nl)
                     <tr>
                         {{-- <td>{{ $user->id }}</td> --}}
-                        <td>{{ $nl->username }}</td>
+                        <td>
+                            <img src="{{ $nl->image }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            {{ $nl->username }}
+                        </td>
                         <td>{{ $nl->email }}</td>
                         <td>{{ $nl->image }}</td>
                         <td>{{ $nl->role }}</td>

@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'username' => 'admin',
                 'email'  => 'admin@gmail.com',
                 'password' => bcrypt('admin123'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
                 'role' => 'admin'
             ],
             [
@@ -29,13 +30,15 @@ class UserSeeder extends Seeder
                 'email'  => 'traveler@gmail.com',
                 'password' => bcrypt('traveler'),
                 'role' => 'traveler',
-                'currency' => '100000'
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                
             ],
             [
                 'uuid' => 'f7312208-8bff-492e-86f8-98e7dd6f1881',
                 'username' => 'nelayan123',
                 'email'  => 'nelayan@gmail.com',
                 'password' => bcrypt('nelayan123'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
                 'role' => 'nelayan'
             ]
         ];

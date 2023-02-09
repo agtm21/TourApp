@@ -16,16 +16,16 @@
     {{-- Navigation Bar --}}
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" href="/"><img src="img/dolphinlogo.jpg" alt="logo" width="30" height="24"
+            <a class="navbar-brand text-light" href="/"><img src="img/logo.png" alt="logo" width="30" height="24"
                     style="margin-right:10px;">Dolphin Tour</a>
             <div class="d-flex me-5">
 
 
 
                 <div class="dropdown me-2">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <i class="fa fa-globe"></i> {{ strtoupper(session('locale') ?? config('app.locale')) }}
+                        <i class="fa fa-language"></i> {{ strtoupper(session('locale') ?? config('app.locale')) }}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url('landing/langs/en') }}">English</a></li>
@@ -59,9 +59,7 @@
             <div class="row mt-4 ">
                 <div class="col col-md-6">
                     <h1 class="fs-2 mb-4">@lang('pages.title.landing')</h1>
-                    <h4 class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis voluptatem
-                        alias, eaque sit error illum necessitatibus voluptatibus aut, quidem ullam non in facilis earum
-                        vero iure inventore sed. Eaque, quibusdam?</h4>
+                    <h4 class="fs-5 text-justify">@lang('pages.desc')</h4>
                     <div class="container text-center " id="buttoncontent">
                         <div class="row row-cols-auto text-center">
                             <div class="col">

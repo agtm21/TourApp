@@ -6,7 +6,7 @@
             <h1>Manage Booking</h1>
         </div>
         <table class="table table-hover">
-            <thead>
+            <thead class="bg-dark text-light text-center">
                 {{-- <td>Username</td> --}}
                 <td>ID Product</td>
                 <td>Product Name</td>
@@ -21,6 +21,8 @@
                 @foreach($order as $orderitem)
                 @if($orderitem->status == '1')
                 {{-- <input type="hidden" name="id_order" value="{{ $orderitem->id_order }}"> --}}
+                <tr>
+                    
                     <td>{{ $orderitem->id_order }}</td>
                     
                     {{-- <td>{{$user->username }}</td> --}}
@@ -31,15 +33,19 @@
                     <td>Sedang Memilih</td>
                     <td>Menunggu</td>
                     <td><a class="btn btn-success" href="nelayanbook">Pilih Nelayan</a></td>
+                </tr>
                 @else
-                <td>{{ $orderitem->id_order }}</td>
-                <td>{{$orderitem->product_name }}</td>
-                    <td>{{ $orderitem->price }}</td>
-                    <td>{{ $orderitem->time }}</td>
-                    <td>{{ $orderitem->date }}</td>
-                    <td>{{ $orderitem->nama_nelayan }}</td>
-                    <td>Selesai</td>
-                    <td><button class="btn btn-secondary">Lihat Detail</button></td>
+                <tr>
+
+                    <td>{{ $orderitem->id_order }}</td>
+                    <td>{{$orderitem->product_name }}</td>
+                        <td>{{ $orderitem->price }}</td>
+                        <td>{{ $orderitem->time }}</td>
+                        <td>{{ $orderitem->date }}</td>
+                        <td>{{ $orderitem->nama_nelayan }}</td>
+                        <td>Selesai</td>
+                        <td><button class="btn btn-secondary">Lihat Detail</button></td>
+                </tr>
                 @endif
                 @endforeach
             </tbody>

@@ -1,12 +1,12 @@
 @extends('layouts.main',['title'=>'Konfirmasi Pesanan'])
-@section('packagelist')
+@section('prosespenyewaan')
 
 <form action="/confirm" method="POST">
     @csrf
 <div class="container mb-4">
     <div class="card">
-        <div class="card-header">
-            Your Order
+        <div class="card-header bg-primary">
+           <span class="fw-bold">Your Order</span>
         </div>
         <div class="card-body">
             <div class="row justify-content-center align-items-center g-2">
@@ -37,9 +37,8 @@
                     </ul>
                 </div>
                 <div class="col">
-                    <span>
-                        {{ $bookings->img_path }}
-                    </span>
+                    <img src="{{ $bookings->img_path }}" alt="gambar-paket" class="img-fluid w-30 h-30">
+                    
                 </div>
             </div>
             <div class="row">

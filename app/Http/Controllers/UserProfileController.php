@@ -7,10 +7,20 @@ use App\Models\User;
 
 class UserProfileController extends Controller
 {
-    public function index()
+    public function admin()
     {
 
-        return view('Profile', ['users' => request()->user()]);
+        return view('Adminlayouts.Profile', ['users' => request()->user()]);
+    }
+    public function traveler()
+    {
+
+        return view('Traveler.Profile', ['users' => request()->user()]);
+    }
+    public function nelayan()
+    {
+
+        return view('Nelayan.Profile', ['users' => request()->user()]);
     }
     public function update(Request $request, $id)
     {

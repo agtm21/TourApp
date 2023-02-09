@@ -11,9 +11,9 @@
                 <div class="card-body p-md-5 mx-md-4">
   
                   <div class="text-center">
-                    <a href="/"><img src="img/dolphinlogo.jpg"
+                    <a href="/"><img src="{{ URL::asset('img/logo.png') }}"
                       style="width: 185px;" alt="logo"></a>
-                    <h4 class="mt-1 mb-2">Tour App</h4>
+                    <h4 class="mt-1 mb-2">Dolphin Tour</h4>
                   </div>
   
                   <form action="/register" method="POST">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-center ">
                       <p class="mb-0 me-2">Already have an account?</p>
-                      <a href="/signin">@lang('pages.sign.traveler')</a>
+                      <a href="/signin">Signin</a>
                     </div>
                   </form>
   

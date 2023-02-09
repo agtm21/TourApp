@@ -9,41 +9,46 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/sidebarnel.css') }}">
     <script src="https://kit.fontawesome.com/04c6e6ed2a.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body>
     <div class="container-fluid">
+        
         <div class="row">
+            
             <div class="col-md-3 bg-dark p-3 vh-100">
-                <!-- Your sidebar content here -->
-                <h5 class="text-center">Dolphin Tour</h5>
-                <!-- Some borders are removed -->
-                <ul class="list-group list-group-flush ">
+                
+                <button class="btn btn-dark w-100 border-none p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <img src="http://bootdey.com/img/Content/avatar/avatar1.png" width="30px" height="30px" class="rounded-circle" alt="gambar-user">
+                    <span class="text-light ms-2">
+                        
+                        {{ auth()->user()->username }}
+                    </span>
+                  </button>
+                  <div class="collapse text-center" id="collapseExample">
+                    <div class="list-group list-group-flush ">
+
+                        <a href="/profile" class="list-group-item text-light bg-dark " >Profile</a>
+                        <a href="/logout" class="list-group-item text-light bg-dark">Logout</a>
+                        <a href="#" class="list-group-item text-light bg-dark"></a>
+                    </div>
+                  </div>
+                  
+                
+                <hr>
+                <div class="list-group list-group-flush ">
 
                     <a href="/nelayan/homepage" class="list-group-item bg-dark text-decoration-none text-white text-center">Dashboard </a>
                     <a href="#" class="list-group-item bg-dark text-decoration-none text-white text-center">Order </a>
                     
-                </ul>
-                <div class="d-flex justify-content-center">
-                    @foreach ($users as $user)
-                        
-                    <div class="dropup-center dropup position-absolute bottom-0">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ $user->username }}
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                            
-                        </ul>
-                    </div>
-                    @endforeach
                 </div>
+                
             </div>
             <div class="col-md-9 p-3">
                 <!-- Your main content here -->
                 @yield('container')
-                
+                @yield('profile')
             </div>
 
         </div>

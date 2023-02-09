@@ -29,7 +29,7 @@
                     <td>{{ $bk->date }}</td>
                     <td>{{ $bk->time }}</td>
                     <td>
-                        <a href="/manage/{id}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/manage/{{ $bk->id }}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>

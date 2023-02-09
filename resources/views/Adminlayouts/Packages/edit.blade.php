@@ -13,27 +13,28 @@
         </div>
     </div>
     <div class="col-md-7 w-50 v-100">
-        <form action="#" method="#">
-            {{-- @csrf --}}
+        <form action="manage/{{ $booking->id }}" method="post">
+            @csrf
+            @method('PUT')
             {{-- product name --}}
             <div class="mb-3">
               <label for="productname1" class="form-label">Product Name</label>
-              <input type="email" class="form-control" id="productname1" aria-describedby="productnameHelp">
+              <input type="email" class="form-control" id="productname1" name="pname" aria-describedby="productnameHelp" value="{{ $booking->product_name }}">
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Product Image</label>
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" name="pimg" id="formFile">
               </div>
               {{-- description --}}
             <div class="mb-3">
               <label for="productdesc1" class="form-label">Product Description</label>
-              <input type="textarea" class="form-control" id="productdesc1">
+              <input type="textarea" class="form-control" name="pdesc" id="productdesc1" value="{{ $booking->product_desc }}">
             </div>
             {{-- price --}}
             <label for="price1" class="form-label">Price</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">Rp</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest rupiah)">
+                <input type="text" class="form-control" aria-label="Amount (to the nearest rupiah)" value="{{ $booking->price }}">
                 <span class="input-group-text">.00</span>
             </div>
             {{-- Date --}}

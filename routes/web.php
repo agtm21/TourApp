@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManagePackageController;
 use App\Http\Controllers\Nelayan\HomepagenelController;
+use App\Http\Controllers\PaymentTopups;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserProfileController;
 use Faker\Guesser\Name;
@@ -68,7 +69,9 @@ Route::get('/adminpage', function () {
 })->name('adminpage');
 
 Route::controller([UserProfileController::class])->group(function () {
-    Route::get('/profile', [UserProfileController::class, 'index']);
+    Route::get('/profile/admin/{uuid}', [UserProfileController::class, 'admin'])->middleware('role:admin');
+    Route::get('/profile/traveler/{uuid}', [UserProfileController::class, 'traveler'])->middleware('role:traveler');
+    Route::get('/profile/nelayan', [UserProfileController::class, 'nelayan'])->middleware('role:nelayan');
     Route::post('/update/{id}', [UserProfileController::class, 'update']);
 });
 
@@ -76,7 +79,7 @@ Route::controller([ManagePackageController::class])->middleware('role:admin')->g
     Route::resource('manage', ManagePackageController::class);
     Route::get('managepackage', [ManagePackageController::class, 'index']);
     Route::get('create', [ManagePackageController::class, 'create']);
-    Route::get('edit', [ManagePackageController::class, 'create']);
+    Route::get('edit/{id}', [ManagePackageController::class, 'edit']);
 });
 // Admin Group Controller
 Route::controller([AdminPageController::class])->group(function () {
@@ -96,17 +99,17 @@ Route::controller([AdminPageController::class])->group(function () {
 
 
 // Homepage role as traveler Controller
-Route::controller([HomepageController::class])->group(function () {
-    Route::get('/homepage', [HomepageController::class, 'index'])->middleware('role:traveler')->name('tvlhomepage');
+Route::controller([HomepageController::class])->middleware('role:traveler')->group(function () {
+    Route::get('/homepage', [HomepageController::class, 'index']);
     Route::post('/logout', [HomepageController::class, 'logout']);
-
-    Route::get('/penyewaan', [HomepageController::class, 'penyewaan'])->middleware('role:traveler');
-    Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket'])->middleware('role:traveler');
-    Route::get('/langs/{locale}', [HomepageController::class, 'langs'])->middleware('role:traveler');
+    // Route::post('/process', [HomepageController::class], 'processPayment');
+    Route::get('/penyewaan', [HomepageController::class, 'penyewaan']);
+    Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket']);
+    Route::get('/langs/{locale}', [HomepageController::class, 'langs']);
     Route::get('landing/langs/{locale}', [HomepageController::class, 'langs']);
-    Route::get('/topup', [HomepageController::class, 'topup']);
-    Route::get('/history', [HomepageController::class, 'history'])->middleware('role:traveler');
-    Route::post('/confirm', [HomepageController::class, 'konfirmasipaket'])->middleware('role:traveler');
+    // Route::get('/topup', [HomepageController::class, 'topup']);
+    Route::get('/history', [HomepageController::class, 'history']);
+    Route::post('/confirm', [HomepageController::class, 'konfirmasipaket']);
     Route::get('/search', [HomepageController::class, 'index']);
 });
 
@@ -130,4 +133,9 @@ Route::controller(RegistrationController::class)->group(function () {
     Route::post('/register', 'store_data');
     Route::get('/register', 'index_nel');
     Route::get('/register/langs/{locale}');
+});
+
+Route::controller(PaymentTopups::class)->group(function () {
+    Route::get('/topup', 'Topups');
+    Route::post('/prosesTopup', 'prosesTopup');
 });

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\payment;
+
 use App\Models\booking;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\topup;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,27 +19,36 @@ class HomepageController extends Controller
         if ($locale = session('locale')) {
             app()->setLocale($locale);
         }
-
+        $id = Auth::id();
+        $balance = topup::where('id_user', $id)->first();
         $booking = booking::latest()->paginate(9);
         return view('Traveler.homepage', [
-            'bookings' => $booking
+            'bookings' => $booking,
+            'balance' => $balance
         ]);
     }
-   
+
     public function penyewaan()
     {
+        if ($locale = session('locale')) {
+            app()->setLocale($locale);
+        }
         $auth = Auth::id(); //mendapatkan id user yang login saat ini
-        $order = Order::where('id_user', $auth)->get(); //cari paket berdasarkan id user
-        //menentukan apakah ada paket yang dipesan atau tidak
-        // dd($order);
-        return view('Traveler.Penyewaan', [
-            'order' => $order
+        $order = Order::where('id_user', $auth)->where('status', 1)->get(); //cari paket berdasarkan id user
+
+
+
+        return view('Traveler.Booking', [
+            'booking' => $order
         ]);
     }
 
     public function orderpaket($id)
     {
         // dd($id);
+        if ($locale = session('locale')) {
+            app()->setLocale($locale);
+        }
         $bookings = booking::findOrFail($id);
         // dd($bookings);
 
@@ -58,10 +70,8 @@ class HomepageController extends Controller
         Session::put('locale', $locale);
         return redirect()->back();
     }
-    public function topup()
-    {
-        return view('Traveler.topup');
-    }
+
+
     public function konfirmasipaket(Request $request)
     {
 
@@ -84,11 +94,15 @@ class HomepageController extends Controller
     }
     public function history()
     {
+        if ($locale = session('locale')) {
+            app()->setLocale($locale);
+        }
         $auth = Auth::id();
         $history = Order::where('id_user', $auth)->get();
 
         return view('Traveler.History', ['history' => $history]);
     }
+
     public function logout(Request $request)
     {
         Auth::logout();

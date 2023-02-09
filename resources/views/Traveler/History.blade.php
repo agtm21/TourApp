@@ -1,11 +1,12 @@
 @extends('layouts.main',['title'=>'Order History'])
-@section('container')
-    
-@foreach($history as $historyitem)
+@section('history')
+
+@forelse($history as $historyitem)
+
 {{-- cek status order berdasarkan id_user --}}
 @if($historyitem->status == 0) 
     <div class="container">
-       <div class="card">
+       <div class="card mb-3">
         <div class="card-header">
             Your Order
         </div>
@@ -37,23 +38,15 @@
                 </div>
                 <div class="col">
                     <img src="{{ $historyitem->img_path }}" alt="img-order" class="img-fluid rounded mb-3" style="width:300px">
-                    
-                    
-                    
-                    
-                    <!-- Optional: Place to the bottom of scripts -->
-                    <script>
-                        const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-                    
-                    </script>
-                    
+
                 </div>
             </div>
             
         </div>
        </div>
     </div>
-@else
+    @endif
+@empty
     <div class="container">
         <div class="card text-center">
             <div class="card-body">
@@ -62,6 +55,6 @@
             </div>
         </div>
     </div>
-@endif
-@endforeach
+
+@endforelse
 @endsection

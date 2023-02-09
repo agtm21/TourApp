@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'traveler', 'nelayan'])->default('traveler');
             $table->string('image')->nullable();
-            $table->decimal('currency', 10, 2)->nullable();
+            // $table->decimal('currency', 10, 2)->default(0);
             $table->dateTime('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();

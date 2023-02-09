@@ -16,10 +16,11 @@ class ManagePackageController extends Controller
     {
         return view('Adminlayouts.Packages.AddPackage');
     }
-    public function edit()
+    public function edit($id)
     {
-
-        return view('Adminlayouts.Packages.edit');
+        $booking = booking::find($id);
+        // dd($booking);
+        return view('Adminlayouts.Packages.edit', compact('booking'));
     }
     public function update($id)
     {

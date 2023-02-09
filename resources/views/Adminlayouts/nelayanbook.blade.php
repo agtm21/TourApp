@@ -23,6 +23,10 @@
                     </div>
                     <div class="col">
                         @foreach ($order as $item)
+                        @if ($item->status == 1)
+                            
+                        
+                            
                         <input type="hidden" name="id_order" value="{{ $item->id_order }}">
                         <input type="hidden" name="id_user" value="{{ $item->id_user }}">
                         <ul style="list-style-type: none">
@@ -43,15 +47,16 @@
 
                             </li>
                         </ul>
-                        @endforeach
+                        
                     </div>
                     <div class="col col-md-4">
-                        @foreach($order as $item)
+                        {{-- @foreach($order as $item) --}}
                         <img src="{{ $item->img_path }}" alt="gambar" class="img_fluid rounded" style="width:300px">
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
                 </div>
-                
+                @endif
+                @endforeach
             </div>
 
 
