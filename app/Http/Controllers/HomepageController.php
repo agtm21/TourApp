@@ -20,7 +20,14 @@ class HomepageController extends Controller
             app()->setLocale($locale);
         }
         $id = Auth::id();
-        $balance = topup::where('id_user', $id)->first();
+
+
+        $balance = topup::where('id_user', $id)->sum('amount');
+
+        if ($balance == NULL) {
+            $balance = 0;
+        }
+        // $balance = topup::where('id_user', $id)->sum('amount');
         $booking = booking::latest()->paginate(9);
         return view('Traveler.homepage', [
             'bookings' => $booking,
@@ -33,13 +40,17 @@ class HomepageController extends Controller
         if ($locale = session('locale')) {
             app()->setLocale($locale);
         }
-        $auth = Auth::id(); //mendapatkan id user yang login saat ini
-        $order = Order::where('id_user', $auth)->where('status', 1)->get(); //cari paket berdasarkan id user
+        $id = Auth::id();
 
+        $balance = topup::where('id_user', $id)->sum('amount');
 
-
+        if ($balance == NULL) {
+            $balance = 0;
+        }
+        $order = Order::where('id_user', $id)->where('status', 1)->get(); //cari paket berdasarkan id user
         return view('Traveler.Booking', [
-            'booking' => $order
+            'booking' => $order,
+            'balance' => $balance
         ]);
     }
 
@@ -49,10 +60,17 @@ class HomepageController extends Controller
         if ($locale = session('locale')) {
             app()->setLocale($locale);
         }
-        $bookings = booking::findOrFail($id);
         // dd($bookings);
 
-        return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id]);
+        $id = Auth::id();
+        $balance = topup::where('id_user', $id)->sum('amount');
+        if ($balance == NULL) {
+            $balance = 0;
+        }
+        $bookings = booking::findOrFail($id);
+
+
+        return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id, 'balance' => $balance]);
     }
     // public function paket(Request $request)
     // {
@@ -82,12 +100,14 @@ class HomepageController extends Controller
             'price' => $request->input('price'),
             'date' => $request->input('date'),
             'time' => $request->input('time'),
+            'place' => $request->input('place'),
             'product_desc' => $request->input('product_desc'),
+            'method' => $request->input('method'),
             'status' => 1
         ]);
         // dd($confirm);
         if ($confirm) {
-            return redirect('homepage')->with('success', 'Paket Berhasil Dipesan! Silakan pergi ke <a href="/penyewaan">Penyewaan</a> untuk melihat pesanan');
+            return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
         } else {
             return redirect()->back()->with('error', 'Paket gagal Dipesan!');
         }
@@ -97,10 +117,15 @@ class HomepageController extends Controller
         if ($locale = session('locale')) {
             app()->setLocale($locale);
         }
-        $auth = Auth::id();
-        $history = Order::where('id_user', $auth)->get();
+        $id = Auth::id();
+        $history = Order::where('id_user', $id)->get();
 
-        return view('Traveler.History', ['history' => $history]);
+        $balance = topup::where('id_user', $id)->sum('amount');
+        if ($balance == NULL) {
+            $balance = 0;
+        }
+        // $balance = topup::where('id_user', $id)->sum('amount');
+        return view('Traveler.History', ['history' => $history, 'balance' => $balance]);
     }
 
     public function logout(Request $request)

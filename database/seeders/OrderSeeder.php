@@ -17,10 +17,6 @@ class OrderSeeder extends Seeder
     public function run()
     {
 
-        DB::table('supply')->insert([
-            'name_order' => Str::random(5),
-            'price_order' => 75000,
-            'description' => Str::random(20)
-        ]);
+        //
     }
 }

@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Order;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
-use App\Http\Controllers\Controller;
+use App\Models\topup;
 use App\Models\booking;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Notifications\NotifyNelayan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class AdminPageController extends Controller
 {
@@ -108,20 +110,32 @@ class AdminPageController extends Controller
     }
     public function konfirmasi_order(Request $request)
     {
-
-        $id = $request->get('id_order');
-        $iduser = $request->get('id_user');
-        $newVal = $request->get('nelayanfield');
-        $trvl = User::where('id', $iduser)->first();
+        //variable
+        $id = $request->get('id_order'); //id order
+        $iduser = $request->get('id_user'); //id user
+        $newVal = $request->get('nelayanfield'); //nama nelayan (input hidden)
+        $trvl = User::where('id', $iduser)->first(); //data pertama sesuai id user
+        $method = order::where('id_user', $iduser)->first();
+        $topupval = topup::where('id_user', $iduser)->sum('amount');
+        $sum = $topupval - $method->price;
+        // dd($sum);
+        // note: bisa pake sum nanti kalau orang topup
+        if ($method->method == 'Sailpay') {
+            topup::where('id', $iduser)->query()->update(['amount' => DB::raw('amount - {$sum}')]);
+        }
+        //update data di database kolom nama_nelayan
         Order::where('id_order', $id)
             ->update([
                 'nama_nelayan' => $newVal,
                 'status' => 0
             ]);
+
+
+        // kirim notifikasi
         //cari username nelayan
         $user = User::where('username', $newVal)->first();
+
         //pesan yang akan di kirim
-        // dd($trvl->username, $iduser);
         $msg = [
             'nama' => $newVal,
             'message' => 'Anda Mendapatkan Pesanan! dari',
@@ -129,7 +143,7 @@ class AdminPageController extends Controller
             'date' => 'date',
             'time' => 'time'
         ];
-        Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user
+        Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user    
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }
 }

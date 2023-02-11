@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class topup extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_user', 'amount', 'currency', 'topup_method'];
+    protected $fillable = ['id_user', 'amount', 'topup_method', 'currency'];
     public function User()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 }

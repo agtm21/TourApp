@@ -22,8 +22,10 @@ class Order extends Migration
             $table->decimal('price', 10, 2);
             $table->time('time');
             $table->date('date');
+            $table->string('place');
             $table->boolean('status')->default(1); //kalau pesanan dikonfirmasi maka selesai (0)
             $table->string('nama_nelayan')->nullable();
+            $table->string('method')->nullable();
             $table->timestamps();
         });
     }

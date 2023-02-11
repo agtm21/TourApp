@@ -25,7 +25,15 @@
                 </div>
             </div>
             <div class="card-body d-flex flex-column">
-                <p class="card-text text-dark h-100">{{ $books->product_desc }}</p>
+                <div class="d-flex mb-3">
+                  <i class="fa-solid fa-location-dot text-muted " > {{ $books->place }}</i>
+                  
+                </div>
+                <p class="card-text text-dark h-100 text-justify" id="fulltext-{{ $books->id }}" >
+                  
+                  {{ substr($books->product_desc,0,60) }} ... 
+                  <a href="#fulltext-{{ $books->id }}">Read more</a>
+                </p>
                 <a href="/prosespenyewaan/{{ $books->id }}" class="btn btn-warning rounded px-4">
                     <i class="fa-regular fa-credit-card"></i>
                     @lang('pages.order')

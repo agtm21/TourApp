@@ -21,7 +21,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     {{-- Navigator bar --}}
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/homepage"><img src="{{ asset('img/logo.png')}}" alt="dolphin-logo"
                     class="d-inline-block" width="34" height="28">
@@ -73,7 +73,7 @@
 
                             <p class="mb-1 mt-3 font-weight-semibold ">{{ auth()->user()->username }}</p>
                             <p class="font-weight-light text-muted mb-0">{{ auth()->user()->email }}</p>
-                            <p>Balance: {{ $balance->amount }} Sail-Pay</p>
+                            <p>Balance: {{ $balance }} Sail-Pay</p>
                             
                             @endauth
                         </div>

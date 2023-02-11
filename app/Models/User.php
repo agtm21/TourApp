@@ -45,13 +45,18 @@ class User extends Authenticatable
      * @param string $role
      * @return bool
      */
-    public function order()
+    public function Order()
     {
         return $this->hasMany(Order::class);
     }
-    public function Topup(){
+    public function Topup()
+    {
         return $this->hasMany(topup::class);
     }
+    // public function User()
+    // {
+    //     $this->morphTo();
+    // }
     public function notifyNewMessage($user)
     {
         $this->notify(new NotifyNelayan($user));

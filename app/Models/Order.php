@@ -15,16 +15,18 @@ class Order extends Model
         'product_desc',
         'price',
         'time',
+        'place',
         'date',
-        'status'
+        'status',
+        'method'
     ];
 
-    public function user()
+    public function User()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
-    public function nelayan()
-    {
-        return $this->hasOne(nelayan::class);
-    }
+    // public function nelayan()
+    // {
+    //     return $this->hasOne(nelayan::class);
+    // }
 }

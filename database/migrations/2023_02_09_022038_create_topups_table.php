@@ -20,6 +20,8 @@ class CreateTopupsTable extends Migration
             $table->decimal('amount', 10, 2)->default(0);
             $table->string('topup_method');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

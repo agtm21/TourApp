@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -31,7 +32,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('traveler'),
                 'role' => 'traveler',
                 'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
-                
+
             ],
             [
                 'uuid' => 'f7312208-8bff-492e-86f8-98e7dd6f1881',
@@ -42,6 +43,7 @@ class UserSeeder extends Seeder
                 'role' => 'nelayan'
             ]
         ];
+
         foreach ($user as $key => $value) {
             User::create($value);
         }

@@ -34,7 +34,7 @@
                             <li>: {{ $item->price }}</li>
                             <li>: {{ $item->time }}</li>
                             <li>: {{ $item->date }}</li>
-                            <li>:
+                            <li class="d-flex">:
                                 {{-- Button Here --}}
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="nama" name="nelayanfield" aria-label="Recipient's username"

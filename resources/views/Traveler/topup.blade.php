@@ -1,6 +1,6 @@
 @extends('layouts.main',['title'=>'Topup'])
 @section('topup')
-@if (session()->has('success'))
+{{-- @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           {{ session('success') }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -10,20 +10,25 @@
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           {{ session('loginerror') }}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>    
-      @endif
+        </div>      
+      @endif --}}
 
 <div class="container-fluid">
     <h1 class="mb-3">Topup Sail-pay</h1>
     <div class="card mb-3">
-        <img src="img/SailCoin.png" class="ms-3 mt-3" alt="Title" width="30px" height="30">
+        <div class="d-flex ms-3">
+          <div class="fs-1">1</div>
+          <img src="img/SailCoin.png" class="mt-3 me-1" alt="Title" width="30px" height="30">
+          <div class="fs-1 me-3">Sailpay</div>
+          <div class="fs-1"> = 1 IDR</div>
+        </div>
         <div class="card-body">
-            <p class="card-text">Saldo: Rp. {{ $balance->amount }}</p>
+            <p class="card-text">Saldo: Rp. {{ $balance }}</p>
         </div>
     </div>
     <form action="/prosesTopup" method="post">
         @csrf
-        <input type="text" name="amount" id="amount" class="form-control mb-3" placeholder="example: Rp. 10.000">
+        <input type="text" name="amount" id="amount" class="form-control mb-3" placeholder="example: 10.000">
         <div class="d-flex mb-3">
             <span class="me-2">
                 Currency:
