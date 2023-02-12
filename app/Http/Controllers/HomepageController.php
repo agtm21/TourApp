@@ -116,7 +116,26 @@ class HomepageController extends Controller
             // dd('ifnya jalan');
             if ($balance < $price) {
                 // dd('comparation balance jalan');
-                return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
+                redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
+            } else {
+                $confirm = Order::create([
+                    'id_user' => $request->input('id_user'),
+                    'img_path' => $request->input('img_path'),
+                    'product_name' => $request->input('product_name'),
+                    'price' => $request->input('price'),
+                    'date' => $request->input('date'),
+                    'time' => $request->input('time'),
+                    'place' => $request->input('place'),
+                    'product_desc' => $request->input('product_desc'),
+                    'method' => $request->input('method'),
+                    'status' => 1
+                ]);
+                // dd($confirm);
+                if ($confirm) {
+                    return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
+                } else {
+                    return redirect()->back()->with('error', 'Paket gagal Dipesan!');
+                }
             }
         } else {
             // dd('else');

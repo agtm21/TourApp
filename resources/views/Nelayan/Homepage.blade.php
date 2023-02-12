@@ -29,7 +29,7 @@
                   <div class="collapse text-center" id="collapseExample">
                     <div class="list-group list-group-flush ">
 
-                        <a href="/profile" class="list-group-item text-light bg-dark " >Profile</a>
+                        <a href="/profile/nelayan" class="list-group-item text-light bg-dark " >Profile</a>
                         <a href="/logout" class="list-group-item text-light bg-dark">Logout</a>
                         <a href="#" class="list-group-item text-light bg-dark"></a>
                     </div>

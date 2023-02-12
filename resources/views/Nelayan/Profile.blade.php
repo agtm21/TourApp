@@ -24,7 +24,7 @@
                 <div class="card-header text-light fw-bold bg-info">Profile Picture</div>
                 <div class="card-body text-center shadow">
                     <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" src="{{ asset('http://bootdey.com/img/Content/avatar/avatar1.png') }}" width="200" height="200" alt="">
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->

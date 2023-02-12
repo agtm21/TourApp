@@ -27,21 +27,143 @@ class UserSeeder extends Seeder
             ],
             [
                 'uuid' => '411b03c9-7013-4078-ae2b-21cbba1a67ff',
-                'username' => 'traveler123',
-                'email'  => 'traveler@gmail.com',
-                'password' => bcrypt('traveler'),
+                'username' => 'wisatawan1',
+                'email'  => 'wisatawan1@gmail.com',
+                'password' => bcrypt('wisatawan1'),
                 'role' => 'traveler',
                 'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
 
             ],
             [
+                'uuid' => 'bd305c8c-f1e0-40ba-a5f9-1318d7277271',
+                'username' => 'wisatawan2',
+                'email'  => 'wisatawan2@gmail.com',
+                'password' => bcrypt('wisatawan2'),
+                'role' => 'traveler',
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
+            ],
+            //nelayan
+
+            // da3acd3d-9dad-44bb-8a77-e23f98906122
+
+            // 076c5f81-f107-4aa6-b9bd-906539eb6017
+
+            // 09fb33a0-1db8-4fe2-934f-e1f80df21f94
+
+            // dc922d05-b0cb-43f8-9a14-de7ed3bc633c
+
+            // 5b5d4c5a-4276-4f2e-8eea-0f021396cfc4
+
+            // a279c401-8b90-426e-99aa-347a8bbf3444
+
+            // d4eef868-a145-4b6e-ba9c-695f2416879e
+
+            // e5c0be2f-6e65-426e-b029-a1a7e0aff0bf
+
+            // ccf75287-2f0d-4f96-bbdf-b3d247f12c44
+
+            // 38544ca6-7cfd-420f-96f3-8a0978f44668
+
+            // 08596423-6ef9-4beb-b1a4-7bddd3182701
+
+            // 5d3507f0-6d45-41e2-ad46-a69a45ca732c
+            [ //1
                 'uuid' => 'f7312208-8bff-492e-86f8-98e7dd6f1881',
-                'username' => 'nelayan123',
-                'email'  => 'nelayan@gmail.com',
-                'password' => bcrypt('nelayan123'),
+                'username' => 'gedesumanada',
+                'email'  => 'gedesumanada@gmail.com',
+                'password' => bcrypt('gedesumanada'),
                 'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
                 'role' => 'nelayan'
-            ]
+            ],
+            [ //2
+                'uuid' => 'da3acd3d-9dad-44bb-8a77-e23f98906122',
+                'username' => 'gedekusumajaya',
+                'email'  => 'gedekusumajaya@gmail.com',
+                'password' => bcrypt('gedekusumajaya'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //3
+                'uuid' => '076c5f81-f107-4aa6-b9bd-906539eb6017',
+                'username' => ' putuwidiarsana',
+                'email'  => 'putuwidiarsana@gmail.com',
+                'password' => bcrypt('putuwidiarsana'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //4
+                'uuid' => 'dc922d05-b0cb-43f8-9a14-de7ed3bc633c',
+                'username' => 'gedemangku',
+                'email'  => 'gedemangku@gmail.com',
+                'password' => bcrypt('gedemangku'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //5
+                'uuid' => '5b5d4c5a-4276-4f2e-8eea-0f021396cfc4',
+                'username' => 'nyomancenik',
+                'email'  => 'nyomancenik@gmail.com',
+                'password' => bcrypt('nyomancenik'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //6
+                'uuid' => 'f5464ad9-61f4-47f2-a601-5e1a1c6eb4e4',
+                'username' => 'putunurada',
+                'email'  => 'putunurada@gmail.com',
+                'password' => bcrypt('putunurada'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //7
+                'uuid' => 'a279c401-8b90-426e-99aa-347a8bbf3444',
+                'username' => 'ketutsumendre',
+                'email'  => 'ketutsumendre@gmail.com',
+                'password' => bcrypt('ketutsumendre'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //8
+                'uuid' => 'e5c0be2f-6e65-426e-b029-a1a7e0aff0bf',
+                'username' => 'kadekwidiada',
+                'email'  => 'kadekwidiada@gmail.com',
+                'password' => bcrypt('kadekwidiada'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //9
+                'uuid' => 'ccf75287-2f0d-4f96-bbdf-b3d247f12c44',
+                'username' => 'kadekwijaya',
+                'email'  => 'kadekwijaya@gmail.com',
+                'password' => bcrypt('kadekwijaya'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //10
+                'uuid' => '38544ca6-7cfd-420f-96f3-8a0978f44668',
+                'username' => 'kadekbudiarsana',
+                'email'  => 'kadekbudiarsana@gmail.com',
+                'password' => bcrypt('kadekbudiarsana'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //11
+                'uuid' => '08596423-6ef9-4beb-b1a4-7bddd3182701',
+                'username' => 'gedesuardana',
+                'email'  => 'gedesuardana@gmail.com',
+                'password' => bcrypt('gedesuardana'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
+            [ //12
+                'uuid' => '5d3507f0-6d45-41e2-ad46-a69a45ca732c',
+                'username' => 'komangpasek',
+                'email'  => 'komangpasek@gmail.com',
+                'password' => bcrypt('komangpasek'),
+                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+                'role' => 'nelayan'
+            ],
         ];
 
         foreach ($user as $key => $value) {

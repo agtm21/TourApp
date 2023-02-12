@@ -117,7 +117,7 @@ class AdminPageController extends Controller
         $newVal = $request->get('nelayanfield'); //nama nelayan (input hidden)
         $trvl = User::where('id', $iduser)->first(); //data pertama sesuai id user
         $method = order::where('id_user', $iduser)->first();
-        $topupval = balance::where('id_user', $iduser)->value('amount');
+        $topupval = balance::where('id_user', $iduser)->value('balance');
         $sum = $topupval - $method->price;
         // dd($sum);
         // note: bisa pake sum nanti kalau orang topup
