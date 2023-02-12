@@ -37,8 +37,8 @@
                         <td>{{ $tvl->role }}</td>
                         {{-- Action Button for Update --}}
                         <td>
-                            <a href="/Admin/{{ $tvl->id }}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="/Adminlayouts/datauser/{{ $tvl->id }}" method="POST" class="d-inline">
+                            <a href="/Admin/{{ $tvl->uuid }}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="/Adminlayouts/datauser/{{ $tvl->uuid }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" onclick="return confirm('are you sure delete this data?')"><i class="fa-solid fa-trash"></i></button>
@@ -91,8 +91,8 @@
                         <td>{{ $nl->role }}</td>
                         {{-- Action Button for Update --}}
                         <td>
-                            <a href="/Admin/{{ $nl->id }}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="/Adminlayouts/datauser/{{ $nl->id }}" method="POST" class="d-inline">
+                            <a href="/Admin/{{ $nl->uuid }}/edit" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="/Adminlayouts/datauser/{{ $nl->uuid }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" onclick="return confirm('are you sure delete this data?')"><i class="fa-solid fa-trash"></i></button>

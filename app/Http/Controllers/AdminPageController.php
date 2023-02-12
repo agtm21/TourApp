@@ -64,7 +64,10 @@ class AdminPageController extends Controller
     }
     public function edit($id)
     {
-        $users = User::find($id);
+        $users = User::where('uuid', $id)->first();
+        if (!$users) {
+            abort(404);
+        }
 
         return view('Adminlayouts.edit', compact('users'));
     }

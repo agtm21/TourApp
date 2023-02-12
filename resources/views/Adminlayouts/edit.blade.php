@@ -2,7 +2,7 @@
 @section('datauser')
     <div class="container text-dark ">
         <h1>Edit User</h1>
-        <form action="/Admin/{{ $users->id }}" method="post">
+        <form action="/Admin/{{ $users->uuid }}" method="post">
             @method('put')
             @csrf
             
