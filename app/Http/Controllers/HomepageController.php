@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\payment;
 
 use App\Models\booking;
+use App\Models\balance;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\topup;
@@ -22,7 +23,7 @@ class HomepageController extends Controller
         $id = Auth::id();
 
 
-        $balance = topup::where('id_user', $id)->sum('amount');
+        $balance = balance::where('id_user', $id)->value('balance');
 
         if ($balance == NULL) {
             $balance = 0;
@@ -92,24 +93,51 @@ class HomepageController extends Controller
 
     public function konfirmasipaket(Request $request)
     {
+        $id_user = Auth::id();
+        // kalau nilai dari balance < harga paket, error
+        $balance = balance::where('id_user', $id_user)->value('balance');
+        $price = $request->input('price');
+        $method = $request->input('method');
+        // dd($method);
+        // dd(gettype($method));
 
-        $confirm = Order::create([
-            'id_user' => $request->input('id_user'),
-            'img_path' => $request->input('img_path'),
-            'product_name' => $request->input('product_name'),
-            'price' => $request->input('price'),
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-            'place' => $request->input('place'),
-            'product_desc' => $request->input('product_desc'),
-            'method' => $request->input('method'),
-            'status' => 1
-        ]);
-        // dd($confirm);
-        if ($confirm) {
-            return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
+
+        // switch ($method) {
+        //     case 'SailPay':
+        //         return dd('sailpay case jalan');
+        //         break;
+        //     case 'Tunai':
+        //         return dd('Tunai case jalan');
+        //     default:
+        //         return dd('error aja udah');
+        // }
+        // ifnya return opposite. true jadi false, false jadi true
+        if ($method == 'sailpay') {
+            // dd('ifnya jalan');
+            if ($balance < $price) {
+                // dd('comparation balance jalan');
+                return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
+            }
         } else {
-            return redirect()->back()->with('error', 'Paket gagal Dipesan!');
+            // dd('else');
+            $confirm = Order::create([
+                'id_user' => $request->input('id_user'),
+                'img_path' => $request->input('img_path'),
+                'product_name' => $request->input('product_name'),
+                'price' => $request->input('price'),
+                'date' => $request->input('date'),
+                'time' => $request->input('time'),
+                'place' => $request->input('place'),
+                'product_desc' => $request->input('product_desc'),
+                'method' => $request->input('method'),
+                'status' => 1
+            ]);
+            // dd($confirm);
+            if ($confirm) {
+                return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
+            } else {
+                return redirect()->back()->with('error', 'Paket gagal Dipesan!');
+            }
         }
     }
     public function history()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\balance;
 use App\Models\topup;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,20 +12,19 @@ class UserProfileController extends Controller
 {
     public function admin()
     {
-        $id = Auth::id(); //ambil id user yang sedang login
-        $balance = topup::where('id_user', $id)->first();
-        return view('Adminlayouts.Profile', ['users' => request()->user(), 'balance' => $balance]);
+
+
+        return view('Adminlayouts.Profile', ['users' => request()->user()]);
     }
     public function traveler()
     {
         $id = Auth::id(); //ambil id user yang sedang login
-        $balance = topup::where('id_user', $id)->first();
-        return view('Traveler.Profile', ['users' => request()->user()]);
+        $balance = balance::where('id_user', $id)->value('balance');
+        return view('Traveler.Profile', ['users' => request()->user(), 'balance' => $balance]);
     }
     public function nelayan()
     {
-        $id = Auth::id(); //ambil id user yang sedang login
-        $balance = topup::where('id_user', $id)->first();
+
         return view('Nelayan.Profile', ['users' => request()->user()]);
     }
     public function update(Request $request, $id)

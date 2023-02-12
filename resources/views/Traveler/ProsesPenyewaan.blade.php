@@ -61,12 +61,12 @@
                         <tr>
                             <td>Metode Pembayaran</td>
                             <td>:</td>
-                            <td class="d-flex" > <select class="form-select ms-1" name="method" aria-label="Default select example" style="width:120px">
+                            <td class="d-flex" > 
+                                <select class="form-select ms-1" name="method" aria-label="Default select example" style="width:120px">
+                                    <option value="tunai">Tunai</option>
+                                    <option value="sailpay">Sailpay</option>
                                 
-                                <option value="Tunai">Tunai</option>
-                                <option value="SailPay">Sailpay</option>
-                                
-                              </select>
+                                </select>
                             </td>
                         </tr>
                         

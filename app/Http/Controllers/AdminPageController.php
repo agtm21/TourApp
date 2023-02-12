@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\topup;
+use App\Models\balance;
 use App\Models\booking;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -116,12 +117,12 @@ class AdminPageController extends Controller
         $newVal = $request->get('nelayanfield'); //nama nelayan (input hidden)
         $trvl = User::where('id', $iduser)->first(); //data pertama sesuai id user
         $method = order::where('id_user', $iduser)->first();
-        $topupval = topup::where('id_user', $iduser)->sum('amount');
+        $topupval = balance::where('id_user', $iduser)->value('amount');
         $sum = $topupval - $method->price;
         // dd($sum);
         // note: bisa pake sum nanti kalau orang topup
-        if ($method->method == 'Sailpay') {
-            topup::where('id', $iduser)->query()->update(['amount' => DB::raw('amount - {$sum}')]);
+        if ($method->method == 'sailpay') {
+            balance::where('id', $iduser)->update(['balance' => $sum]);
         }
         //update data di database kolom nama_nelayan
         Order::where('id_order', $id)

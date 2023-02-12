@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\payment;
 use App\Models\topup;
 use App\Models\User;
+use App\Models\balance;
 use App\Models\topup_detail;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -28,27 +29,38 @@ class PaymentTopups extends Controller
     private function insertTopups($id_user, $amount, $select, $method)
     {
 
-        $topups_user = User::find($id_user);
-        // $topups = new topup(); //aliasing
-        // //topup table
-        // $topups->id_user = $id_user;
-        // $topups->amount = $amount;
-        // $topups->currency = $select;
-        // $topups->topup_method = $method;
-
-        // $topups_user->topup()->save($topups); // insert data ke tabel topup
-
-
-        //using create
-
-        $topup = topup::create([
-            'id_user' => $id_user,
-            'amount' => $amount,
-            'currency' => $select,
-            'topup_method' => $method
-        ]);
-        // dd($topup);
-
+        // $topups_user = User::find($id_user);
+        $topup = topup::where('id_user', $id_user)->latest(); // cari nilai terbaru
+        $userbalance = balance::where('id_user', $id_user)->value('id_user');
+        $balance = $this->addition($topup->value('amount'), $amount);
+        // dd($balance);
+        if ($userbalance == $id_user) {
+            //do update
+            // dd('if untuk update balance jalan');
+            $topup = balance::where('id_user', $id_user)->update([ //kalo tidak ada data buat baru, kalo ada data update
+                'balance' => $balance
+            ]);
+            topup::create([
+                'id_user' => $id_user,
+                'amount' => $amount,
+                'currency' => $select,
+                'topup_method' => $method
+            ]);
+        } else {
+            //create new
+            //using create
+            $topup = topup::create([
+                'id_user' => $id_user,
+                'amount' => $amount,
+                'currency' => $select,
+                'topup_method' => $method
+            ]);
+            balance::create([
+                'id_user' => $id_user,
+                'balance' => $amount
+            ]);
+            // dd('elsenya yang jalan bro');
+        }
     }
     private function converstion($amount)
     {
@@ -67,12 +79,12 @@ class PaymentTopups extends Controller
         $method = $request->input('method');
 
 
-        //kondisi
+        //cek jenis currency yang di pakai
         if ($select == 'idr') {
-
+            //langsung masuk ke database
             $topup = $this->insertTopups($id_user, $amount, $select, $method);
         } else {
-
+            //konversi ke idr setelah itu insert ke table
             $usdtoidr = $this->converstion($amount);
             $topup = $this->insertTopups($id_user, $usdtoidr, $select, $method);
         }
