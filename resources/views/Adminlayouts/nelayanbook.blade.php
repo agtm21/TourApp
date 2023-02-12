@@ -77,9 +77,9 @@
                                 <div class="list-group list-group-flush">
                                     @foreach($user as $nelayan) 
                                     {{-- data-bs-dismiss di button berfungsi untuk close button setelah di klik pada modal --}}
-                                    <button class="list-group-item list-group-item-action" data-bs-dismiss="modal" id="button1">
+                                    <button class="list-group-item list-group-item-action button1" data-bs-dismiss="modal" id="button1">
                                         <div class="d-flex justify-content-between">
-                                            <span id="namanelayan">{{ $nelayan->username }}</span>
+                                            <span id="namanelayan" class="namanelayans">{{ $nelayan->username }}</span>
                                             <img src="#" alt="gambar">
                                         </div>
                                     </button>
@@ -91,11 +91,19 @@
                 </div>
             </div>
             <script>
-                var nama = document.getElementById('namanelayan').innerHTML;
+                // var nama = document.getElementById('namanelayan').innerHTML;
 
-                document.getElementById('button1').onclick = function () {
-                    document.getElementById('nama').value = nama;
+                // document.getElementById('button1').onclick = function () {
                     
+                //     document.getElementById('nama').value = nama;
+                    
+                // }
+                const buttons = document.querySelectorAll(".button1");
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].addEventListener("click", function() {
+                    const span = buttons[i].querySelector(".namanelayans");
+                        document.getElementById('nama').value = span.innerHTML;
+                    });
                 }
             </script>
 

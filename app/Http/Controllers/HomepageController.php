@@ -116,7 +116,7 @@ class HomepageController extends Controller
             // dd('ifnya jalan');
             if ($balance < $price) {
                 // dd('comparation balance jalan');
-                redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
+                return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
             } else {
                 $confirm = Order::create([
                     'id_user' => $request->input('id_user'),

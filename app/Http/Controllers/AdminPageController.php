@@ -137,7 +137,7 @@ class AdminPageController extends Controller
 
         // kirim notifikasi
         //cari username nelayan
-        $user = User::where('username', $newVal)->first();
+        $user = User::where('username', $newVal)->get();
 
         //pesan yang akan di kirim
         $msg = [
