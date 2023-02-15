@@ -116,6 +116,7 @@ Route::controller([HomepageController::class])->middleware('role:traveler')->gro
 Route::controller([ControllersHomepagenelController::class])->middleware('role:nelayan')->group(function () {
     Route::get('/nelayan/homepage', [ControllersHomepagenelController::class, 'index']);
     Route::get('/nelayan/order', [ControllersHomepagenelController::class, 'Order']);
+    Route::post('/nelayan/confirmorder', [ControllersHomepagenelController::class, 'ConfirmOrder']);
     Route::get('/logout', [ControllersHomepagenelController::class, 'logout']);
     Route::get('/notifications/{notification}/read', [ControllersHomepagenelController::class, 'markAsRead']);
 });

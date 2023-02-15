@@ -27,7 +27,7 @@
                         <li>: {{ $item->product_desc }}</li>
                         <li>: {{ $item->date }}</li>
                         <li>: {{ $item->time }}</li>
-                        <li>: <span class="text-danger fw-bold">Menunggu Konfirmasi</span> </li>
+                        <li>: <span class="text-danger fw-bold">{{ $item->status }}</span> </li>
                     </ul>
                 </div>
                 <div class="col">

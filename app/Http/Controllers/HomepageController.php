@@ -128,7 +128,7 @@ class HomepageController extends Controller
                     'place' => $request->input('place'),
                     'product_desc' => $request->input('product_desc'),
                     'method' => $request->input('method'),
-                    'status' => 1
+                    'status' => 'wait'
                 ]);
                 // dd($confirm);
                 if ($confirm) {
@@ -149,7 +149,7 @@ class HomepageController extends Controller
                 'place' => $request->input('place'),
                 'product_desc' => $request->input('product_desc'),
                 'method' => $request->input('method'),
-                'status' => 1
+                'status' => 'wait'
             ]);
             // dd($confirm);
             if ($confirm) {

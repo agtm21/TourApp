@@ -58,6 +58,7 @@ class NotifyNelayan extends Notification
     public function toArray($notifiable)
     {
         return [
+            'id_order' => $this->user['id_order'],
             'nama' => $this->user['nama'],
             'message' => $this->user['message'],
             'pemesan' => $this->user['pemesan'],

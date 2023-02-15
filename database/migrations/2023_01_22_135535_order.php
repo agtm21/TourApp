@@ -23,7 +23,7 @@ class Order extends Migration
             $table->time('time');
             $table->date('date');
             $table->string('place');
-            $table->boolean('status')->default(1); //kalau pesanan dikonfirmasi maka selesai (0)
+            $table->enum('status', ['wait','process', 'accept', 'decline'])->nullable(); //status pesanan
             $table->string('nama_nelayan')->nullable();
             $table->string('method')->nullable();
             $table->timestamps();

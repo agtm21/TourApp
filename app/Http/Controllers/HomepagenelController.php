@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use app\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NotifyNelayan;
 
@@ -27,6 +28,17 @@ class HomepagenelController extends Controller
     public function markAsRead(Request $request, $id)
     {
         auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+        return redirect()->back();
+    }
+    public function ConfirmOrder(Request $request)
+    {
+
+        $id_order = $request->get('idorder');
+        $confirm = $request->get('status');
+        $update = order::where('id_order', $id_order)->update([
+            'status' => $confirm
+        ]);
+        // dd($confirm);
         return redirect()->back();
     }
     public function logout(Request $request)

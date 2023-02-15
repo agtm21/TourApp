@@ -114,26 +114,29 @@ class AdminPageController extends Controller
     }
     public function konfirmasi_order(Request $request)
     {
-        //variable
+        //variables
         $id = $request->get('id_order'); //id order
         $iduser = $request->get('id_user'); //id user
         $newVal = $request->get('nelayanfield'); //nama nelayan (input hidden)
+        $time = $request->get('time'); //time
+        $date = $request->get('date'); //date
+
         $trvl = User::where('id', $iduser)->first(); //data pertama sesuai id user
         $method = order::where('id_user', $iduser)->first();
         $topupval = balance::where('id_user', $iduser)->value('balance');
         $sum = $topupval - $method->price;
-        // dd($sum);
-        // note: bisa pake sum nanti kalau orang topup
+
+        //payment method
         if ($method->method == 'sailpay') {
             balance::where('id', $iduser)->update(['balance' => $sum]);
         }
+
         //update data di database kolom nama_nelayan
         Order::where('id_order', $id)
             ->update([
                 'nama_nelayan' => $newVal,
-                'status' => 0
+                'status' => 'process'
             ]);
-
 
         // kirim notifikasi
         //cari username nelayan
@@ -141,12 +144,14 @@ class AdminPageController extends Controller
 
         //pesan yang akan di kirim
         $msg = [
+            'id_order' => $id,
             'nama' => $newVal,
             'message' => 'Anda Mendapatkan Pesanan! dari',
             'pemesan' => $trvl->username,
-            'date' => 'date',
-            'time' => 'time'
+            'date' => $date,
+            'time' => $time
         ];
+
         Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user    
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }

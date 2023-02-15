@@ -25,6 +25,7 @@ class Order extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    
     // public function nelayan()
     // {
     //     return $this->hasOne(nelayan::class);

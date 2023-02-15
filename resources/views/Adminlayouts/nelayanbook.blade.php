@@ -6,6 +6,7 @@
     <div class="card mt-4">
         <div class="card-header">
             <div class="card-title">
+                
                 <b>Konfirmasi Pesanan</b>
             </div>
         </div>
@@ -23,12 +24,14 @@
                     </div>
                     <div class="col">
                         @foreach ($order as $item)
-                        @if ($item->status == 1)
+                        @if ($item->status == 'wait')
                             
                         
                             
                         <input type="hidden" name="id_order" value="{{ $item->id_order }}">
                         <input type="hidden" name="id_user" value="{{ $item->id_user }}">
+                        <input type="hidden" name="time" value="{{ $item->time }}">
+                        <input type="hidden" name="date" value="{{ $item->date }}">
                         <ul style="list-style-type: none">
                             <li>: {{ $item->product_name }}</li>
                             <li>: {{ $item->price }}</li>

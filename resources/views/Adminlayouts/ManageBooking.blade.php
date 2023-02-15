@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($order as $orderitem)
-                @if($orderitem->status == '1')
+                @if($orderitem->status == 'wait')
                 {{-- <input type="hidden" name="id_order" value="{{ $orderitem->id_order }}"> --}}
                 <tr>
                     
@@ -43,7 +43,7 @@
                         <td>{{ $orderitem->time }}</td>
                         <td>{{ $orderitem->date }}</td>
                         <td>{{ $orderitem->nama_nelayan }}</td>
-                        <td>Selesai</td>
+                        <td>Proses Persetujuan</td>
                         <td><button class="btn btn-secondary">Lihat Detail</button></td>
                 </tr>
                 @endif

@@ -21,7 +21,7 @@ class BookingSeeder extends Seeder
                 'product_name' => 'Paket Small',
                 'product_desc' => 'Dolphin Tour Selamat 45 menit + Life Jacket (Max 5 Orang) | FREE Coffe Break sebelum keberangkatan ( apabila kedatangan anda sebelum jam 05.30 )',
                 'price' => '350000.00',
-                'img_path' => 'D:\Project Web\Laravel-Project-App\Tourapp\public\img\bookingimg.jpg',
+                'img_path' => 'img\bookingimg.jpg',
                 'place' => 'Lovina',
                 'time' => '6:00',
                 'date' => '2023-11-11'
@@ -30,7 +30,7 @@ class BookingSeeder extends Seeder
                 'product_name' => 'Paket Medium',
                 'product_desc' => 'Dolphin Tour selama 1 jam + Life Jacket + FREE roti untuk memberi makan ikan hias (Max 7 Orang) |FREE Coffe Break sebelum keberangkatan ( apabila kedatangan anda sebelum jam 05.30 )',
                 'price' => '455000.00',
-                'img_path' => 'D:\Project Web\Laravel-Project-App\Tourapp\public\img\bookingimg.jpg',
+                'img_path' => 'img\bookingimg.jpg',
                 'time' => '6:00',
                 'place' => 'Lovina',
                 'date' => '2023-11-11'
@@ -39,7 +39,7 @@ class BookingSeeder extends Seeder
                 'product_name' => 'Paket Large',
                 'product_desc' => 'Dolphin Tour selamat 1 jam + Life Jacket + Free roti untuk memberi makan ikan hias (Max 10 orang) | FREE Coffe Break sebelum keberangkatan ( apabila kedatangan anda sebelum jam 05.30 )',
                 'price' => '500000.00',
-                'img_path' => 'D:\Project Web\Laravel-Project-App\Tourapp\public\img\bookingimg.jpg',
+                'img_path' => 'img\bookingimg.jpg',
                 'time' => '6:00',
                 'place' => 'Lovina',
                 'date' => '2023-11-11'

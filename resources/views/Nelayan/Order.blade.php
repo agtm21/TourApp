@@ -9,7 +9,7 @@
             <div class="card-body bg-secondary">
                 {{-- outer --}}
               
-
+                
                 @forelse ($notifications as $notification)
                   @if (!$notification->read_at)
                       
@@ -25,7 +25,7 @@
                                   
                                 </p>
                             </div>
-                            <a  href="/notifications/{{ $notification->id }}/read" class="text-decoration-none">Mark As Read</a>
+                            <a  href="/notifications/{{ $notification->id }}/read" class="text-decoration-none pt-3 pe-3">Mark As Read</a>
                         </div>
                       </button>
                     </div>
@@ -57,6 +57,9 @@
             
         </div>
     </div>
+    {{-- <div class="container">
+      <input type="text" name="status" id="status" value="">
+    </div> --}}
     {{-- modal --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -69,23 +72,46 @@
               <div class="container text-center">
                 @foreach ($notifications as $notification)
                     
-                {{ $notification->data['nama'] }} 
-                {{ $notification->data['message'] }}
-                <b>
-                  {{ $notification->data['pemesan'] }}
-                </b>
-                {{ $notification->data['date'] }}
-                {{ $notification->data['time'] }}
+                <p>
+                  Hi {{ $notification->data['nama'] }} !
+                </p>
+                <p>
+                  {{ $notification->data['message'] }}
+                  <b>
+                    {{ $notification->data['pemesan'] }}
+                  </b>
+                </p>
+                <p>
+                  Tanggal: {{ $notification->data['date'] }}
+                </p>
+                <p>
+                  Waktu: {{ $notification->data['time'] }}
+                </p>
                 @endforeach
                 
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+              <form action="/nelayan/confirmorder" method="post">
+                @csrf
+                <input type="hidden" name="username" value="{{ auth()->user()->username }}">
+                <input type="hidden" name="status" id="status" value=""> 
+                <input type="hidden" name="idorder" value="{{ $notification->data['id_order'] }}">
+                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" id="declinebtn">Tolak</button>
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="accbtn">Terima</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      
+      <script>
+        document.getElementById('accbtn').addEventListener("click",accept);
+        document.getElementById('declinebtn').addEventListener("click",decline);
+        function accept(){
+          document.getElementById('status').value = 'accept';
+        }
+        function decline(){
+          document.getElementById('status').value = 'decline';
+        }
+      </script>
 @endsection

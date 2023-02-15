@@ -30,7 +30,7 @@
                         <li>: {{ $historyitem->product_desc }}</li>
                         <li>: {{ $historyitem->date }}</li>
                         <li>: {{ $historyitem->time }}</li>
-                        <li>: <span class="text-success fw-bold">Dikonfirmasi</span> </li>
+                        <li>: <span class="text-success fw-bold">{{ $historyitem->status }}</span> </li>
                         <li>: 
                             {{ $historyitem->nama_nelayan }}
                         </li>
