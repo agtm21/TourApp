@@ -51,7 +51,7 @@
     <button type="button" class="btn btn-primary me-5 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <i class="fa-sharp fa-solid fa-circle-question"></i>
     </button>
-  
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,36 +62,116 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              {{-- slider --}}
-              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ URL::asset('img/sliderhelp.jpg') }}" class="d-block w-30" alt="c1">
+              <div class="container">
+                <div class="row">
+                  <div class="list-group list-group-flush mb-3">
+                    <a class="btn btn-info list-group-item " 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#order"
+                    href="#order" 
+                    role="button" 
+                    aria-expanded="false" 
+                    aria-controls="order">
+                      Bagaimana Cara Memesan?
+                    </a>
+                    <a class="btn btn-info list-group-item"
+                    data-bs-toggle="collapse" 
+                    href="#topup" 
+                    role="button" 
+                    aria-expanded="false" 
+                    aria-controls="topup">
+                      Bagaimana Cara Topup?
+                    </a>
+                    <div class="collapse" id="topup">
+                      <div class="card">
+                        
+                        <b class="card-title text-center mt-3">TopUp Sailpay</b>
+                        <div class="card-body">
+
+                          <ul style="list-style-type: none;">
+                            <p>Cara Topup Sailpay:</p>
+                            <li>1. Masukkan Jumlah Uang (Min: 10.000 IDR/0.67 USD)</li>
+                            <li>2. Pilih Mata Uang</li>
+                            <li>3. Pilih Metode Pembayaran</li>
+                            <li>4. Klik Submit</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="btn btn-info list-group-item"
+                    data-bs-toggle="collapse" 
+                    href="#status" 
+                    role="button" 
+                    aria-expanded="false" 
+                    aria-controls="status">
+                      Status dalam Pesanan?
+                    </a>
                   </div>
-                  <div class="carousel-item">
-                    <img src="{{ URL::asset('img/konfirmhelp.jpg') }}" class="d-block w-30" alt="c2">
+                  
+                  
+                  <div class="collapse" id="status">
+                    <h5 class="text-center mb-3">
+                      STATUS PESANAN
+                    </h5>
+                    <ul style="list-style-type: none;">
+                    <li>
+                      <p><b class="text-danger">WAIT</b>-> Paket dalam proses pemilihan Nelayan oleh Admin</p>
+                    </li>
+                    <li>
+                      <p><b class="text-danger">PROCESS</b>-> Proses Persetujuan Nelayan</p>
+                    </li>
+                    <li>
+                      <p><b class="text-success">ACCEPT</b>-> Nelayan Menyetujui Pesanan</p>
+                    </li>
+                    <li>
+                      <p><b class="text-success">DECLINE</b>-> Nelayan Menolak Pesanan</p>
+                    </li>
+                    </ul>
                   </div>
-                  <div class="carousel-item">
-                    <img src="{{ URL::asset('img/navbarhelp.jpg') }}" class="d-block w-30" alt="c3">
-                  </div>
+
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
               </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
             </div>
         </div>
     </div>
 </div>
+{{-- modal untuk guide  --}}
+<div class="modal modal-lg fade" id="order" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Bagaimana cara Memesan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="{{ asset('img/guide.jpeg') }}" alt="guide" height="800" width="760">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModal" data-bs-toggle="modal">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Get all the collapsible elements
+var collapsibles = document.querySelectorAll('.collapse');
+
+// Add click event listeners to each button
+var buttons = document.querySelectorAll('.btn');
+for (var i = 0; i < buttons.length; i++) { //count all button
+  buttons[i].addEventListener('click', function() {//for button click
+    var target = document.querySelector(this.getAttribute('href')); //all href as reference
+    if (!target.classList.contains('show')) {//if the current target shown
+      // Close all other collapsibles
+      for (var j = 0; j < collapsibles.length; j++) {
+        if (collapsibles[j] !== target && collapsibles[j].classList.contains('show')) {
+          collapsibles[j].classList.remove('show');
+        }
+      }
+    }
+  });
+}
+</script>
 @endsection
 {{-- 
     Note :

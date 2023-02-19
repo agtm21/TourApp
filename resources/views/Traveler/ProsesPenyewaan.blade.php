@@ -14,8 +14,8 @@
                 <input type="hidden" value="{{ $bookings->product_name}}" name="product_name">
                 <input type="hidden" value="{{ $bookings->price }}" name="price">
                 <input type="hidden" value="{{ $bookings->product_desc}}" name="product_desc">
-                <input type="hidden" value="{{ $bookings->date}}" name="date">
-                <input type="hidden" value="{{$bookings->time }}" name="time">
+                {{-- <input type="hidden" value="{{ $bookings->date}}" name="date">
+                <input type="hidden" value="{{$bookings->time }}" name="time"> --}}
                 <input type="hidden" value="{{$bookings->place }}" name="place">
                 <input type="hidden" value="{{$bookings->img_path  }}" name="img_path">
                 <div class="col">
@@ -43,13 +43,17 @@
                         <tr>
                             <td>Tanggal Berlayar</td>
                             <td>:</td>
-                            <td> {{ $bookings->date }}</td>
+                            <td> 
+                                <input type="date" name="date" id="date" class="form-control">
+                            </td>
                             
                         </tr>
                         <tr>
                             <td>Jam Berlayar</td>
                             <td>:</td>
-                            <td> {{ $bookings->time }}</td>
+                            <td> 
+                                <input type="time" name="time" id="time" class="form-control">
+                            </td>
                             
                         </tr>
                         <tr>

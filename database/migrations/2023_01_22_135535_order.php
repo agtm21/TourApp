@@ -20,10 +20,10 @@ class Order extends Migration
             $table->string('img_path')->nullable();
             $table->text('product_desc'); //deskripsi ada fasilitas
             $table->decimal('price', 10, 2);
-            $table->time('time');
-            $table->date('date');
+            $table->time('time')->nullable();
+            $table->date('date')->nullable();
             $table->string('place');
-            $table->enum('status', ['wait','process', 'accept', 'decline'])->nullable(); //status pesanan
+            $table->enum('status', ['wait', 'process', 'accept', 'decline'])->nullable(); //status pesanan
             $table->string('nama_nelayan')->nullable();
             $table->string('method')->nullable();
             $table->timestamps();

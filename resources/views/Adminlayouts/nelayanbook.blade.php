@@ -2,41 +2,41 @@
 @section('content')
 <form action="/confirm/nelayan" method="post">
     @csrf
-<div class="container">
-    <div class="card mt-4">
-        <div class="card-header">
-            <div class="card-title">
-                
-                <b>Konfirmasi Pesanan</b>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header">
+                <div class="card-title">
+                    
+                    <b>Konfirmasi Pesanan</b>
+                </div>
             </div>
-        </div>
-        <div class="card-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-2">
-                        <ul style="list-style-type: none">
-                            <li>Nama Barang</li>
-                            <li>Price</li>
-                            <li>Waktu</li>
-                            <li>Tanggal</li>
-                            <li>Nelayan</li>
-                        </ul>
-                    </div>
-                    <div class="col">
-                        @foreach ($order as $item)
-                        @if ($item->status == 'wait')
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-2">
+                            <ul style="list-style-type: none">
+                                <li>Nama Barang</li>
+                                <li>Price</li>
+                                <li>Waktu</li>
+                                <li>Tanggal</li>
+                                <li>Nelayan</li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                        {{-- @foreach ($order as $item) --}}
+                        @if ($order)
                             
                         
                             
-                        <input type="hidden" name="id_order" value="{{ $item->id_order }}">
-                        <input type="hidden" name="id_user" value="{{ $item->id_user }}">
-                        <input type="hidden" name="time" value="{{ $item->time }}">
-                        <input type="hidden" name="date" value="{{ $item->date }}">
+                        <input type="hidden" name="id_order" value="{{ $order->id_order }}">
+                        <input type="hidden" name="id_user" value="{{ $order->id_user }}">
+                        <input type="hidden" name="time" value="{{ $order->time }}">
+                        <input type="hidden" name="date" value="{{ $order->date }}">
                         <ul style="list-style-type: none">
-                            <li>: {{ $item->product_name }}</li>
-                            <li>: {{ $item->price }}</li>
-                            <li>: {{ $item->time }}</li>
-                            <li>: {{ $item->date }}</li>
+                            <li>: {{ $order->product_name }}</li>
+                            <li>: {{ $order->price }}</li>
+                            <li>: {{ $order->time }}</li>
+                            <li>: {{ $order->date }}</li>
                             <li class="d-flex">:
                                 {{-- Button Here --}}
                                 <div class="input-group">
@@ -54,13 +54,13 @@
                     </div>
                     <div class="col col-md-4">
                         {{-- @foreach($order as $item) --}}
-                        <img src="{{ $item->img_path }}" alt="gambar" class="img_fluid rounded" style="width:300px">
+                        <img src="{{ asset($order->img_path) }}" alt="gambar" class="img_fluid rounded" style="width:300px">
                         {{-- @endforeach --}}
                     </div>
                 </div>
                 @endif
-                @endforeach
             </div>
+            {{-- @endforeach --}}
 
 
             <!-- Button trigger modal -->

@@ -88,7 +88,7 @@ Route::controller([AdminPageController::class])->group(function () {
     Route::get('/datauser', [AdminPageController::class, 'datauser'])->middleware('role:admin');
     Route::delete('Adminlayouts/datauser/{id}', [AdminPageController::class, 'destroy']);
     Route::get('managebooking', [AdminPageController::class, 'managebooking']);
-    Route::get('nelayanbook', [AdminPageController::class, 'nelayanbook']);
+    Route::get('nelayanbook/{id}', [AdminPageController::class, 'nelayanbook']);
     // Route::get('/managepackage', [AdminPageController::class, 'managepackage']);
     //Route::post('/edit', [AdminPageController::class, 'edit, $data->id'])->middleware('auth', 'authuser:admin');
     Route::post('/confirm/nelayan', [AdminPageController::class, 'konfirmasi_order'])->middleware('role:admin');

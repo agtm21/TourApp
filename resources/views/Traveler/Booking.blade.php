@@ -3,35 +3,53 @@
 
 @forelse ($booking as $item)
 <div class="container">
-    <div class="card">
+    <div class="card mb-5">
         <div class="card-header bg-primary">
             <span class="fw-bold">Your Order</span>
         </div>
         <div class="card-body">
 
             <div class="row justify-content-between">
-                <div class="col">
-                    <ul style="list-style-type: none">
-                        <li>Nama Paket</li>
-                        <li>Harga</li>
-                        <li>Fasilitas</li>
-                        <li>Tanggal</li>
-                        <li>Waktu</li>
-                        <li>Status</li>
-                    </ul>
+                <div class="col col-md-7">
+                    <div class="container">
+
+                        <table>
+                            <tr>
+                                <td class="col col-md-2">Nama Paket</td>
+                                <td>:</td>
+                                <td>{{ $item->product_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Harga</td>
+                                <td>:</td>
+                                <td>Rp. {{ $item->price }}</td>
+                            </tr>
+                            <tr>
+                                <td>Fasilitas</td>
+                                <td>:</td>
+                                <td>{{ $item->product_desc }}</td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal</td>
+                                <td>:</td>
+                                <td>{{ $item->date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Waktu</td>
+                                <td>:</td>
+                                <td>{{ $item->time }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>:</td>
+                                <td><span class="text-danger fw-bold">{{ $item->status }}</span> </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+                
                 <div class="col">
-                    <ul style="list-style-type: none">
-                        <li>: {{ $item->product_name }}</li>
-                        <li>: Rp. {{ $item->price }}</li>
-                        <li>: {{ $item->product_desc }}</li>
-                        <li>: {{ $item->date }}</li>
-                        <li>: {{ $item->time }}</li>
-                        <li>: <span class="text-danger fw-bold">{{ $item->status }}</span> </li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <img src="{{ $item->img_path }}" alt="img_order" class="img-fluid">
+                    <img src="{{ $item->img_path }}" alt="img_order" class="img-fluid" >
                 </div>
             </div>
         </div> 

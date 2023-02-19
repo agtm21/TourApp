@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @foreach($order as $orderitem)
-                @if($orderitem->status == 'wait')
+                @if($orderitem->status == 'wait' || $orderitem->status == 'decline')
                 {{-- <input type="hidden" name="id_order" value="{{ $orderitem->id_order }}"> --}}
                 <tr>
                     
@@ -32,7 +32,7 @@
                     <td>{{ $orderitem->date }}</td>
                     <td>Sedang Memilih</td>
                     <td>Menunggu</td>
-                    <td><a class="btn btn-success" href="nelayanbook">Pilih Nelayan</a></td>
+                    <td><a class="btn btn-success" href="nelayanbook/{{ $orderitem->id_order }}">Pilih Nelayan</a></td>
                 </tr>
                 @else
                 <tr>
@@ -44,11 +44,14 @@
                         <td>{{ $orderitem->date }}</td>
                         <td>{{ $orderitem->nama_nelayan }}</td>
                         <td>Proses Persetujuan</td>
-                        <td><button class="btn btn-secondary">Lihat Detail</button></td>
+                        <td>
+                            <button class="btn btn-secondary">Lihat Detail</button>
+                        </td>
                 </tr>
                 @endif
                 @endforeach
             </tbody>
         </table>
     </div>
+    
 @endsection

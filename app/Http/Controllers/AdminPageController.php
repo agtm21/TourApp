@@ -106,9 +106,9 @@ class AdminPageController extends Controller
 
         return view('Adminlayouts.ManageBooking', ['order' => $order]);
     }
-    public function nelayanbook()
+    public function nelayanbook($id)
     {
-        $order = Order::get();
+        $order = Order::where('id_order',$id)->first();
         $user = User::where('role', 'nelayan')->get();
         return view('Adminlayouts.nelayanbook', ['order' => $order, 'user' => $user]);
     }

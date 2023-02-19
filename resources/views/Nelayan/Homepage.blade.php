@@ -40,7 +40,7 @@
                 <div class="list-group list-group-flush ">
 
                     <a href="/nelayan/homepage" class="list-group-item bg-dark text-decoration-none text-white text-center">Dashboard </a>
-                    <a href="#" class="list-group-item bg-dark text-decoration-none text-white text-center">Order </a>
+                    <a href="/nelayan/order" class="list-group-item bg-dark text-decoration-none text-white text-center">Order </a>
                     
                 </div>
                 

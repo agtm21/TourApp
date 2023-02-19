@@ -15,8 +15,16 @@ class HomepagenelController extends Controller
     {
         $title = 'Dashboard';
         $user = User::get();
-
-        return view('Nelayan.Dashboard', ['title' => $title, 'users' => $user]);
+        $order = order::where('status', 'process')->count();
+        $acc = order::where('status', 'accept')->count();
+        $dec = order::where('status', 'decline')->count();
+        return view('Nelayan.Dashboard', [
+            'title' => $title,
+            'users' => $user,
+            'order' => $order,
+            'accept' => $acc,
+            'decline' => $dec
+        ]);
     }
     public function Order()
     {
