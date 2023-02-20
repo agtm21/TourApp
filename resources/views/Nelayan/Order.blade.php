@@ -1,7 +1,18 @@
 @extends('Nelayan.Homepage')
 @section('container')
     <div class="container">
-        
+      @if (session()->has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>    
+    @endif
+    @if (session()->has('error'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>    
+    @endif
         <div class="card">
             <div class="card-header">
               <h3>Notifikasi</h3>
@@ -71,7 +82,7 @@
             <div class="modal-body">
               <div class="container text-center">
                 @foreach ($notifications as $notification)
-                    
+                
                 <p>
                   Hi {{ $notification->data['nama'] }} !
                 </p>
@@ -96,7 +107,9 @@
                 @csrf
                 <input type="hidden" name="username" value="{{ auth()->user()->username }}">
                 <input type="hidden" name="status" id="status" value=""> 
-                {{-- <input type="hidden" name="idorder" value="{{ $notifications->data['id_order'] }}"> --}}
+                @foreach($notifications as $notification)
+                <input type="hidden" name="idorder" value="{{ $notification->data['id_order'] }}">
+                @endforeach
                 <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" id="declinebtn">Tolak</button>
                 <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="accbtn">Terima</button>
               </form>

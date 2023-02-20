@@ -7,7 +7,7 @@ use app\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NotifyNelayan;
-
+use Exception;
 
 class HomepagenelController extends Controller
 {
@@ -43,11 +43,25 @@ class HomepagenelController extends Controller
 
         $id_order = $request->get('idorder');
         $confirm = $request->get('status');
-        $update = order::where('id_order', $id_order)->update([
-            'status' => $confirm
-        ]);
-        // dd($confirm);
-        return redirect()->back();
+        try {
+            $update = order::where('id_order', $id_order)->update([
+                'status' => $confirm
+            ]);
+        } catch (Exception $e) {
+            return dd($e);
+        }
+
+        if ($update) {
+            if ($confirm == 'accept') {
+
+                return redirect()->back()->with('success', 'Paket Diterima!');
+            } else {
+
+                return redirect()->back()->with('success', 'Paket Ditolak!');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Terjadi Error');
+        }
     }
     public function logout(Request $request)
     {
