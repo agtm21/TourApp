@@ -82,7 +82,7 @@ Route::controller([ManagePackageController::class])->middleware('role:admin')->g
     Route::get('edit/{id}', [ManagePackageController::class, 'edit']);
 });
 // Admin Group Controller
-Route::controller([AdminPageController::class])->group(function () {
+Route::controller([AdminPageController::class])->middleware('role:admin')->group(function () {
     Route::resource('/Admin', AdminPageController::class)->middleware('role:admin');
     Route::get('/adminpage', [AdminPageController::class, 'index'])->middleware('role:admin')->name('adminpage');
     Route::get('/datauser', [AdminPageController::class, 'datauser'])->middleware('role:admin');
@@ -97,7 +97,7 @@ Route::controller([AdminPageController::class])->group(function () {
 });
 
 
-
+Route::get('landing/langs/{locale}', [HomepageController::class, 'langs']);
 // Homepage role as traveler Controller
 Route::controller([HomepageController::class])->middleware('role:traveler')->group(function () {
     Route::get('/homepage', [HomepageController::class, 'index']);
@@ -106,7 +106,7 @@ Route::controller([HomepageController::class])->middleware('role:traveler')->gro
     Route::get('/penyewaan', [HomepageController::class, 'penyewaan']);
     Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket']);
     Route::get('/langs/{locale}', [HomepageController::class, 'langs']);
-    Route::get('landing/langs/{locale}', [HomepageController::class, 'langs']);
+
     // Route::get('/topup', [HomepageController::class, 'topup']);
     Route::get('/history', [HomepageController::class, 'history']);
     Route::post('/confirm', [HomepageController::class, 'konfirmasipaket']);

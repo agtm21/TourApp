@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 class NotifyNelayan extends Notification
 {
     use Queueable;
-    private $user;
+    private $details;
 
     /**
      * Create a new notification instance.
@@ -18,9 +18,9 @@ class NotifyNelayan extends Notification
      * @return void
      */
 
-    public function __construct($user)
+    public function __construct($details)
     {
-        $this->user = $user;
+        $this->details = $details;
     }
 
     /**
@@ -31,7 +31,7 @@ class NotifyNelayan extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -40,15 +40,21 @@ class NotifyNelayan extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //         ->greeting($this->details['greeting'])
-    //         ->line($this->details['body'])
-    //         ->action($this->details['actiontext'], $this->details['actionurl'])
-    //         ->line($this->details['lastline']);
-    // }
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
 
+            ->greeting($this->details['greeting'])
+            ->line($this->details['body'])
+            ->action($this->details['link'], $this->details['url'])
+            ->line($this->details['date'])
+            ->line($this->details['time']);
+            
+    }
+    // public function toDatabase($notifiable)
+    // {
+    //     return ['id' => $this->details['id']];
+    // }
     /**
      * Get the array representation of the notification.
      *
@@ -58,12 +64,12 @@ class NotifyNelayan extends Notification
     public function toArray($notifiable)
     {
         return [
-            'id_order' => $this->user['id_order'],
-            'nama' => $this->user['nama'],
-            'message' => $this->user['message'],
-            'pemesan' => $this->user['pemesan'],
-            'date' => $this->user['date'],
-            'time' => $this->user['time']
+            // 'id_order' => $this->user['id_order'],
+            // 'nama' => $this->user['nama'],
+            // 'message' => $this->user['message'],
+            // 'pemesan' => $this->user['pemesan'],
+            // 'date' => $this->user['date'],
+            // 'time' => $this->user['time']
         ];
     }
 }

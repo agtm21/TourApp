@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\topup;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NotifyNelayan;
 use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
@@ -94,6 +96,8 @@ class HomepageController extends Controller
     public function konfirmasipaket(Request $request)
     {
         $id_user = Auth::id();
+        $admin = User::where('role', 'admin')->get();
+        $username = User::where('role', 'admin')->first();
         // kalau nilai dari balance < harga paket, error
         $balance = balance::where('id_user', $id_user)->value('balance');
         $price = $request->input('price');
@@ -153,6 +157,15 @@ class HomepageController extends Controller
             ]);
             // dd($confirm);
             if ($confirm) {
+                $msg = [
+                    'greeting' => 'Hi ' . $username->username,
+                    'body' => 'Ada Pesanan masuk yang perlu dikonfirmasi! Silakan Pilih salah satu Nelayan!',
+                    'link' => 'Pilih Nelayan',
+                    'url' => 'http://localhost:3000',
+                    'date' => 'Tanggal Pesanan: ' . $request->input('date'),
+                    'time' => 'Waktu Pesanan: ' . $request->input('time')
+                ];
+                Notification::send($admin, new NotifyNelayan($msg));
                 return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
             } else {
                 return redirect()->back()->with('error', 'Paket gagal Dipesan!');

@@ -108,7 +108,7 @@ class AdminPageController extends Controller
     }
     public function nelayanbook($id)
     {
-        $order = Order::where('id_order',$id)->first();
+        $order = Order::where('id_order', $id)->first();
         $user = User::where('role', 'nelayan')->get();
         return view('Adminlayouts.nelayanbook', ['order' => $order, 'user' => $user]);
     }
@@ -144,15 +144,17 @@ class AdminPageController extends Controller
 
         //pesan yang akan di kirim
         $msg = [
-            'id_order' => $id,
-            'nama' => $newVal,
-            'message' => 'Anda Mendapatkan Pesanan! dari',
-            'pemesan' => $trvl->username,
-            'date' => $date,
-            'time' => $time
+            // 'id' => $id, //id_order
+            'greeting' => 'Hi' . $newVal . '!',
+            'body' => 'Anda Mendapatkan Pesanan! dari' . $trvl->username,
+            'date' => 'Tanggal Pesanan:' . $date,
+            'time' => 'Waktu Pesanan:' . $time,
+            'link' => 'Cek Pesanan',
+            'url' => '/nelayan/order'
         ];
 
         Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user    
+
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }
 }

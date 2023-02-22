@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             [
                 'uuid' => '2fadbd8a-6c71-4f26-9768-475021a2d417',
                 'username' => 'admin',
-                'email'  => 'admin@gmail.com',
+                'email'  => 'agussuryaat21@gmail.com',
                 'password' => bcrypt('admin123'),
                 'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
                 'role' => 'admin'
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
             [ //1
                 'uuid' => 'f7312208-8bff-492e-86f8-98e7dd6f1881',
                 'username' => 'gedesumanada',
-                'email'  => 'gedesumanada@gmail.com',
+                'email'  => 'agussuryaat21@gmail.com',
                 'password' => bcrypt('gedesumanada'),
                 'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
                 'role' => 'nelayan'
