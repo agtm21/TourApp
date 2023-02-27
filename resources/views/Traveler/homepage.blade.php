@@ -173,8 +173,3 @@ for (var i = 0; i < buttons.length; i++) { //count all button
 }
 </script>
 @endsection
-{{-- 
-    Note :
-    Buat Database dengan Tabel
-    ID,Package Name, Description,image
-    --}}

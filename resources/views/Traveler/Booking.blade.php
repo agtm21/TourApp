@@ -2,7 +2,7 @@
 @section('penyewaan')
 
 @foreach ($booking as $item)
-    @if ($item->status == 'wait' && $item->status == 'process')
+    @if ($item->status != 'accept')
     
     
     <div class="container">
@@ -58,9 +58,8 @@
             </div> 
             </div>
         </div>
-    
-        @endif
-        @endforeach
+        @else
+
         <div class="container">
             <div class="card text-center">
                 <div class="card-body">
@@ -69,6 +68,8 @@
                 </div>
             </div>
         </div>
+        @endif
+        @endforeach
 {{-- @foreach ($booking as $item)
     @if (!$item->status == 0)
     <div class="container">

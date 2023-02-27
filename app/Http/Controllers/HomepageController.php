@@ -142,7 +142,7 @@ class HomepageController extends Controller
 
         $user = User::find($id);
 
-        $history = $user->order();
+        $history = $user->order()->get();
         $balance = $user->balance;
 
         $balance = $this->BalanceCheck($balance);
@@ -183,6 +183,16 @@ class HomepageController extends Controller
             'balance' => $balance,
             'notifications' => $notifications
         ]);
+    }
+    public function markAsReads($id)
+    {
+        $auth = Auth::user();
+        $notif = $auth->notifications->where('id', $id)->first();
+        if ($notif) {
+            $notif->markAsRead();
+        }
+
+        return redirect()->back();
     }
     public function logout(Request $request)
     {

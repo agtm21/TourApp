@@ -61,7 +61,7 @@
                 </div>
 
 
-                <div class="dropdown me-4">
+                <div class="dropdown me-4" id="profile">
                     {{-- <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
                         Offset
                       </button> --}}
@@ -69,7 +69,8 @@
 
                         <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"alt="Profile image" height="30" width="30">
                         {{ auth()->user()->username }}
-                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle">
+                        
+                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle" id="notifalert">
                             <span class="visually-hidden">New alerts</span>
                           </span>
                         </a>
@@ -171,3 +172,11 @@
 </body>
 
 </html>
+{{-- <script>
+    var user = document.getElementById('profile');
+    user.addEventListener("click",function(Event){
+        Event.preventDefault();
+        document.getElementById('notifalert').remove();
+    }); 
+    
+</script> --}}

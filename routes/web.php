@@ -106,7 +106,7 @@ Route::controller([HomepageController::class])->middleware('role:traveler')->gro
     Route::get('/penyewaan', [HomepageController::class, 'penyewaan']);
     Route::get('/prosespenyewaan/{id}', [HomepageController::class, 'orderpaket']);
     Route::get('/langs/{locale}', [HomepageController::class, 'langs']);
-
+    // Route::get('/notification/{id}/mark-as-read', [HomepageController::class, 'markAsReads']);
     // Route::get('/topup', [HomepageController::class, 'topup']);
     Route::get('/history', [HomepageController::class, 'history']);
     Route::post('/confirm', [HomepageController::class, 'konfirmasipaket']);
