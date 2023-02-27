@@ -20,10 +20,10 @@
             <tbody>
                 @foreach($order as $orderitem)
                 @if($orderitem->status == 'wait' || $orderitem->status == 'decline')
-                {{-- <input type="hidden" name="id_order" value="{{ $orderitem->id_order }}"> --}}
+                {{-- <input type="hidden" name="id" value="{{ $orderitem->id }}"> --}}
                 <tr>
                     
-                    <td>{{ $orderitem->id_order }}</td>
+                    <td>{{ $orderitem->id }}</td>
                     
                     {{-- <td>{{$user->username }}</td> --}}
                     <td>{{$orderitem->product_name }}</td>
@@ -32,12 +32,12 @@
                     <td>{{ $orderitem->date }}</td>
                     <td>Sedang Memilih</td>
                     <td>Menunggu</td>
-                    <td><a class="btn btn-success" href="nelayanbook/{{ $orderitem->id_order }}">Pilih Nelayan</a></td>
+                    <td><a class="btn btn-success" href="nelayanbook/{{ $orderitem->id }}">Pilih Nelayan</a></td>
                 </tr>
                 @else
                 <tr>
 
-                    <td>{{ $orderitem->id_order }}</td>
+                    <td>{{ $orderitem->id }}</td>
                     <td>{{$orderitem->product_name }}</td>
                         <td>{{ $orderitem->price }}</td>
                         <td>{{ $orderitem->time }}</td>

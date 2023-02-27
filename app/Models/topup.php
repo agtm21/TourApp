@@ -11,6 +11,10 @@ class topup extends Model
     protected $fillable = ['id_user', 'amount', 'topup_method', 'currency'];
     public function User()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
+    // public function Balance()
+    // {
+    //     return $this->hasMany(balance::class);
+    // }
 }

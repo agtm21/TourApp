@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\NotifyNelayan;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
@@ -108,7 +109,7 @@ class AdminPageController extends Controller
     }
     public function nelayanbook($id)
     {
-        $order = Order::where('id_order', $id)->first();
+        $order = Order::find($id);
         $user = User::where('role', 'nelayan')->get();
         return view('Adminlayouts.nelayanbook', ['order' => $order, 'user' => $user]);
     }
@@ -121,39 +122,40 @@ class AdminPageController extends Controller
         $time = $request->get('time'); //time
         $date = $request->get('date'); //date
 
-        $trvl = User::where('id', $iduser)->first(); //data pertama sesuai id user
-        $method = order::where('id_user', $iduser)->first();
-        $topupval = balance::where('id_user', $iduser)->value('balance');
-        $sum = $topupval - $method->price;
+        $user = User::find($iduser);
+        // $order = Order::find($id);
+        $price = $user->order()->value('price'); //get price from order with certain user
+        $balance = $user->balance()->value('balance'); //get user balance
+        $user->balance()->update([
+            'balance' => $balance - $price //substracting price with user balance
+        ]);
 
-        //payment method
-        if ($method->method == 'sailpay') {
-            balance::where('id', $iduser)->update(['balance' => $sum]);
-        }
-
-        //update data di database kolom nama_nelayan
-        Order::where('id_order', $id)
-            ->update([
+        // update status pesanan
+        try {
+            Order::where('id', $id)->update([
                 'nama_nelayan' => $newVal,
                 'status' => 'process'
             ]);
-
-        // kirim notifikasi
+        } catch (QueryException $e) {
+            return $e;
+        }
         //cari username nelayan
-        $user = User::where('username', $newVal)->get();
+
+        $nelayan = User::where('username', $newVal)->get();
 
         //pesan yang akan di kirim
         $msg = [
-            // 'id' => $id, //id_order
-            'greeting' => 'Hi' . $newVal . '!',
-            'body' => 'Anda Mendapatkan Pesanan! dari' . $trvl->username,
+            'id_order' => $id, //id_order
+            'subject' => 'Pesanan Masuk',
+            'greeting' => 'Hi ' . $newVal . '!',
+            'body' => 'Anda Mendapatkan Pesanan dari Admin segera cek website anda!',
             'date' => 'Tanggal Pesanan:' . $date,
             'time' => 'Waktu Pesanan:' . $time,
             'link' => 'Cek Pesanan',
-            'url' => '/nelayan/order'
+            'url' => 'http://localhost:3000/'
         ];
-
-        Notification::send($user, new NotifyNelayan($msg)); //send notif ke spesifik user    
+        // $nelayan->notify(new NotifyNelayan($msg));
+        Notification::send($nelayan, new NotifyNelayan($msg)); //send notif ke spesifik user    
 
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
     }

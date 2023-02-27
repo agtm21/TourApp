@@ -19,11 +19,12 @@
             </div>
             <div class="card-body bg-secondary">
                 {{-- outer --}}
-              
+
                 
                 @forelse ($notifications as $notification)
                   @if (!$notification->read_at)
-                      
+                  <input type="hidden" name="id_order" id="id_order" value="{{ $notification->data['id_order'] }}">
+                  <input type="hidden" name="usernamenel" id="usernamenel" value="{{ auth()->user()->username }}">
                   <div class="card mb-3">
                       <button class="card-body p-1 shadow rounded btn btn-outline-primary mark-as-read" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             
@@ -80,32 +81,43 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="container text-center">
-                @foreach ($notifications as $notification)
-                
-                <p>
-                  Hi {{ $notification->data['nama'] }} !
-                </p>
-                <p>
-                  {{ $notification->data['message'] }}
-                  <b>
-                    {{ $notification->data['pemesan'] }}
-                  </b>
-                </p>
-                <p>
-                  Tanggal: {{ $notification->data['date'] }}
-                </p>
-                <p>
-                  Waktu: {{ $notification->data['time'] }}
-                </p>
-                @endforeach
+              <div class="container">
+                <div class="card bg-secondary">
+                  <b class=" fs-2 text-center my-4"> Dolphin Tour</b>
+                  <div class="card-body">
+                    <div class="row border bg-white">
+                      <div class="col">      
+                        @foreach ($notifications as $notification)
+                        
+                        <b class="mt-4">
+                          {{ $notification->data['greeting'] }} 
+                        </b>
+                        <p>
+                          {{ $notification->data['body'] }}
+                          
+                        </p>
+                        <p>
+                          {{ $notification->data['date'] }}
+                        </p>
+                        <p class="mb-4">
+                          {{ $notification->data['time'] }}
+                        </p>
+                        @endforeach
+                      </div>
+                    </div>
+                    <div class="text-center my-4">
+                      © 2022 Copyright:
+                      <a class="text-dark" href="/">Dolphintour.com</a>
+                  </div>
+                  </div>
+                </div>
                 
               </div>
             </div>
             <div class="modal-footer">
               <form action="/nelayan/confirmorder" method="post">
                 @csrf
-                <input type="hidden" name="username" value="{{ auth()->user()->username }}">
+                {{-- <input type="hidden" name="username" value="{{ auth()->user()->username }}"> --}}
                 <input type="hidden" name="status" id="status" value=""> 
                 @foreach($notifications as $notification)
                 <input type="hidden" name="idorder" value="{{ $notification->data['id_order'] }}">

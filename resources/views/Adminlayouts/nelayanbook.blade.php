@@ -28,8 +28,8 @@
                             
                         
                             
-                        <input type="hidden" name="id_order" value="{{ $order->id_order }}">
-                        <input type="hidden" name="id_user" value="{{ $order->id_user }}">
+                        <input type="hidden" name="id_order" value="{{ $order->id }}">
+                        <input type="hidden" name="id_user" value="{{ $order->user_id }}">
                         <input type="hidden" name="time" value="{{ $order->time }}">
                         <input type="hidden" name="date" value="{{ $order->date }}">
                         <ul style="list-style-type: none">

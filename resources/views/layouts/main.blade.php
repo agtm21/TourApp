@@ -45,7 +45,7 @@
                     </li>
                   
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">@lang('pages.about')</a>
+                        <a class="nav-link text-light" href="/about">@lang('pages.about')</a>
                     </li>
                 </ul>
                 <div class="dropdown me-2">
@@ -59,11 +59,21 @@
 
                     </ul>
                 </div>
+
+
                 <div class="dropdown me-4">
-                    <a class="nav-link dropdown-toggle text-light" id="UserDropdown" href="#" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"
-                            alt="Profile image" height="30" width="30">{{ auth()->user()->username }}</a>
+                    {{-- <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
+                        Offset
+                      </button> --}}
+                    <a class="btn dropdown-toggle text-light" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20" style="border-color:transparent;">
+
+                        <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"alt="Profile image" height="30" width="30">
+                        {{ auth()->user()->username }}
+                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                          </span>
+                        </a>
+                            
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                         <div class="dropdown-header text-center">
 
@@ -79,6 +89,13 @@
                         </div>
                         <a class="dropdown-item " href="/profile/traveler/{{ auth()->user()->uuid }}"><i class="fa-solid fa-user"></i> @lang('auth.profile.profil')</a>
                         <a class="dropdown-item" href="/topup"><i class="fa-solid fa-money-check-dollar"></i> Topup</a>
+                        <a href="/notificationorder" class="dropdown-item">
+                            <i class="fa-solid fa-bell"></i>
+                            Notification Order
+                            <span class="badge text-bg-danger">
+                                4
+                            </span>
+                        </a>
                         <form action="/logout" method="POST">
                             @csrf
                             <button class="dropdown-item"><i class="fa-solid fa-right-from-bracket"></i>@lang('auth.profile.out')</button>
@@ -113,6 +130,8 @@
         @yield('prosespenyewaan')
         @yield('profile')
         @yield('topup')
+        @yield('about')
+        @yield('notification')
     </div>
     {{-- end of packet list --}}
     

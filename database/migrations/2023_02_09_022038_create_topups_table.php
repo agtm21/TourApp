@@ -15,13 +15,13 @@ class CreateTopupsTable extends Migration
     {
         Schema::create('topups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('user_id');
             $table->string('currency');
             $table->decimal('amount', 10, 2)->default(0);
             $table->string('topup_method');
             $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

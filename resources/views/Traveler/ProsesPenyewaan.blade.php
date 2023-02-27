@@ -18,6 +18,7 @@
                 <input type="hidden" value="{{$bookings->time }}" name="time"> --}}
                 <input type="hidden" value="{{$bookings->place }}" name="place">
                 <input type="hidden" value="{{$bookings->img_path  }}" name="img_path">
+                <input type="hidden" value="sailpay" name="method">
                 <div class="col">
                     
                     <table class="table table-borderless">
@@ -65,12 +66,9 @@
                         <tr>
                             <td>Metode Pembayaran</td>
                             <td>:</td>
-                            <td class="d-flex" > 
-                                <select class="form-select ms-1" name="method" aria-label="Default select example" style="width:120px">
-                                    <option value="tunai">Tunai</option>
-                                    <option value="sailpay">Sailpay</option>
-                                
-                                </select>
+                            <td> 
+                               
+                                Sail-Pay 
                             </td>
                         </tr>
                         

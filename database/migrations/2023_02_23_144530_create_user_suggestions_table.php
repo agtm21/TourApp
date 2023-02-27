@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBalancesTable extends Migration
+class CreateUserSuggestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateBalancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('balances', function (Blueprint $table) {
+        Schema::create('user_suggestions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->decimal('balance', 10, 2)->default(0);
+            $table->string('suggestion');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateBalancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('balances');
+        Schema::dropIfExists('user_suggestions');
     }
 }

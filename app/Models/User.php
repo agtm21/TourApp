@@ -53,6 +53,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(topup::class);
     }
+    public function balance()
+    {
+        return $this->hasOne(balance::class);
+    }
     // public function User()
     // {
     //     $this->morphTo();

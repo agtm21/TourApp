@@ -31,7 +31,7 @@ class NotifyNelayan extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -43,13 +43,12 @@ class NotifyNelayan extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-
+            ->subject($this->details['subject'])
             ->greeting($this->details['greeting'])
             ->line($this->details['body'])
             ->action($this->details['link'], $this->details['url'])
             ->line($this->details['date'])
             ->line($this->details['time']);
-            
     }
     // public function toDatabase($notifiable)
     // {
@@ -64,12 +63,14 @@ class NotifyNelayan extends Notification
     public function toArray($notifiable)
     {
         return [
-            // 'id_order' => $this->user['id_order'],
-            // 'nama' => $this->user['nama'],
-            // 'message' => $this->user['message'],
-            // 'pemesan' => $this->user['pemesan'],
-            // 'date' => $this->user['date'],
-            // 'time' => $this->user['time']
+            'id_order' => $this->details['id_order'],
+            'subject' => $this->details['subject'],
+            'greeting' => $this->details['greeting'],
+            'body' => $this->details['body'],
+            'link' => $this->details['link'],
+            'url' => $this->details['url'],
+            'date' => $this->details['date'],
+            'time' => $this->details['time']
         ];
     }
 }

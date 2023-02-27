@@ -9,6 +9,7 @@ use App\Models\balance;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\topup;
+use App\Models\UserSuggestion;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -24,20 +25,26 @@ class HomepageController extends Controller
         }
         $id = Auth::id();
 
+        $user = User::find($id);
+        $balance = $user->balance;
 
-        $balance = balance::where('id_user', $id)->value('balance');
+        $balance = $this->BalanceCheck($balance);
 
-        if ($balance == NULL) {
-            $balance = 0;
-        }
-        // $balance = topup::where('id_user', $id)->sum('amount');
         $booking = booking::latest()->paginate(9);
         return view('Traveler.homepage', [
             'bookings' => $booking,
             'balance' => $balance
         ]);
     }
-
+    private function BalanceCheck($balance)
+    {
+        if ($balance == NULL) {
+            $balance = 0;
+        } else {
+            $balance = $balance->value('balance');
+        }
+        return $balance;
+    }
     public function penyewaan()
     {
         if ($locale = session('locale')) {
@@ -45,12 +52,11 @@ class HomepageController extends Controller
         }
         $id = Auth::id();
 
-        $balance = topup::where('id_user', $id)->sum('amount');
+        $user = User::find($id);
+        $balance = $user->balance;
 
-        if ($balance == NULL) {
-            $balance = 0;
-        }
-        $order = Order::where('id_user', $id)->where('status', 1)->get(); //cari paket berdasarkan id user
+        $balance = $this->BalanceCheck($balance);
+        $order = $user->Order()->get();
         return view('Traveler.Booking', [
             'booking' => $order,
             'balance' => $balance
@@ -65,27 +71,16 @@ class HomepageController extends Controller
         }
         // dd($bookings);
 
-        $id = Auth::id();
-        $balance = topup::where('id_user', $id)->sum('amount');
-        if ($balance == NULL) {
-            $balance = 0;
-        }
+        $ids = Auth::id();
+        $user = User::find($ids);
+        $balance = $user->balance;
+        $balance = $this->BalanceCheck($balance);
         $bookings = booking::findOrFail($id);
 
 
         return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id, 'balance' => $balance]);
     }
-    // public function paket(Request $request)
-    // {
-    //     $validation = $request->validate([
-    //         'id_product' => 'id_product',
-    //         'product_name' => 'product_name',
-    //         'uuid_user' => 'uuid_user',
-    //         'id_name' => 'username',
-    //     ]);
-    //     // DB::create($validation);
-    //     // return redirect('Traveler.homepage')->with('success', 'Paket berhasil dipesan! Cek Penyewaan untuk melihat Paketmu');
-    // }
+
     public function langs($locale)
     {
         Session::put('locale', $locale);
@@ -96,70 +91,36 @@ class HomepageController extends Controller
     public function konfirmasipaket(Request $request)
     {
         $id_user = Auth::id();
-        $admin = User::where('role', 'admin')->get();
-        $username = User::where('role', 'admin')->first();
-        // kalau nilai dari balance < harga paket, error
-        $balance = balance::where('id_user', $id_user)->value('balance');
+        $user = new User();
+        $admin = $user->where('role', 'admin')->get();
+        $username = $user->where('role', 'admin')->first();
+        $balance = $user->find($id_user)->balance;
+        $order = new Order();
         $price = $request->input('price');
-        $method = $request->input('method');
-        // dd($method);
-        // dd(gettype($method));
 
 
-        // switch ($method) {
-        //     case 'SailPay':
-        //         return dd('sailpay case jalan');
-        //         break;
-        //     case 'Tunai':
-        //         return dd('Tunai case jalan');
-        //     default:
-        //         return dd('error aja udah');
-        // }
-        // ifnya return opposite. true jadi false, false jadi true
-        if ($method == 'sailpay') {
-            // dd('ifnya jalan');
-            if ($balance < $price) {
-                // dd('comparation balance jalan');
-                return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
-            } else {
-                $confirm = Order::create([
-                    'id_user' => $request->input('id_user'),
-                    'img_path' => $request->input('img_path'),
-                    'product_name' => $request->input('product_name'),
-                    'price' => $request->input('price'),
-                    'date' => $request->input('date'),
-                    'time' => $request->input('time'),
-                    'place' => $request->input('place'),
-                    'product_desc' => $request->input('product_desc'),
-                    'method' => $request->input('method'),
-                    'status' => 'wait'
-                ]);
-                // dd($confirm);
-                if ($confirm) {
-                    return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
-                } else {
-                    return redirect()->back()->with('error', 'Paket gagal Dipesan!');
-                }
-            }
+        if ($balance < $price) {
+            return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
         } else {
-            // dd('else');
-            $confirm = Order::create([
-                'id_user' => $request->input('id_user'),
-                'img_path' => $request->input('img_path'),
-                'product_name' => $request->input('product_name'),
-                'price' => $request->input('price'),
-                'date' => $request->input('date'),
-                'time' => $request->input('time'),
-                'place' => $request->input('place'),
-                'product_desc' => $request->input('product_desc'),
-                'method' => $request->input('method'),
-                'status' => 'wait'
-            ]);
-            // dd($confirm);
-            if ($confirm) {
+
+            $order->user_id = $request->input('id_user');
+            $order->img_path = $request->input('img_path');
+            $order->product_name = $request->input('product_name');
+            $order->price = $request->input('price');
+            $order->date = $request->input('date');
+            $order->time = $request->input('time');
+            $order->place = $price;
+            $order->product_desc = $request->input('product_desc');
+            $order->method = $request->input('method');
+            $order->status = 'wait';
+            $order->save();
+
+            if ($order) {
                 $msg = [
+                    'id_order' => $order->id_order,
+                    'subject' => 'Pesanan Masuk',
                     'greeting' => 'Hi ' . $username->username,
-                    'body' => 'Ada Pesanan masuk yang perlu dikonfirmasi! Silakan Pilih salah satu Nelayan!',
+                    'body' => 'Ada Orderan Masuk, segera cek website anda',
                     'link' => 'Pilih Nelayan',
                     'url' => 'http://localhost:3000',
                     'date' => 'Tanggal Pesanan: ' . $request->input('date'),
@@ -178,16 +139,51 @@ class HomepageController extends Controller
             app()->setLocale($locale);
         }
         $id = Auth::id();
-        $history = Order::where('id_user', $id)->get();
 
-        $balance = topup::where('id_user', $id)->sum('amount');
-        if ($balance == NULL) {
-            $balance = 0;
-        }
-        // $balance = topup::where('id_user', $id)->sum('amount');
+        $user = User::find($id);
+
+        $history = $user->order();
+        $balance = $user->balance;
+
+        $balance = $this->BalanceCheck($balance);
         return view('Traveler.History', ['history' => $history, 'balance' => $balance]);
     }
+    public function about()
+    {
 
+        $id = Auth::id();
+        $user = User::find($id);
+        $balance = $user->balance;
+
+        $balance = $this->BalanceCheck($balance);
+        $history = $user->order();
+
+        return view('about', ['balance' => $balance]);
+    }
+    public function kritik(Request $request)
+    {
+        $id = Auth::id();
+        $suggestion = new UserSuggestion();
+        $suggestion->user_id = $id;
+        $suggestion->suggestion = $request->input('suggestion');
+        $suggestion->save();
+        if ($suggestion) {
+            return redirect('/about')->with('success', 'Kritik dan Saran Berhasil Disimpan');
+        } else {
+            return redirect('/about')->with('error', 'Kritik dan Saran Tidak Berhasil Disimpan');
+        }
+    }
+    public function NotificationOrder()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        $balance = $user->balance()->value('balance');
+        $notifications = auth()->user()->unreadNotifications;
+        return view('Traveler.NotificationOrder', [
+            'balance' => $balance,
+            'notifications' => $notifications
+        ]);
+    }
     public function logout(Request $request)
     {
         Auth::logout();

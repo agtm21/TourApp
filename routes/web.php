@@ -111,6 +111,9 @@ Route::controller([HomepageController::class])->middleware('role:traveler')->gro
     Route::get('/history', [HomepageController::class, 'history']);
     Route::post('/confirm', [HomepageController::class, 'konfirmasipaket']);
     Route::get('/search', [HomepageController::class, 'index']);
+    Route::get('/about', [HomepageController::class, 'about']);
+    Route::post('/kritiksaran', [HomepageController::class, 'kritik']);
+    Route::get('/notificationorder', [HomepageController::class, 'notificationorder']);
 });
 
 Route::controller([ControllersHomepagenelController::class])->middleware('role:nelayan')->group(function () {

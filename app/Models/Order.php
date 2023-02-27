@@ -23,9 +23,9 @@ class Order extends Model
 
     public function User()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
-    
+
     // public function nelayan()
     // {
     //     return $this->hasOne(nelayan::class);

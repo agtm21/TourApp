@@ -8,6 +8,8 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NotifyNelayan;
 use Exception;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Database\QueryException;
 
 class HomepagenelController extends Controller
 {
@@ -43,20 +45,57 @@ class HomepagenelController extends Controller
 
         $id_order = $request->get('idorder');
         $confirm = $request->get('status');
+        $order = Order::find($id_order); //get order data
+        $wisatawan = User::find($order->user->id); //get user
+        $admin = User::where('role', 'admin')->first();
+        $nelayan = Auth::user()->username;
+
         try {
-            $update = order::where('id_order', $id_order)->update([
+            $update = Order::where('id', $id_order)->update([
                 'status' => $confirm
             ]);
-        } catch (Exception $e) {
-            return dd($e);
+        } catch (QueryException $e) {
+            return response()->json(['error' => 'Gagal Mengupdate Data!'], 500);
         }
 
         if ($update) {
             if ($confirm == 'accept') {
 
+                $msg = [
+                    'id_order' => $id_order,
+                    'subject' =>  'Pesanan Diterima!',
+                    'greeting' => 'Hi ' . $wisatawan->username . '!',
+                    'body' => 'Orderean telah diterima oleh ' . $nelayan . ' Anda tinggal menunggu jadwal keberangkatan',
+                    'date' => 'Tanggal Pesanan:' . $order->date,
+                    'time' => 'Waktu Pesanan:' . $order->time,
+                    'link' => 'Login',
+                    'url' => 'http://localhost:3000'
+                ];
+                $msgadmin = [
+                    'id_order' => $id_order,
+                    'subject' =>  'Pesanan Diterima!',
+                    'greeting' => 'Hi' . $admin->username . '!',
+                    'body' => 'Pesanan Anda Sudah diterima, Anda tinggal menunggu Jadwal Keberangkatan',
+                    'date' => 'Tanggal Pesanan:' . $order->date,
+                    'time' => 'Waktu Pesanan:' . $order->time,
+                    'link' => 'Login',
+                    'url' => 'http://localhost:3000'
+                ];
+                Notification::send($wisatawan, new NotifyNelayan($msg));
+                Notification::send($admin, new NotifyNelayan($msgadmin));
                 return redirect()->back()->with('success', 'Paket Diterima!');
             } else {
-
+                $msgadmin = [
+                    'id_order' => $id_order,
+                    'subject' =>  'Pesanan Diterima!',
+                    'greeting' => 'Hi' . $wisatawan->username . '!',
+                    'body' => 'Pesanan Anda Sudah ditolak Oleh' . $nelayan,
+                    'date' => 'Tanggal Pesanan:' . $order->date,
+                    'time' => 'Waktu Pesanan:' . $order->time,
+                    'link' => 'Login',
+                    'url' => 'http://localhost:3000'
+                ];
+                Notification::send($admin, new NotifyNelayan($msgadmin));
                 return redirect()->back()->with('success', 'Paket Ditolak!');
             }
         } else {

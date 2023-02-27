@@ -14,8 +14,9 @@ class Order extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id('id_order'); //PK
-            $table->unsignedBigInteger('id_user');
+            $table->id(); //PK
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('product_name');
             $table->string('img_path')->nullable();
             $table->text('product_desc'); //deskripsi ada fasilitas

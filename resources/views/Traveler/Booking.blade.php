@@ -1,70 +1,74 @@
 @extends('layouts.main',['title'=> 'Penyewaan'])
 @section('penyewaan')
 
-@forelse ($booking as $item)
-<div class="container">
-    <div class="card mb-5">
-        <div class="card-header bg-primary">
-            <span class="fw-bold">Your Order</span>
-        </div>
-        <div class="card-body">
+@foreach ($booking as $item)
+    @if ($item->status == 'wait' && $item->status == 'process')
+    
+    
+    <div class="container">
+        <div class="card mb-5">
+            <div class="card-header bg-primary">
+                <span class="fw-bold">Your Order</span>
+            </div>
+            <div class="card-body">
 
-            <div class="row justify-content-between">
-                <div class="col col-md-7">
-                    <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col col-md-7">
+                        <div class="container">
 
-                        <table>
-                            <tr>
-                                <td class="col col-md-2">Nama Paket</td>
-                                <td>:</td>
-                                <td>{{ $item->product_name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Harga</td>
-                                <td>:</td>
-                                <td>Rp. {{ $item->price }}</td>
-                            </tr>
-                            <tr>
-                                <td>Fasilitas</td>
-                                <td>:</td>
-                                <td>{{ $item->product_desc }}</td>
-                            </tr>
-                            <tr>
-                                <td>Tanggal</td>
-                                <td>:</td>
-                                <td>{{ $item->date }}</td>
-                            </tr>
-                            <tr>
-                                <td>Waktu</td>
-                                <td>:</td>
-                                <td>{{ $item->time }}</td>
-                            </tr>
-                            <tr>
-                                <td>Status</td>
-                                <td>:</td>
-                                <td><span class="text-danger fw-bold">{{ $item->status }}</span> </td>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <td class="col col-md-2">Nama Paket</td>
+                                    <td>:</td>
+                                    <td>{{ $item->product_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Harga</td>
+                                    <td>:</td>
+                                    <td>Rp. {{ $item->price }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fasilitas</td>
+                                    <td>:</td>
+                                    <td>{{ $item->product_desc }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal</td>
+                                    <td>:</td>
+                                    <td>{{ $item->date }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Waktu</td>
+                                    <td>:</td>
+                                    <td>{{ $item->time }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>:</td>
+                                    <td><span class="text-danger fw-bold">{{ $item->status }}</span> </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <img src="{{ $item->img_path }}" alt="img_order" class="img-fluid" >
                     </div>
                 </div>
-                
-                <div class="col">
-                    <img src="{{ $item->img_path }}" alt="img_order" class="img-fluid" >
+            </div> 
+            </div>
+        </div>
+    
+        @endif
+        @endforeach
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p>Saat ini tidak layanan penyewaan yang di proses</p>
+                    <a href="/homepage" class="btn btn-success">Sewa Sekarang</a>
                 </div>
             </div>
-        </div> 
         </div>
-    </div>
-@empty
-<div class="container">
-    <div class="card text-center">
-        <div class="card-body">
-            <p>Saat ini tidak layanan penyewaan yang di proses</p>
-            <a href="/homepage" class="btn btn-success">Sewa Sekarang</a>
-        </div>
-    </div>
-</div>
-@endforelse
 {{-- @foreach ($booking as $item)
     @if (!$item->status == 0)
     <div class="container">

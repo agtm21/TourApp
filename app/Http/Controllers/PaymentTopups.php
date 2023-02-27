@@ -21,7 +21,13 @@ class PaymentTopups extends Controller
             app()->setLocale($locale);
         }
         $id = Auth::id();
-        $balance = topup::where('id_user', $id)->sum('amount');
+        $user = User::find($id);
+        $balance = $user->balance;;
+        if ($balance == NULL) {
+            $balance = 0;
+        } else {
+            $balance = $balance->value('balance');
+        }
         // dd($balance);
         return view('Traveler.topup', ['balance' => $balance]);
     }
@@ -29,36 +35,72 @@ class PaymentTopups extends Controller
     private function insertTopups($id_user, $amount, $select, $method)
     {
 
-        // $topups_user = User::find($id_user);
-        $topup = topup::where('id_user', $id_user)->latest(); // cari nilai terbaru
-        $userbalance = balance::where('id_user', $id_user)->value('id_user');
-        $balance = $this->addition($topup->value('amount'), $amount);
-        // dd($balance);
-        if ($userbalance == $id_user) {
-            //do update
-            // dd('if untuk update balance jalan');
-            $topup = balance::where('id_user', $id_user)->update([ //kalo tidak ada data buat baru, kalo ada data update
-                'balance' => $balance
-            ]);
-            topup::create([
-                'id_user' => $id_user,
-                'amount' => $amount,
-                'currency' => $select,
-                'topup_method' => $method
-            ]);
+
+        $user = User::find($id_user);
+        $topup = $user->topup()->latest();
+        
+        if ($topup == NULL) {
+            $balance = $this->addition($topup, $amount);
+        } else {
+
+            $balance = $this->addition($topup->value('amount'), $amount);
+        }
+        if ($user->balance) {
+
+            try {
+
+                //update table balance kolom balance
+                $balance_table = new balance();
+                $balance_table = $balance;
+
+                $user->balance()->update([
+                    'balance' => $balance_table,
+                ]);
+
+                //insert data topup
+                $topup_insert = new topup();
+                $topup_insert->user_id = $id_user;
+                $topup_insert->amount = $amount;
+                $topup_insert->currency = $select;
+                $topup_insert->topup_method = $method;
+                $topup_insert->save(); //simpan perubahan
+            } catch (\Exception $e) {
+                dd($e);
+            }
+            // topup::create([
+            //     'id_user' => $id_user,
+            //     'amount' => $amount,
+            //     'currency' => $select,
+            //     'topup_method' => $method
+            // ]);
         } else {
             //create new
             //using create
-            $topup = topup::create([
-                'id_user' => $id_user,
-                'amount' => $amount,
-                'currency' => $select,
-                'topup_method' => $method
-            ]);
-            balance::create([
-                'id_user' => $id_user,
-                'balance' => $amount
-            ]);
+            // $topup = topup::create([
+            //     'id_user' => $id_user,
+            //     'amount' => $amount,
+            //     'currency' => $select,
+            //     'topup_method' => $method
+            // ]);
+            try {
+                $topup_insert = new topup();
+                $topup_insert->user_id = $id_user;
+                $topup_insert->amount = $amount;
+                $topup_insert->currency = $select;
+                $topup_insert->topup_method = $method;
+                $topup_insert->save(); //simpan perubahan
+
+                $balance_insert = new balance();
+                $balance_insert->user_id = $id_user;
+                $balance_insert->balance = $amount;
+                $balance_insert->save();
+            } catch (\Exception $e) {
+                dd($e);
+            }
+            // balance::create([
+            //     'id_user' => $id_user,
+            //     'balance' => $amount
+            // ]);
             // dd('elsenya yang jalan bro');
         }
     }
