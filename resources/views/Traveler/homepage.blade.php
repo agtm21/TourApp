@@ -31,8 +31,8 @@
                 </div>
                 <p class="card-text text-dark h-100 text-justify" id="fulltext-{{ $books->id }}" >
                   
-                  {{ substr($books->product_desc,0,60) }} ... 
-                  <a href="#fulltext-{{ $books->id }}">Read more</a>
+                  {{ $books->product_desc }}
+                  {{-- <a href="#fulltext-{{ $books->id }}">Read more</a> --}}
                 </p>
                 <a href="/prosespenyewaan/{{ $books->id }}" class="btn btn-warning rounded px-4">
                     <i class="fa-regular fa-credit-card"></i>

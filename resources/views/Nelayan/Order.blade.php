@@ -114,6 +114,8 @@
                 
               </div>
             </div>
+            {{-- @if ($errors->isEmpty()) --}}
+              
             <div class="modal-footer">
               <form action="/nelayan/confirmorder" method="post">
                 @csrf
@@ -121,11 +123,16 @@
                 <input type="hidden" name="status" id="status" value=""> 
                 @foreach($notifications as $notification)
                 <input type="hidden" name="idorder" value="{{ $notification->data['id_order'] }}">
-                @endforeach
+                {{-- <input type="text" name="order" id="order" value="{{ $order }}"> --}}
+                
                 <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" id="declinebtn">Tolak</button>
                 <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="accbtn">Terima</button>
+                
+              
+                @endforeach
               </form>
             </div>
+            {{-- @endif --}}
           </div>
         </div>
       </div>
@@ -138,5 +145,16 @@
         function decline(){
           document.getElementById('status').value = 'decline';
         }
+
+        $(document).ready(function(){
+          $('accbtn').click(function(){
+            $(this).hide();
+          });
+        });
+        $(document).ready(function(){
+          $('accbtn').click(function(){
+            $(this).hide();
+          });
+        });
       </script>
 @endsection

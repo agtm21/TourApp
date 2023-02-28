@@ -43,9 +43,13 @@
                         <td>{{ $orderitem->time }}</td>
                         <td>{{ $orderitem->date }}</td>
                         <td>{{ $orderitem->nama_nelayan }}</td>
+                        @if ($orderitem->status == 'accept')
+                        <td>Lunas</td>    
+                        @else
                         <td>Proses Persetujuan</td>
+                        @endif
                         <td>
-                            <button class="btn btn-secondary">Lihat Detail</button>
+                            Nelayan Sudah Dipilih
                         </td>
                 </tr>
                 @endif

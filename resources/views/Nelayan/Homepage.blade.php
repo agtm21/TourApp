@@ -9,6 +9,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/sidebarnel.css') }}">
     <script src="https://kit.fontawesome.com/04c6e6ed2a.js" crossorigin="anonymous"></script>
+    <script src="https:://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
 

@@ -32,8 +32,15 @@ class HomepagenelController extends Controller
     {
         $title = 'Order';
         $user = User::get();
+        $order = Order::first();
+        // dd(Request()->get('idorder'));
         $notifications = auth()->user()->unreadNotifications;
-        return view('Nelayan.Order', ['title' => $title, 'users' => $user, 'notifications' => $notifications]);
+        return view('Nelayan.Order', [
+            'title' => $title,
+            'users' => $user,
+            'notifications' => $notifications,
+            'order' => $order
+        ]);
     }
     public function markAsRead(Request $request, $id)
     {
