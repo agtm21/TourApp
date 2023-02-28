@@ -74,8 +74,8 @@ class HomepagenelController extends Controller
                 $msgadmin = [
                     'id_order' => $id_order,
                     'subject' =>  'Pesanan Diterima!',
-                    'greeting' => 'Hi' . $admin->username . '!',
-                    'body' => 'Pesanan Anda Sudah diterima, Anda tinggal menunggu Jadwal Keberangkatan',
+                    'greeting' => 'Hi ' . $admin->username . '!',
+                    'body' => 'Pesanan Sudah diterima',
                     'date' => 'Tanggal Pesanan:' . $order->date,
                     'time' => 'Waktu Pesanan:' . $order->time,
                     'link' => 'Login',
@@ -88,8 +88,8 @@ class HomepagenelController extends Controller
                 $msgadmin = [
                     'id_order' => $id_order,
                     'subject' =>  'Pesanan Diterima!',
-                    'greeting' => 'Hi' . $wisatawan->username . '!',
-                    'body' => 'Pesanan Anda Sudah ditolak Oleh' . $nelayan,
+                    'greeting' => 'Hi ' . $wisatawan->username . '!',
+                    'body' => 'Pesanan ditolak Oleh ' . $nelayan,
                     'date' => 'Tanggal Pesanan:' . $order->date,
                     'time' => 'Waktu Pesanan:' . $order->time,
                     'link' => 'Login',

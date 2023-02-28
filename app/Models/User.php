@@ -57,6 +57,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(balance::class);
     }
+    public function Cardbalance()
+    {
+        return $this->hasMany(cardbalance::class);
+    }
     // public function User()
     // {
     //     $this->morphTo();

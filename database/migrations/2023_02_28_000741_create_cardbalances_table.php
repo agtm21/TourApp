@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNelayansTable extends Migration
+class CreateCardbalancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateNelayansTable extends Migration
      */
     public function up()
     {
-        Schema::create('nelayans', function (Blueprint $table) {
+        Schema::create('cardbalances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_order');
-            $table->string('nama_nelayan');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->on('id')->references('users')->onDelete('cascade');
+            $table->string('card_number');
+            $table->string('exp');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateNelayansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nelayans');
+        Schema::dropIfExists('cardbalances');
     }
 }

@@ -10,7 +10,7 @@ use App\Models\balance;
 use App\Models\topup_detail;
 use Exception;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentTopups extends Controller
@@ -28,17 +28,31 @@ class PaymentTopups extends Controller
         } else {
             $balance = $balance->value('balance');
         }
-        // dd($balance);
-        return view('Traveler.topup', ['balance' => $balance]);
+        $generate = $this->generateVA();
+
+        // dd($generate);
+        return view('Traveler.topup', ['balance' => $balance, 'generate' => $generate]);
+    }
+    private function generateVA()
+    {
+        $number = '';
+        for ($i = 1; $i <= 16; $i++) {
+            if ($i % 5 == 0) {
+                $number .= ' ';
+            } else {
+                $number .= rand(0, 9);
+            }
+        }
+        return $number;
     }
     //fungsi insert data
-    private function insertTopups($id_user, $amount, $select, $method)
+    private function insertTopups($id_user, $amount, $select)
     {
 
 
         $user = User::find($id_user);
         $topup = $user->topup()->latest();
-        
+
         if ($topup == NULL) {
             $balance = $this->addition($topup, $amount);
         } else {
@@ -62,7 +76,7 @@ class PaymentTopups extends Controller
                 $topup_insert->user_id = $id_user;
                 $topup_insert->amount = $amount;
                 $topup_insert->currency = $select;
-                $topup_insert->topup_method = $method;
+                // $topup_insert->topup_method = $method;
                 $topup_insert->save(); //simpan perubahan
             } catch (\Exception $e) {
                 dd($e);
@@ -87,7 +101,7 @@ class PaymentTopups extends Controller
                 $topup_insert->user_id = $id_user;
                 $topup_insert->amount = $amount;
                 $topup_insert->currency = $select;
-                $topup_insert->topup_method = $method;
+                // $topup_insert->topup_method = $method;
                 $topup_insert->save(); //simpan perubahan
 
                 $balance_insert = new balance();
@@ -124,11 +138,11 @@ class PaymentTopups extends Controller
         //cek jenis currency yang di pakai
         if ($select == 'idr') {
             //langsung masuk ke database
-            $topup = $this->insertTopups($id_user, $amount, $select, $method);
+            $topup = $this->insertTopups($id_user, $amount, $select);
         } else {
             //konversi ke idr setelah itu insert ke table
             $usdtoidr = $this->converstion($amount);
-            $topup = $this->insertTopups($id_user, $usdtoidr, $select, $method);
+            $topup = $this->insertTopups($id_user, $usdtoidr, $select);
         }
         if (!$topup) {
 
@@ -139,14 +153,13 @@ class PaymentTopups extends Controller
         }
     }
     // payment
-    public function processPayment(Request $request)
-    {
-        $payment = payment::create([
-            'trancation_id' => $request->transaction_id,
-            'amount' => $request->amount,
-            'payment_method' => $request->payment_method,
-            'payment_status' => $request->payment_status,
-        ]);
-        return redirect('/homepage')->with('success', 'Pembayaran Berhasil');
-    }
+    // public function processPayment(Request $request)
+    // {
+    //     $payment = payment::create([
+    //         'trancation_id' => $request->transaction_id,
+    //         'amount' => $request->amount,
+    //         'payment_status' => $request->payment_status,
+    //     ]);
+    //     return redirect('/homepage')->with('success', 'Pembayaran Berhasil');
+    // }
 }

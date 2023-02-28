@@ -29,7 +29,7 @@
     <form action="/prosesTopup" method="post">
         @csrf
         <input type="text" name="amount" id="amount" class="form-control mb-3" placeholder="example: 10.000">
-        <div class="d-flex mb-3">
+        <div class="d-flex align-items-center  mb-3">
             <span class="me-2">
                 Currency:
             </span>
@@ -40,23 +40,30 @@
                 
               </select>
           </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="method" id="flexRadioDefault1" value="Bank">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Bank
-            </label>
-          </div>
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="method" id="flexRadioDefault2" value="Paypal">
-            <label class="form-check-label" for="flexRadioDefault2">
-              Paypal
-            </label>
-          </div>
+        <div class="d-flex align-items-center mb-3">
+          <span class="me-3">Virtual Account:</span>
+          <b id="virtualaccountnumber">
+            {{ $generate }}
+          </b>
+          <button class="btn btn-outline-info ms-4" id="copynumber" type="button" role="button" onclick="copyToClipboard()">
+            Copy
+          </button>
+        </div>
           
-        <button class="btn btn-info mb-3" type="submit">
+        <p>Transfer pada Virtual Account di atas sesuai nominal yang tertera sebelum melanjutkan pesanan anda.</p>
+        <button class="btn btn-info mb-3" type="submit" role="submit">
             Topup
         </button>
     </form>
 </div>
-
+<script>
+function copyToClipboard() {
+  var text = document.getElementById("virtualaccountnumber").textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    console.log("Text copied to clipboard");
+  }, function() {
+    console.error("Error copying text to clipboard");
+  });
+}
+</script>
 @endsection

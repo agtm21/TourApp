@@ -194,6 +194,7 @@ class HomepageController extends Controller
 
         return redirect()->back();
     }
+    
     public function logout(Request $request)
     {
         Auth::logout();

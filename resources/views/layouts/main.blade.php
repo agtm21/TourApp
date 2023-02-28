@@ -70,9 +70,9 @@
                         <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"alt="Profile image" height="30" width="30">
                         {{ auth()->user()->username }}
                         
-                        <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle" id="notifalert">
+                        {{-- <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle" id="notifalert">
                             <span class="visually-hidden">New alerts</span>
-                          </span>
+                          </span> --}}
                         </a>
                             
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -93,9 +93,9 @@
                         <a href="/notificationorder" class="dropdown-item">
                             <i class="fa-solid fa-bell"></i>
                             Notification Order
-                            <span class="badge text-bg-danger">
+                            {{-- <span class="badge text-bg-danger">
                                 4
-                            </span>
+                            </span> --}}
                         </a>
                         <form action="/logout" method="POST">
                             @csrf
@@ -133,6 +133,7 @@
         @yield('topup')
         @yield('about')
         @yield('notification')
+        @yield('card')
     </div>
     {{-- end of packet list --}}
     
