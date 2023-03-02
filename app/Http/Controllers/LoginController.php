@@ -22,7 +22,7 @@ class LoginController extends Controller
         // Cek login user dengan role
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $request->session()->flash('success', 'Welcome');
+            $request->session()->flash('video', 'Welcome');
             if ($user->role == 'admin') {
                 $request->session()->regenerate();
                 return redirect()->intended('/adminpage');

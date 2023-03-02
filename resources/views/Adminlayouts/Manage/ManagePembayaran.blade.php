@@ -33,7 +33,7 @@
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div >
-
+                                            {{ $item->image }}
                                             <img src="{{ asset('storage/'.$item->image) }}" alt="bukti-pembayaran" height="300" width="300">
                                         </div>
                                     </div>

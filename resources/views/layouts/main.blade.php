@@ -203,7 +203,7 @@
 <script>
     $(document).ready(function(){
 
-        @if (session()->has('success'))
+        @if (session()->has('video'))
             $('#successModal').modal('show');
             $('#video').get(0).play();
         @endif
