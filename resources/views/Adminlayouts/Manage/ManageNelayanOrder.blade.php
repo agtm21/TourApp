@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($nelayan as $n)
+                @forelse ($nelayan as $n)
                     <tr>
                     
                         <td>{{ $n->nama_nelayan }}</td>
@@ -23,8 +23,13 @@
                             {{ $n->count }}
                         </td>
                     </tr>
-                @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="2">Tidak Ada Data</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
+    
 @endsection

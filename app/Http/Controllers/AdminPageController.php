@@ -163,15 +163,17 @@ class AdminPageController extends Controller
     {
         $nelayan = Order::select('nama_nelayan', DB::raw('count(*) as count'))
             ->groupBy('nama_nelayan')
-            ->having('count', '>', 1)
+            ->having('count', '>', 0)
             ->get();
+
+        // ddd($nelayan);
         return view('Adminlayouts.Manage.ManageNelayanOrder', [
             'nelayan' => $nelayan
         ]);
     }
     public function ManagePembayaran()
     {
-        $order = Order::all();
+        $order = Order::get();
 
         return view('Adminlayouts.Manage.ManagePembayaran', [
             'order' => $order

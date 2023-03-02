@@ -12,18 +12,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($order as $item)
+            @forelse ($order as $item)
                 
             <tr>
                 <td>{{ $item->user->username }}</td>
                 <td>{{ $item->product_name}}</td>
                 
                 <td class="d-flex justify-content-center">
-                    <button class="btn btn-secondary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalId">
+                    <button class="btn btn-secondary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalId{{ $item->id }}">
                         <i class="fa fa-eye me-2"></i>
                         Lihat
                     </button>
-                    <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                    <div class="modal fade" id="modalId{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modalTitleId{{ $item->id }}" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                     <div class="modal-header">
@@ -33,8 +33,9 @@
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div >
-                                            {{ $item->image }}
+
                                             <img src="{{ asset('storage/'.$item->image) }}" alt="bukti-pembayaran" height="300" width="300">
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -44,9 +45,17 @@
                     </div>
                 </td>
             </tr>
-            @endforeach
-        </tbody>
+            @empty
+                <tr>
+                    <td colspan="3">Tidak Ada Data</td>
+                </tr>
+            @endforelse
+        </tbody>   
     </table>
+
+    {{-- @foreach ($order as $items)
+        <img src="{{ asset('storage/'.$items->image) }}" alt="">
+    @endforeach --}}
 </div>
 <!-- Button trigger modal -->
 {{-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
