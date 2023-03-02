@@ -94,6 +94,8 @@ Route::controller([AdminPageController::class])->middleware('role:admin')->group
     Route::post('/confirm/nelayan', [AdminPageController::class, 'konfirmasi_order'])->middleware('role:admin');
     Route::get('/create', [AdminPageController::class, 'create'])->middleware('role:admin');
     Route::post('/logout', [AdminPageController::class, 'logout']);
+    Route::get('/managenelayanorder', [AdminPageController::class, 'ManageNelayanOrder']);
+    Route::get('/managepembayaran', [AdminPageController::class, 'ManagePembayaran']);
 });
 
 

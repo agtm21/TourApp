@@ -26,7 +26,7 @@ class Order extends Migration
             $table->string('place');
             $table->enum('status', ['wait', 'process', 'accept', 'decline'])->nullable(); //status pesanan
             $table->string('nama_nelayan')->nullable();
-            $table->string('method')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

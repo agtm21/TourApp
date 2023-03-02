@@ -90,49 +90,46 @@ class HomepageController extends Controller
 
     public function konfirmasipaket(Request $request)
     {
+        // ddd($request->file('buktipembayaran')->store('public'));
         $id_user = Auth::id();
         $user = new User();
         $admin = $user->where('role', 'admin')->get();
         $username = $user->where('role', 'admin')->first();
-        $balance = $user->find($id_user)->balance;
+        // $balance = $user->find($id_user)->balance;
         $order = new Order();
-        $price = $request->input('price');
 
 
-        if ($balance < $price) {
-            return redirect()->back()->with('error', 'Balance Tidak Cukup! Disarankan menggunakan Tunai atau Topup!');
+        $order->user_id = $request->input('id_user');
+        $order->img_path = $request->input('img_path');
+        $order->product_name = $request->input('product_name');
+        $order->price = $request->input('price');
+        $order->date = $request->input('date');
+        $order->time = $request->input('time');
+        $order->place = $request->input('price');
+        $order->product_desc = $request->input('product_desc');
+        $order->status = 'wait';
+        $order->image = $request->file('buktipembayaran')->store('buktipembayaran');
+        $order->save();
+
+
+        if ($order) {
+            $msg = [
+                'id_order' => $order->id_order,
+                'subject' => 'Pesanan Masuk',
+                'greeting' => 'Hi ' . $username->username,
+                'body' => 'Ada Orderan Masuk, segera cek website anda',
+                'link' => 'Pilih Nelayan',
+                'url' => 'http://localhost:3000',
+                'date' => 'Tanggal Pesanan: ' . $request->input('date'),
+                'time' => 'Waktu Pesanan: ' . $request->input('time')
+            ];
+            Notification::send($admin, new NotifyNelayan($msg));
+            return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
         } else {
-
-            $order->user_id = $request->input('id_user');
-            $order->img_path = $request->input('img_path');
-            $order->product_name = $request->input('product_name');
-            $order->price = $request->input('price');
-            $order->date = $request->input('date');
-            $order->time = $request->input('time');
-            $order->place = $price;
-            $order->product_desc = $request->input('product_desc');
-            $order->method = $request->input('method');
-            $order->status = 'wait';
-            $order->save();
-
-            if ($order) {
-                $msg = [
-                    'id_order' => $order->id_order,
-                    'subject' => 'Pesanan Masuk',
-                    'greeting' => 'Hi ' . $username->username,
-                    'body' => 'Ada Orderan Masuk, segera cek website anda',
-                    'link' => 'Pilih Nelayan',
-                    'url' => 'http://localhost:3000',
-                    'date' => 'Tanggal Pesanan: ' . $request->input('date'),
-                    'time' => 'Waktu Pesanan: ' . $request->input('time')
-                ];
-                Notification::send($admin, new NotifyNelayan($msg));
-                return redirect('homepage')->with('success', 'Paket Berhasil Dipesan!');
-            } else {
-                return redirect()->back()->with('error', 'Paket gagal Dipesan!');
-            }
+            return redirect()->back()->with('error', 'Paket gagal Dipesan!');
         }
     }
+
     public function history()
     {
         if ($locale = session('locale')) {
@@ -194,7 +191,7 @@ class HomepageController extends Controller
 
         return redirect()->back();
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();

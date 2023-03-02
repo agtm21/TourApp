@@ -44,6 +44,14 @@
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
                 <a href="/managebooking" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> Manage Booking</a>
               </div>
+              {{-- manage nelayan order --}}
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <a href="/managenelayanorder" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> Manage Order</a>
+              </div>
+              {{-- manage pembayaran --}}
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <a href="/managepembayaran" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> Manage Pembayaran</a>
+              </div>
               {{-- <div class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
                 <li>Something</li>
               </div> --}}
@@ -87,6 +95,8 @@
           @yield('content')
           @yield('profile')
           @yield('datauser')
+          @yield('managenelayanorder')
+          @yield('managepembayaran')
         </section>
     </div>
 </body>

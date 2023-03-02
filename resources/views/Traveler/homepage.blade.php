@@ -2,7 +2,9 @@
 @section('homepage')
 
 
-
+{{-- <video width="640" height="360" controls>
+  <source  src="Video/guide.mp4" type="video/mp4">
+</video> --}}
 <div class="fs-1 fw-bold">
 
     <p>@lang('pages.title.homepage')</p>
@@ -46,7 +48,7 @@
 <div class="d-flex justify-content-center">
     {{ $bookings->links() }}
 </div>
-<div class="fixed-bottom d-flex justify-content-end">
+{{-- <div class="fixed-bottom d-flex justify-content-end">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary me-5 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <i class="fa-sharp fa-solid fa-circle-question"></i>
@@ -134,9 +136,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- modal untuk guide  --}}
-<div class="modal modal-lg fade" id="order" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+{{-- <div class="modal modal-lg fade" id="order" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -151,7 +153,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 <script>
   // Get all the collapsible elements
 var collapsibles = document.querySelectorAll('.collapse');

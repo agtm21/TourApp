@@ -1,7 +1,7 @@
 @extends('layouts.main',['title'=>'Konfirmasi Pesanan'])
 @section('prosespenyewaan')
 
-<form action="/confirm" method="POST">
+<form action="/confirm" method="POST" enctype="multipart/form-data">
     @csrf
 <div class="container mb-4">
     <div class="card">
@@ -18,7 +18,7 @@
                 <input type="hidden" value="{{$bookings->time }}" name="time"> --}}
                 <input type="hidden" value="{{$bookings->place }}" name="place">
                 <input type="hidden" value="{{$bookings->img_path  }}" name="img_path">
-                <input type="hidden" value="sailpay" name="method">
+                {{-- <input type="hidden" value="sailpay" name="method"> --}}
                 <div class="col">
                     
                     <table class="table table-borderless">
@@ -64,11 +64,11 @@
                             
                         </tr>
                         <tr>
-                            <td>Metode Pembayaran</td>
+                            <td>Bukti Pembayaran</td>
                             <td>:</td>
                             <td> 
                                
-                                Sail-Pay 
+                                <input type="file" name="buktipembayaran" id="buktipembayaran" accept="image/*" class="form-control">
                             </td>
                         </tr>
                         

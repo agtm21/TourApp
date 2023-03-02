@@ -105,7 +105,7 @@ class AdminPageController extends Controller
     {
         $order = Order::get();
 
-        return view('Adminlayouts.ManageBooking', ['order' => $order]);
+        return view('Adminlayouts.Manage.ManageBooking', ['order' => $order]);
     }
     public function nelayanbook($id)
     {
@@ -158,5 +158,23 @@ class AdminPageController extends Controller
         Notification::send($nelayan, new NotifyNelayan($msg)); //send notif ke spesifik user    
 
         return redirect('managebooking')->with('success', 'Nelayan Sudah Berhasil Dipilih');
+    }
+    public function ManageNelayanOrder()
+    {
+        $nelayan = Order::select('nama_nelayan', DB::raw('count(*) as count'))
+            ->groupBy('nama_nelayan')
+            ->having('count', '>', 1)
+            ->get();
+        return view('Adminlayouts.Manage.ManageNelayanOrder', [
+            'nelayan' => $nelayan
+        ]);
+    }
+    public function ManagePembayaran()
+    {
+        $order = Order::all();
+
+        return view('Adminlayouts.Manage.ManagePembayaran', [
+            'order' => $order
+        ]);
     }
 }

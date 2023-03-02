@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
     <title>Dolphin Tour | @isset($title){{ $title }}
 
         @endisset</title>
@@ -84,12 +86,12 @@
 
                             <p class="mb-1 mt-3 font-weight-semibold ">{{ auth()->user()->username }}</p>
                             <p class="font-weight-light text-muted mb-0">{{ auth()->user()->email }}</p>
-                            <p>Balance: {{ $balance }} Sail-Pay</p>
+                            {{-- <p>Balance: {{ $balance }} Sail-Pay</p> --}}
                             
                             @endauth
                         </div>
                         <a class="dropdown-item " href="/profile/traveler/{{ auth()->user()->uuid }}"><i class="fa-solid fa-user"></i> @lang('auth.profile.profil')</a>
-                        <a class="dropdown-item" href="/topup"><i class="fa-solid fa-money-check-dollar"></i> Topup</a>
+                        {{-- <a class="dropdown-item" href="/topup"><i class="fa-solid fa-money-check-dollar"></i> Topup</a> --}}
                         <a href="/notificationorder" class="dropdown-item">
                             <i class="fa-solid fa-bell"></i>
                             Notification Order
@@ -170,6 +172,23 @@
         {{-- end of copyright --}}
     </footer>
     {{-- end of footer --}}
+    <div class="modal modal-lg fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Panduan Pengguna</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container d-flex justify-content-center">
+                        <video width="640" height="360" id="video" controls>
+                            <source  src="Video/guide.mp4" type="video/mp4">
+                          </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
@@ -181,3 +200,21 @@
     }); 
     
 </script> --}}
+<script>
+    $(document).ready(function(){
+
+        @if (session()->has('success'))
+            $('#successModal').modal('show');
+            $('#video').get(0).play();
+        @endif
+    });
+    $('#successModal').on('hidden.bs.modal', function (e) {
+            $('#video').get(0).pause();
+            $('#video').get(0).currentTime = 0;
+        });
+    // $(document).ready(function(){
+    //     @if (session()->has('success'))
+    //         $('#successModal').modal('open');
+    //     @endif
+    // });
+</script>
