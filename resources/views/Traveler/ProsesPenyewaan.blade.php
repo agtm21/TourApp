@@ -64,11 +64,14 @@
                             
                         </tr>
                         <tr>
-                            <td>Bukti Pembayaran</td>
+                            <td>No. Rekening</td>
                             <td>:</td>
                             <td> 
-                               
-                                <input type="file" name="buktipembayaran" id="buktipembayaran" accept="image/*" class="form-control">
+                               <b>
+
+                                   Nomor Rekening
+                               </b>
+                                {{-- <input type="file" name="buktipembayaran" id="buktipembayaran" accept="image/*" class="form-control"> --}}
                             </td>
                         </tr>
                         

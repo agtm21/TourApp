@@ -72,7 +72,7 @@ class HomepagenelController extends Controller
                     'id_order' => $id_order,
                     'subject' =>  'Pesanan Diterima!',
                     'greeting' => 'Hi ' . $wisatawan->username . '!',
-                    'body' => 'Orderean telah diterima oleh ' . $nelayan . ' Anda tinggal menunggu jadwal keberangkatan',
+                    'body' => 'Orderean telah diterima oleh ' . $nelayan . ' Anda tinggal menunggu jadwal keberangkatan. Berikut Nomor Nelayan ' . auth()->user()->phone,
                     'date' => 'Tanggal Pesanan:' . $order->date,
                     'time' => 'Waktu Pesanan:' . $order->time,
                     'link' => 'Login',

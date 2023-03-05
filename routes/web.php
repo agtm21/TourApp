@@ -72,7 +72,7 @@ Route::controller([UserProfileController::class])->group(function () {
     Route::get('/profile/admin/{uuid}', [UserProfileController::class, 'admin'])->middleware('role:admin');
     Route::get('/profile/traveler/{uuid}', [UserProfileController::class, 'traveler'])->middleware('role:traveler');
     Route::get('/profile/nelayan', [UserProfileController::class, 'nelayan'])->middleware('role:nelayan');
-    Route::post('update', [UserProfileController::class, 'update']);
+    Route::post('/profile/update', [UserProfileController::class, 'update']);
 });
 
 Route::controller([ManagePackageController::class])->middleware('role:admin')->group(function () {
@@ -116,6 +116,7 @@ Route::controller([HomepageController::class])->middleware('role:traveler')->gro
     Route::get('/about', [HomepageController::class, 'about']);
     Route::post('/kritiksaran', [HomepageController::class, 'kritik']);
     Route::get('/notificationorder', [HomepageController::class, 'notificationorder']);
+    Route::post('paymentprove', [HomepageController::class, 'BuktiPembayaran']);
 });
 
 Route::controller([ControllersHomepagenelController::class])->middleware('role:nelayan')->group(function () {

@@ -53,13 +53,13 @@ class HomepageController extends Controller
         $id = Auth::id();
 
         $user = User::find($id);
-        $balance = $user->balance;
+        // $balance = $user->balance;
 
-        $balance = $this->BalanceCheck($balance);
+        // $balance = $this->BalanceCheck($balance);
         $order = $user->Order()->get();
         return view('Traveler.Booking', [
             'booking' => $order,
-            'balance' => $balance
+
         ]);
     }
 
@@ -108,7 +108,7 @@ class HomepageController extends Controller
         $order->place = $request->input('price');
         $order->product_desc = $request->input('product_desc');
         $order->status = 'wait';
-        $order->image = $request->file('buktipembayaran')->store('buktipembayaran');
+        // $order->image = $request->file('buktipembayaran')->store('buktipembayaran');
         $order->save();
 
 
@@ -117,7 +117,7 @@ class HomepageController extends Controller
                 'id_order' => $order->id_order,
                 'subject' => 'Pesanan Masuk',
                 'greeting' => 'Hi ' . $username->username,
-                'body' => 'Ada Orderan Masuk, segera cek website anda',
+                'body' => 'Ada Orderan Masuk, segera cek website anda, Silakan hubungi nomor Hp Wisatawan ' . auth()->user()->phone,
                 'link' => 'Pilih Nelayan',
                 'url' => 'http://localhost:3000',
                 'date' => 'Tanggal Pesanan: ' . $request->input('date'),
@@ -191,7 +191,19 @@ class HomepageController extends Controller
 
         return redirect()->back();
     }
+    public function BuktiPembayaran(Request $request)
+    {
+        // dd($request->get('order_id'));
+        $order = Order::find($request->get('order_id'));
+        $order->image =  $request->file('bukti_pembayaran')->store('bukti_pembayaran');
+        $order->update();
+        if ($order) {
 
+            return redirect()->back()->with('success', 'Bukti Pembayaran berhasil diupload');
+        } else {
+            return redirect()->back()->with('error', 'Bukti Pembayaran tidak berhasil diupload');
+        }
+    }
     public function logout(Request $request)
     {
         Auth::logout();

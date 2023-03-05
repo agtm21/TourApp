@@ -1,14 +1,14 @@
 @extends('layouts.main',['title'=>'Profile'])
 @section('profile')
-<form action="/update" enctype="multipart/form-data" method="POST">
+<form action="/profile/update" enctype="multipart/form-data" method="POST">
     
     @csrf
+    <input type="hidden" name="user_id" value="{{ $users->id }}" id="user_id">
     <div class="row justify-content-center mt-4 vh-100">
         <div class="col col-md-7">
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header text-light fw-bold bg-info">Account Details</div>
                 <div class="card-body text-dark shadow">
-                    <input type="hidden" name="user_id" value="{{ $users->id }}" id="user_id">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="username" value={{ auth()->user()->username }}>
                     <label for="exampleFormControlInput1" class="form-label my-3">Email</label>
@@ -35,9 +35,10 @@
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
-                    <input type="file" name="image" id="image" accept="image/*" style="display: none">
+                    <input type="file" name="user_profile" id="user_profile" accept="image/*" class="form-control">
+                    {{-- <input type="file" name="image" id="image" accept="image/*" style="display: none"> --}}
                     {{-- <input type="file" name="uploadImage" id="uploadImage"> --}}
-                    <input class="btn btn-primary" type="button" role="button" id="upload" onclick="document.getElementById('image').click();" value="Upload Image">
+                    {{-- <input class="btn btn-primary" type="button" role="button" id="upload" onclick="document.getElementById('image').click();" value="Upload Image"> --}}
                    
                     
                 </div>

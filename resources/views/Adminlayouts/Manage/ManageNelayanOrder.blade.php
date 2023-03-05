@@ -11,6 +11,8 @@
                 <tr>
                     
                     <td>Nelayan</td>
+                    <td>Nama Paket</td>
+                    <td>Tanggal Order</td>
                     <td>Jumlah Pesanan</td>
                 </tr>
             </thead>
@@ -19,8 +21,10 @@
                     <tr>
                     
                         <td>{{ $n->nama_nelayan }}</td>
+                        <td>{{ $n->product_name }}</td>
+                        <td>{{ $n->date }}</td>
                         <td>
-                            {{ $n->count }}
+                            {{ $n->nelayan_count }}
                         </td>
                     </tr>
                     @empty

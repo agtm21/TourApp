@@ -21,7 +21,11 @@
             <div class="col-md-3 bg-dark p-3 vh-100">
                 
                 <button class="btn btn-dark w-100 border-none p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <img src="http://bootdey.com/img/Content/avatar/avatar1.png" width="30px" height="30px" class="rounded-circle" alt="gambar-user">
+                    @if (auth()->user()->image)
+                        <img src="{{ asset('storage/'.auth()->user()->image) }}" width="30px" height="30px" class="rounded-circle" alt="gambar-user">
+                    @else
+                        <img src="http://bootdey.com/img/Content/avatar/avatar1.png" width="30px" height="30px" class="rounded-circle" alt="gambar-user">
+                    @endif
                     <span class="text-light ms-2">
                         
                         {{ auth()->user()->username }}
@@ -46,7 +50,23 @@
                 </div>
                 
             </div>
+            
+            
+            
             <div class="col-md-9 p-3">
+                @if (session()->has('success'))
+              <div class="alert alert-success alert-dismissible fade show mx-2 my-2 col-md-8 text-center" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
+            @error('error')
+                <div class="alert alert-danger alert-dismissible fade show mx-2 my-2 col-md-8 text-center" role="alert">
+                  {{ session('error') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @enderror
+
                 <!-- Your main content here -->
                 @yield('container')
                 @yield('profile')
@@ -60,3 +80,9 @@
 </body>
 
 </html>
+{{-- <script>
+    var alertBox = document.querySelector('.alert');
+    alertBox.setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 3000);
+</script> --}}

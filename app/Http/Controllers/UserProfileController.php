@@ -30,6 +30,8 @@ class UserProfileController extends Controller
     public function update(Request $request)
     {
 
+        // return ddd($request->file('image')->store('user-profile'));
+        // dd($request->get('user_id'));
         $request->validate([
             'username' => 'required',
             'email' => 'required',
@@ -41,7 +43,8 @@ class UserProfileController extends Controller
         $usr->username =  $request->get('username');
         $usr->email = $request->get('email');
         $usr->password = $request->get('password');
-        $usr->image = $request->file('image')->store('user-profile');
+        // $usr->image = $request->file('image')->store('user-profile');
+        $usr->image = $request->file('user_profile')->store('user-profile');
         $usr->phone = $request->get('phone');
         $usr['password'] = bcrypt($usr['password']);
         $usr->update();
@@ -52,5 +55,4 @@ class UserProfileController extends Controller
             return redirect()->back()->with('error', 'Update Data Fail');
         }
     }
-    // dd($request->file('image'));
 }

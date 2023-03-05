@@ -1,7 +1,7 @@
 @extends('Adminlayouts.adminmain',['title'=> 'Manage Pembayaran'])
 @section('managepembayaran')
 <div class="container mt-3">
-
+    <h1>Manage Pembayaran</h1>
     <table class="table table-responsive table-striped text-center">
         <thead class="bg-dark text-white">
             <tr>

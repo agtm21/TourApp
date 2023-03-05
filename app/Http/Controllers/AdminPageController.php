@@ -117,7 +117,7 @@ class AdminPageController extends Controller
     {
         //variables
         $id = $request->get('id_order'); //id order
-        $iduser = $request->get('id_user'); //id user
+        $iduser = $request->get('id_user'); //id wisatawan
         $newVal = $request->get('nelayanfield'); //nama nelayan (input hidden)
         $time = $request->get('time'); //time
         $date = $request->get('date'); //date
@@ -148,7 +148,7 @@ class AdminPageController extends Controller
             'id_order' => $id, //id_order
             'subject' => 'Pesanan Masuk',
             'greeting' => 'Hi ' . $newVal . '!',
-            'body' => 'Anda Mendapatkan Pesanan dari Admin segera cek website anda!',
+            'body' => 'Anda Mendapatkan Pesanan dari Admin segera cek website anda! Nomor HP Wisatawan: ' . $user->phone,
             'date' => 'Tanggal Pesanan:' . $date,
             'time' => 'Waktu Pesanan:' . $time,
             'link' => 'Cek Pesanan',
@@ -161,11 +161,13 @@ class AdminPageController extends Controller
     }
     public function ManageNelayanOrder()
     {
-        $nelayan = Order::select('nama_nelayan', DB::raw('count(*) as count'))
-            ->groupBy('nama_nelayan')
-            ->having('count', '>', 0)
+        // $nelayan = Order::select('nama_nelayan', DB::raw('count(*) as count'))
+        //     ->groupBy('nama_nelayan')
+        //     ->having('count', '>', 0)
+        //     ->get();
+        $nelayan = Order::select('product_name', 'date', 'nama_nelayan', DB::raw('count(*) as nelayan_count'))
+            ->groupBy('product_name', 'nama_nelayan', 'date')
             ->get();
-
         // ddd($nelayan);
         return view('Adminlayouts.Manage.ManageNelayanOrder', [
             'nelayan' => $nelayan

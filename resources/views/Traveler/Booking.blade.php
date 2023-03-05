@@ -47,6 +47,23 @@
                                     <td>:</td>
                                     <td><span class="text-danger fw-bold">{{ $item->status }}</span> </td>
                                 </tr>
+                                <form action="/paymentprove" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <tr>
+                                        <input type="hidden" name="order_id" value="{{ $item->id }}">
+                                        <td>Bukti Pembayaran</td>
+                                        <td>:</td>
+                                        <td>
+                                            <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" accept="image/*" class="form-control" role="button">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        <button class="btn btn-info mt-3">Kirim</button>
+                                    </td>
+                                </tr>
+                            </form>
                             </table>
                         </div>
                     </div>
