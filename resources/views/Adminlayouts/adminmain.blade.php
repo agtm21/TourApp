@@ -16,7 +16,7 @@
 <body>
     
     <div class="main-container d-flex">
-      <div class="sidebar bg-dark max-vh-100 w-25" id="side_nav" style="overflow-y: auto">
+      <div class="sidebar bg-dark w-25" id="side_nav" style="height :1000px">
         <div class="header p-2 text-light">
           <h1 class="fs-1"> Dolphin Tour</h1>
           <h1 class="fs-3">Admin Page</h1>
