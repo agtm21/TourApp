@@ -16,14 +16,14 @@
 <body>
     
     <div class="main-container d-flex">
-      <div class="sidebar bg-dark vh-100 w-25" id="side_nav" style="overflow-y: auto">
+      <div class="sidebar bg-dark max-vh-100 w-25" id="side_nav" style="overflow-y: auto">
         <div class="header p-2 text-light">
           <h1 class="fs-1"> Dolphin Tour</h1>
           <h1 class="fs-3">Admin Page</h1>
         </div>
         <hr>
             {{-- sidebar --}}
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse">
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse ">
           <div class="position-sticky">
             <div class="list-group list-group-flush mx-3 mt-4">
               <a href="/adminpage" class="list-group-item list-group-item-action py-2 ripple bg-dark text-light" aria-current="true">
@@ -58,7 +58,12 @@
               <!-- Default dropup button -->
               <div class="dropup-center dropup fixed-bottom m-4 ps-4">
                 <a class="btn dropdown dropdown-toggle text-light text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+                  @if (auth()->user()->image)
+                    
+                  <img src="{{ asset('storage/'.auth()->user()->image) }}" alt="Profile Image" class="rounded-circle" width="30" height="30"> 
+                  @else
                   <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Profile Image" class="rounded-circle" width="30" height="30"> 
+                  @endif
                   <span class="ps-2">Admin</span>
                   
                   {{-- {{ auth()->user()->username }} --}}

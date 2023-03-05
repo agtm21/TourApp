@@ -29,7 +29,11 @@
                     <tr>
                         {{-- <td>{{ $user->id }}</td> --}}
                         <td>
-                            <img src="{{ $tvl->image }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @if($tvl->image)
+                            <img src="{{ asset('storage/'.$tvl->image) }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @else
+                            <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @endif
                             {{ $tvl->username }}
                         </td>
                         <td>{{ $tvl->email }}</td>
@@ -83,7 +87,11 @@
                     <tr>
                         {{-- <td>{{ $user->id }}</td> --}}
                         <td>
-                            <img src="{{ $nl->image }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @if ($nl->image)
+                            <img src="{{ asset('storage/'.$nl->image) }}" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @else
+                            <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="gambar-profile" class="rounded-circle" width="30" height="30">
+                            @endif
                             {{ $nl->username }}
                         </td>
                         <td>{{ $nl->email }}</td>
