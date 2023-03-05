@@ -5,6 +5,12 @@
 {{-- <video width="640" height="360" controls>
   <source  src="Video/guide.mp4" type="video/mp4">
 </video> --}}
+<div style="display: none" id="alerts">
+  <div  class="alert alert-danger alert-dismissible fade show" role="alert">
+    Silakan Isi Nomor HP terlebih Dahulu!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
 <div class="fs-1 fw-bold">
 
     <p>@lang('pages.title.homepage')</p>
@@ -27,19 +33,29 @@
                 </div>
             </div>
             <div class="card-body d-flex flex-column">
-                <div class="d-flex mb-3">
-                  <i class="fa-solid fa-location-dot text-muted " > {{ $books->place }}</i>
-                  
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fa-solid fa-location-dot text-muted me-2" > </i>
+                  <b>
+                    
+                    {{ $books->place }}
+                  </b>
                 </div>
                 <p class="card-text text-dark h-100 text-justify" id="fulltext-{{ $books->id }}" >
                   
                   {{ $books->product_desc }}
                   {{-- <a href="#fulltext-{{ $books->id }}">Read more</a> --}}
                 </p>
+                @if (auth()->user()->phone)
                 <a href="/prosespenyewaan/{{ $books->id }}" class="btn btn-warning rounded px-4">
                     <i class="fa-regular fa-credit-card"></i>
                     @lang('pages.order')
                 </a>
+                @else
+                  <a href="#alert-order" class="btn btn-warning rounded px-4" id="alert-order">
+                    <i class="fa-regular fa-credit-card"></i>
+                    @lang('pages.order')
+                </a>
+                @endif
             </div>
         </div>
     </div>
@@ -156,22 +172,35 @@
 </div> --}}
 <script>
   // Get all the collapsible elements
-var collapsibles = document.querySelectorAll('.collapse');
+// var collapsibles = document.querySelectorAll('.collapse');
 
-// Add click event listeners to each button
-var buttons = document.querySelectorAll('.btn');
-for (var i = 0; i < buttons.length; i++) { //count all button
-  buttons[i].addEventListener('click', function() {//for button click
-    var target = document.querySelector(this.getAttribute('href')); //all href as reference
-    if (!target.classList.contains('show')) {//if the current target shown
-      // Close all other collapsibles
-      for (var j = 0; j < collapsibles.length; j++) {
-        if (collapsibles[j] !== target && collapsibles[j].classList.contains('show')) {
-          collapsibles[j].classList.remove('show');
-        }
-      }
-    }
+// // Add click event listeners to each button
+// var buttons = document.querySelectorAll('.btn');
+// for (var i = 0; i < buttons.length; i++) { //count all button
+//   buttons[i].addEventListener('click', function() {//for button click
+//     var target = document.querySelector(this.getAttribute('href')); //all href as reference
+//     if (!target.classList.contains('show')) {//if the current target shown
+//       // Close all other collapsibles
+//       for (var j = 0; j < collapsibles.length; j++) {
+//         if (collapsibles[j] !== target && collapsibles[j].classList.contains('show')) {
+//           collapsibles[j].classList.remove('show');
+//         }
+//       }
+//     }
+//   });
+// }
+const orderBtn = document.querySelectorAll('#alert-order');
+const alertBox = document.getElementById('alerts');
+
+orderBtn.forEach(function(link) {
+    link.addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the link from navigating to another page
+      alertBox.style.display = "block";
+      setTimeout(() => {
+        
+        alertBox.style.display = "none";
+      }, 3000);
+    });
   });
-}
 </script>
 @endsection

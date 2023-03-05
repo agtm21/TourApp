@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'username' => 'admin',
                 'email'  => 'dolphintour01@gmail.com',
                 'password' => bcrypt('admin123'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'admin'
             ],
             [
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'email'  => 'wisatawan01@gmail.com',
                 'password' => bcrypt('wisatawan1'),
                 'role' => 'traveler',
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
 
             ],
             [
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
                 'email'  => 'wisatawan2@gmail.com',
                 'password' => bcrypt('wisatawan2'),
                 'role' => 'traveler',
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
 
             ],
             //nelayan
@@ -73,7 +73,7 @@ class UserSeeder extends Seeder
                 'username' => 'gedesumanada',
                 'email'  => 'gedesumadana01@gmail.com',
                 'password' => bcrypt('gedesumanada'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //2
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
                 'username' => 'gedekusumajaya',
                 'email'  => 'gedekusumajaya02@gmail.com',
                 'password' => bcrypt('gedekusumajaya'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //3
@@ -89,7 +89,7 @@ class UserSeeder extends Seeder
                 'username' => ' putuwidiarsana',
                 'email'  => 'putuwidiarsana03@gmail.com',
                 'password' => bcrypt('putuwidiarsana'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //4
@@ -97,7 +97,7 @@ class UserSeeder extends Seeder
                 'username' => 'gedemangku',
                 'email'  => 'gedemangku0004@gmail.com',
                 'password' => bcrypt('gedemangku'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //5
@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
                 'username' => 'nyomancenik',
                 'email'  => 'ceniknyoman74@gmail.com',
                 'password' => bcrypt('nyomancenik'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //6
@@ -113,7 +113,7 @@ class UserSeeder extends Seeder
                 'username' => 'putunurada',
                 'email'  => 'putunurada06@gmail.com',
                 'password' => bcrypt('putunurada'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //7
@@ -121,7 +121,7 @@ class UserSeeder extends Seeder
                 'username' => 'ketutsumendre',
                 'email'  => 'ketutsumendra07@gmail.com',
                 'password' => bcrypt('ketutsumendre'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //8
@@ -129,7 +129,7 @@ class UserSeeder extends Seeder
                 'username' => 'kadekwidiada',
                 'email'  => 'kadekwidiadi08@gmail.com',
                 'password' => bcrypt('kadekwidiada'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //9
@@ -137,7 +137,7 @@ class UserSeeder extends Seeder
                 'username' => 'kadekwijaya',
                 'email'  => 'kadekwijhaya09@gmail.com',
                 'password' => bcrypt('kadekwijaya'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //10
@@ -145,7 +145,7 @@ class UserSeeder extends Seeder
                 'username' => 'kadekbudiarsana',
                 'email'  => 'kadekbudhiarsana10@gmail.com',
                 'password' => bcrypt('kadekbudiarsana'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //11
@@ -153,7 +153,7 @@ class UserSeeder extends Seeder
                 'username' => 'gedesuardana',
                 'email'  => 'gedesuardana@gmail.com',
                 'password' => bcrypt('gedesuardana'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
             [ //12
@@ -161,7 +161,7 @@ class UserSeeder extends Seeder
                 'username' => 'komangpasek',
                 'email'  => 'komangpasek@gmail.com',
                 'password' => bcrypt('komangpasek'),
-                'image' => 'https://bootdey.com/img/Content/avatar/avatar1.png',
+
                 'role' => 'nelayan'
             ],
         ];

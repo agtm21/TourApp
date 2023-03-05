@@ -68,8 +68,11 @@
                         Offset
                       </button> --}}
                     <a class="btn dropdown-toggle text-light" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20" style="border-color:transparent;">
-
+                        @if(auth()->user()->image)
+                        <img class="img-xs rounded-circle mx-2" src="{{ asset('storage/'.auth()->user()->image) }}"alt="Profile image" height="30" width="30">
+                        @else
                         <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"alt="Profile image" height="30" width="30">
+                        @endif
                         {{ auth()->user()->username }}
                         
                         {{-- <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-danger rounded-circle" id="notifalert">
@@ -81,8 +84,11 @@
                         <div class="dropdown-header text-center">
 
                             @auth
-                            <img class="img-md rounded-circle" src="http://bootdey.com/img/Content/avatar/avatar1.png"
-                                alt="Profile image" width="100" height="100">
+                            @if(auth()->user()->image)
+                        <img class="img-xs rounded-circle mx-2" src="{{ asset('storage/'.auth()->user()->image) }}"alt="Profile image" height="100" width="100">
+                        @else
+                        <img class="img-xs rounded-circle mx-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"alt="Profile image" height="100" width="100">
+                        @endif
 
                             <p class="mb-1 mt-3 font-weight-semibold ">{{ auth()->user()->username }}</p>
                             <p class="font-weight-light text-muted mb-0">{{ auth()->user()->email }}</p>

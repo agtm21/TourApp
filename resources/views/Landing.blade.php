@@ -69,10 +69,10 @@
                             {{-- <div class="col">
                                 <span class="fs-3 p-2">or</span>
                             </div> --}}
-                            <div class="col">
+                            {{-- <div class="col">
                                 <a href="/signupnel" class="btn btn-warning "><i
                                         class="fa-solid fa-user-plus pe-2"></i>@lang('pages.sign.fisherman')</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

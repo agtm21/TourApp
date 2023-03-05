@@ -14,7 +14,7 @@ return [
     'sign' => [
         'signin' => 'Sign In',
         'signup' => 'Sign Up',
-        'traveler' => 'Sign Up as Traveler',
+        'traveler' => 'Sign Up Now!',
         'fisherman' => 'Sign Up as Fisherman'
     ],
     'desc' => 'Dolphin Tour Tourism is a tourist attraction for 

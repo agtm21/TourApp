@@ -72,7 +72,7 @@ Route::controller([UserProfileController::class])->group(function () {
     Route::get('/profile/admin/{uuid}', [UserProfileController::class, 'admin'])->middleware('role:admin');
     Route::get('/profile/traveler/{uuid}', [UserProfileController::class, 'traveler'])->middleware('role:traveler');
     Route::get('/profile/nelayan', [UserProfileController::class, 'nelayan'])->middleware('role:nelayan');
-    Route::post('/update/{id}', [UserProfileController::class, 'update']);
+    Route::post('update', [UserProfileController::class, 'update']);
 });
 
 Route::controller([ManagePackageController::class])->middleware('role:admin')->group(function () {
