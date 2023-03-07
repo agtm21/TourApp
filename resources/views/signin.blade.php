@@ -67,7 +67,7 @@
               </div>
               {{-- masuk img --}}
               <div class="col-sm-6 px-0 d-none d-sm-block">
-                <img src="img/images.jpg"
+                <img src="{{ asset('img/login-img.jpeg') }}"
                   alt="Login image" class="w-100 h-100" style="object-fit: cover; object-position: left;">
               </div>
             </div>
