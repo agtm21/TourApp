@@ -49,18 +49,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-    public function Topup()
-    {
-        return $this->hasMany(topup::class);
-    }
-    public function balance()
-    {
-        return $this->hasOne(balance::class);
-    }
-    public function Cardbalance()
-    {
-        return $this->hasMany(cardbalance::class);
-    }
+    // public function Topup()
+    // {
+    //     return $this->hasMany(topup::class);
+    // }
+    // public function balance()
+    // {
+    //     return $this->hasOne(balance::class);
+    // }
+    // public function Cardbalance()
+    // {
+    //     return $this->hasMany(cardbalance::class);
+    // }
     // public function User()
     // {
     //     $this->morphTo();

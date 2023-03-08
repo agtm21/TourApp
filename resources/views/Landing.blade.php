@@ -79,7 +79,7 @@
                 <div class="col col-md-2"></div>
                 <div class="col col-md-4">
                     <div class="img">
-                        <img src="{{ asset('img/landing.jpeg') }}" class="img-fluid rounded float-end" alt="dolphin-img-landingpage"
+                        <img src="{{ asset('img/dillus.jpg') }}" class="img-fluid rounded float-end" alt="dolphin-img-landingpage"
                             width="600" height="300">
                     </div>
                 </div>

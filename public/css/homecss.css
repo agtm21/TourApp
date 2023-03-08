@@ -1,6 +1,9 @@
 body {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 2%, rgba(72, 71, 119, 1) 36%, rgba(47, 85, 118, 1) 100%);
+    /* background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 2%, rgba(72, 71, 119, 1) 36%, rgba(47, 85, 118, 1) 100%); */
+    background-image: url('/img/landing.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #signup,

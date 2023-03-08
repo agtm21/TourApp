@@ -20,7 +20,7 @@
     <div class="col-lg-4 mb-3 d-flex align-items-stretch">
         <div class="card shadow p-3 mb-5 rounded" style="width: 18rem;">
             <div class="pb-2">
-                <img src="{{ $books->img_path }}" alt="package-box" class="card-img-top">
+                <img src="{{ $books->img_path }}" alt="package-box" class="card-img-top" width="254px" height="190.5px" style="overflow: hidden">
             </div>
 
             <div class="card-title">
