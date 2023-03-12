@@ -29,8 +29,10 @@
                     <!-- Profile picture image-->
                     @if($users->image!=NULL)
                         <img class="img-account-profile rounded-circle mb-2" src="{{ asset('storage/'.$users->image) }}" alt="{{ $users->image }}" width="300px" height="300px"> 
+                        
                     @else
                         <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" >
+                        <p class="small font-italic text-danger mb-4">Update Foto Profil Anda!</p>
                     @endif
                     <!-- Profile picture help block-->
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>

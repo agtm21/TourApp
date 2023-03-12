@@ -32,16 +32,15 @@ class UserProfileController extends Controller
 
         // return ddd($request->file('image')->store('user-profile'));
         // dd($request->get('user_id'));
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'image' => 'size:5048|mimetypes:jpg/png'
-        ]);
+        // $request->validate([
+        //     'username' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'user_profile' => 'required|image|size:5048|mimetypes:jpg/png'
+        // ]);
 
         $usr = User::find($request->get('user_id'));
         if (!$usr->image) {
-            
             $usr->image = $request->file('user_profile')->store('user-profile');
         }
         $usr->username =  $request->get('username');
