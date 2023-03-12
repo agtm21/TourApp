@@ -124,11 +124,11 @@ class AdminPageController extends Controller
 
         $user = User::find($iduser);
         // $order = Order::find($id);
-        $price = $user->order()->value('price'); //get price from order with certain user
-        $balance = $user->balance()->value('balance'); //get user balance
-        $user->balance()->update([
-            'balance' => $balance - $price //substracting price with user balance
-        ]);
+        // $price = $user->order()->value('price'); //get price from order with certain user
+        // $balance = $user->balance()->value('balance'); //get user balance
+        // $user->balance()->update([
+        //     'balance' => $balance - $price //substracting price with user balance
+        // ]);
 
         // update status pesanan
         try {

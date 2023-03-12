@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\NotifyNelayan;
 use Exception;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Database\QueryException;
 
 class HomepagenelController extends Controller
@@ -34,7 +35,7 @@ class HomepagenelController extends Controller
         $user = User::get();
         $order = Order::first();
         // dd(Request()->get('idorder'));
-        $notifications = auth()->user()->unreadNotifications;
+        $notifications = DatabaseNotification::where('notifiable_id', auth()->user()->id)->get();
         return view('Nelayan.Order', [
             'title' => $title,
             'users' => $user,
