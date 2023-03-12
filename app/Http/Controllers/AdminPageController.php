@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\topup;
-use App\Models\balance;
 use App\Models\booking;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -123,12 +122,6 @@ class AdminPageController extends Controller
         $date = $request->get('date'); //date
 
         $user = User::find($iduser);
-        // $order = Order::find($id);
-        // $price = $user->order()->value('price'); //get price from order with certain user
-        // $balance = $user->balance()->value('balance'); //get user balance
-        // $user->balance()->update([
-        //     'balance' => $balance - $price //substracting price with user balance
-        // ]);
 
         // update status pesanan
         try {

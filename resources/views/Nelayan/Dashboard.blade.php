@@ -8,14 +8,15 @@
                   <div class="card-body">
                       <div class="row justify-content-between">
                         <div class="col">
-                          <div class="d-flex">
+                          <div class="d-flex align-items-center ">
                             <i class="fa-solid fa-book fa-2x me-2"></i>
                             <h5>Order</h5>
+                            <h3 class="ms-4">{{ $order}}</h3>
                           </div>
+                          
                         </div>
-                        <div class="col">
-                          <h3>{{ $order}}</h3>
-                        </div>  
+                        {{-- <div class="col">
+                        </div>   --}}
                         
                       </div>
                   </div>
@@ -27,14 +28,15 @@
                   <div class="card-body">
                       <div class="row justify-content-between">
                         <div class="col">
-                          <div class="d-flex">
+                          <div class="d-flex align-items-center">
                             <i class="fa-solid fa-book fa-2x me-2"></i>
                             <h5>Order Accepted</h5>
+                            <h3>{{ $accept}}</h3>
                           </div>
                         </div>
-                        <div class="col">
-                          <h3>{{ $accept}}</h3>
-                        </div>  
+                        {{-- <div class="col">
+                          
+                        </div>   --}}
                         
                       </div>
                   </div>
@@ -46,14 +48,14 @@
                   <div class="card-body">
                       <div class="row justify-content-between">
                         <div class="col">
-                          <div class="d-flex">
+                          <div class="d-flex align-items-center">
                             <i class="fa-solid fa-book fa-2x me-2"></i>
                             <h5>Order Declined</h5>
+                            <h3>{{ $decline}}</h3>
                           </div>
                         </div>
-                        <div class="col">
-                          <h3>{{ $decline}}</h3>
-                        </div>  
+                        {{-- <div class="col">
+                        </div>   --}}
                         
                       </div>
                   </div>

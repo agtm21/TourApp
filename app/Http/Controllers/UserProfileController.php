@@ -40,11 +40,14 @@ class UserProfileController extends Controller
         ]);
 
         $usr = User::find($request->get('user_id'));
+        if (!$usr->image) {
+            
+            $usr->image = $request->file('user_profile')->store('user-profile');
+        }
         $usr->username =  $request->get('username');
         $usr->email = $request->get('email');
         $usr->password = $request->get('password');
-        // $usr->image = $request->file('image')->store('user-profile');
-        $usr->image = $request->file('user_profile')->store('user-profile');
+
         $usr->phone = $request->get('phone');
         $usr['password'] = bcrypt($usr['password']);
         $usr->update();
