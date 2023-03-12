@@ -40,7 +40,7 @@ class UserProfileController extends Controller
         // ]);
 
         $usr = User::find($request->get('user_id'));
-        if (!$usr->image) {
+        if ($request->hasFile('user_profile')) {
             $usr->image = $request->file('user_profile')->store('user-profile');
         }
         $usr->username =  $request->get('username');
