@@ -52,6 +52,7 @@ class HomepagenelController extends Controller
     {
 
         $id_order = $request->get('idorder');
+
         $confirm = $request->get('status');
         $order = Order::find($id_order); //get order data
         $wisatawan = User::find($order->user->id); //get user

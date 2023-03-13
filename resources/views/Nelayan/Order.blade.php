@@ -94,11 +94,11 @@
                             @csrf
                             {{-- <input type="hidden" name="username" value="{{ auth()->user()->username }}"> --}}
                             <input type="hidden" name="status" id="status" value="">
-                            @foreach($notifications as $notification)
+                            {{-- @foreach($notifications as $notification) --}}
                             <input type="hidden" name="idorder" value="{{ $notification->data['id_order'] }}">
                             {{-- <input type="text" name="order" id="order" value="{{ $order }}"> --}}
 
-                            @endforeach
+                            {{-- @endforeach --}}
                             <button type="submit" class="btn btn-danger" data-bs-dismiss="modal"
                                 id="declinebtn">Tolak</button>
                             <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
