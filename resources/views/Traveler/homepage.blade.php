@@ -61,9 +61,9 @@
     </div>
     @endforeach
 </div>
-<div class="d-flex justify-content-center">
+{{-- <div class="d-flex justify-content-center">
     {{ $bookings->links() }}
-</div>
+</div> --}}
 {{-- <div class="fixed-bottom d-flex justify-content-end">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary me-5 mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">

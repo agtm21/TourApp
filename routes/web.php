@@ -96,6 +96,7 @@ Route::controller([AdminPageController::class])->middleware('role:admin')->group
     Route::post('/logout', [AdminPageController::class, 'logout']);
     Route::get('/managenelayanorder', [AdminPageController::class, 'ManageNelayanOrder']);
     Route::get('/managepembayaran', [AdminPageController::class, 'ManagePembayaran']);
+    Route::get('/manageusersuggestion', [AdminPageController::class, 'ManageUserSuggestion']);
 });
 
 

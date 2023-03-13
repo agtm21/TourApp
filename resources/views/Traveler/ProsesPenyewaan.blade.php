@@ -69,7 +69,7 @@
                             <td> 
                                <b>
 
-                                   Nomor Rekening
+                                    5188102373848974
                                </b>
                                 {{-- <input type="file" name="buktipembayaran" id="buktipembayaran" accept="image/*" class="form-control"> --}}
                             </td>
@@ -81,37 +81,6 @@
                 <div class="col">
                     <img src="{{ asset($bookings->img_path) }}" alt="gambar-paket" class="img-fluid w-30 h-30">
                 </div>
-                {{-- <div class="col col-md-2">
-
-                    <ul style="list-style-type: none;">
-                        
-                        <li></li>
-                        <li>Fasilitas</li>
-                        <li>Tanggal Berlayar</li>
-                        <li>Jam Berlayar</li>
-                        <li>Metode Pembayaran</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul style="list-style-type: none;">
-                        <li>: {{ $bookings->product_name }}</li>
-                        <li>: {{ $bookings->price }}</li>
-                        <li>: {{ $bookings->product_desc }}</li>
-                        <li>: {{ $bookings->date }}</li>
-                        <li>: {{ $bookings->time }}</li>
-                        <li class="d-flex" >: <select class="form-select ms-1" name="method" aria-label="Default select example" style="width:120px">
-                            
-                            <option value="Tunai">Tunai</option>
-                            <option value="SailPay">Sailpay</option>
-                            
-                          </select>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <img src="{{ $bookings->img_path }}" alt="gambar-paket" class="img-fluid w-30 h-30">
-                    
-                </div> --}}
             </div>
             <div class="row">
                 <div class="col">

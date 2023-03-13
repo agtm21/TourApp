@@ -9,6 +9,7 @@
             <thead class="bg-dark text-light text-center">
                 {{-- <td>Username</td> --}}
                 <td>ID Product</td>
+                <td>Username</td>
                 <td>Product Name</td>
                 <td>Price</td>
                 <td>Time</td>
@@ -24,7 +25,7 @@
                 <tr>
                     
                     <td>{{ $orderitem->id }}</td>
-                    
+                    <td>{{ $orderitem->user->username }}</td>
                     {{-- <td>{{$user->username }}</td> --}}
                     <td>{{$orderitem->product_name }}</td>
                     <td>{{ $orderitem->price }}</td>

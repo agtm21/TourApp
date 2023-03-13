@@ -49,6 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+    public function UserSuggestion()
+    {
+        return $this->hasMany(UserSuggestion::class);
+    }
     // public function Topup()
     // {
     //     return $this->hasMany(topup::class);

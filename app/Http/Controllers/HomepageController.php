@@ -27,7 +27,7 @@ class HomepageController extends Controller
         $user = User::find($id);
 
 
-        $booking = booking::latest()->paginate(9);
+        $booking = booking::get();
         return view('Traveler.homepage', [
             'bookings' => $booking
         ]);

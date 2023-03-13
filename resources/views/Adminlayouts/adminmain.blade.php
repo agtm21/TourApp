@@ -52,6 +52,10 @@
               <div class="collapse collapse-horizontal" id="collapseWidthExample">
                 <a href="/managepembayaran" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> Manage Pembayaran</a>
               </div>
+              {{-- manage user suggestion --}}
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <a href="/manageusersuggestion" class="text-decoration-none text-light" style="margin-left:53px"><i class="fa-sharp fa-solid fa-bars-progress  fa-0.5x me-2"></i> User Suggestion</a>
+              </div>
               {{-- <div class="list-group-item list-group-item-action py-2 ripple bg-dark text-light">
                 <li>Something</li>
               </div> --}}
@@ -102,6 +106,7 @@
           @yield('datauser')
           @yield('managenelayanorder')
           @yield('managepembayaran')
+          @yield('usersuggestion')
         </section>
     </div>
 </body>

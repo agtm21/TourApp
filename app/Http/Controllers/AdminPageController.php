@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\UserSuggestion;
 use App\Notifications\NotifyNelayan;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
@@ -173,5 +174,10 @@ class AdminPageController extends Controller
         return view('Adminlayouts.Manage.ManagePembayaran', [
             'order' => $order
         ]);
+    }
+    public function ManageUserSuggestion()
+    {
+        $suggest = UserSuggestion::get();
+        return view('Adminlayouts.Manage.UserSuggestion', compact('suggest'));
     }
 }
