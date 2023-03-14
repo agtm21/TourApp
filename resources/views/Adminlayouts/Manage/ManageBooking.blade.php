@@ -39,6 +39,7 @@
                 <tr>
 
                     <td>{{ $orderitem->id }}</td>
+                    <td>{{ $orderitem->user->username }}</td>
                     <td>{{$orderitem->product_name }}</td>
                         <td>{{ $orderitem->price }}</td>
                         <td>{{ $orderitem->time }}</td>
