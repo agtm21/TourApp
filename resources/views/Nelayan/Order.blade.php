@@ -216,7 +216,21 @@
     document.getElementById('accbtn').addEventListener("click", accept);
     document.getElementById('declinebtn').addEventListener("click", decline);
     function accept() {
-        document.getElementById('status').value = 'accept';
+        var notifId = document.getElementById('notifId').value;
+        var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'notification/'+notifId+'/read');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Handle the response
+            document.getElementById('status').value = 'accept';
+        } else {
+            // Handle errors
+            console.log('error');
+        }
+    };
+    xhr.send();
     }
 
     function decline() {

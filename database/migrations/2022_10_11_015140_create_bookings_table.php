@@ -18,7 +18,7 @@ class CreateBookingsTable extends Migration
             $table->string('product_name');
             $table->string('img_path')->nullable();
             $table->text('product_desc'); //deskripsi ada fasilitas
-            $table->decimal('price', 10, 2);
+            $table->string('price');
             $table->string('place');
             $table->time('time');
             $table->date('date');
