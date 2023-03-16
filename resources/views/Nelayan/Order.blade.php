@@ -23,6 +23,7 @@
 
         @foreach ($notifications as $notification)
         @if (!$notification->read_at)
+        <input type="hidden" name="notifId" id="notifId" value="{{ $notification->id }}">
         <input type="hidden" name="id_order" id="id_order" value="{{ $notification->data['id_order'] }}">
         <input type="hidden" name="usernamenel" id="usernamenel" value="{{ auth()->user()->username }}">
         <div class="card mb-3">
@@ -214,24 +215,31 @@
 <script>
     document.getElementById('accbtn').addEventListener("click", accept);
     document.getElementById('declinebtn').addEventListener("click", decline);
-
     function accept() {
-        document.getElementById('status').value = 'accept';
+        var notifId = document.getElementById('notifId').value;
+        $.ajax({
+            // /notifications/{{ $notification->id }}/read
+            type: 'POST',
+        url: '/notifications/'+notifId+'/read',
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        success: function(response) {
+            console.log('Notifications marked as read.');
+            document.getElementById('status').value = 'accept';
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error marking notifications as read:', errorThrown);
+        }
+
+        });
+       
     }
 
     function decline() {
         document.getElementById('status').value = 'decline';
     }
 
-    $(document).ready(function () {
-        $('accbtn').click(function () {
-            $(this).hide();
-        });
-    });
-    $(document).ready(function () {
-        $('accbtn').click(function () {
-            $(this).hide();
-        });
-    });
+   
 </script>
 @endsection

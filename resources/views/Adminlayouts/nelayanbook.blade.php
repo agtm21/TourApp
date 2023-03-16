@@ -43,21 +43,27 @@
                                     <input type="text" class="form-control" id="nama" name="nelayanfield" aria-label="Recipient's username"
                                         aria-describedby="button-addon2" onclick="this.value=''">
                                     <button type="button" id="targetbtn" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#nelayan">
+                                        data-bs-target="#nelayan" role="button">
                                         Pilih Nelayan
                                     </button>
                                 </div>
 
                             </li>
+                            
                         </ul>
                         
                     </div>
+                    {{-- <div>
+                        <button class="btn btn-info ms-4">Confirm</button>
+                    </div> --}}
+                    
                     <div class="col col-md-4">
                         {{-- @foreach($order as $item) --}}
-                        <img src="{{ asset($order->img_path) }}" alt="gambar" class="img_fluid rounded" style="width:300px">
+                        {{-- <img src="{{ asset($order->img_path) }}" alt="gambar" class="img_fluid rounded" style="width:300px"> --}}
                         {{-- @endforeach --}}
                     </div>
                 </div>
+                {{-- <button class="btn btn-info ms-4" role="submit" type="submit">Confirm</button> --}}
                 @endif
             </div>
             {{-- @endforeach --}}

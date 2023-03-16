@@ -58,7 +58,7 @@ class HomepagenelController extends Controller
         $wisatawan = User::find($order->user->id); //get user
         $admin = User::where('role', 'admin')->first();
         $nelayan = Auth::user()->username;
-
+        dd($confirm);
         try {
             $update = Order::where('id', $id_order)->update([
                 'status' => $confirm
