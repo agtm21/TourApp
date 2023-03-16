@@ -216,24 +216,7 @@
     document.getElementById('accbtn').addEventListener("click", accept);
     document.getElementById('declinebtn').addEventListener("click", decline);
     function accept() {
-        var notifId = document.getElementById('notifId').value;
-        $.ajax({
-            // /notifications/{{ $notification->id }}/read
-            type: 'POST',
-        url: '/notifications/'+notifId+'/read',
-        data: {
-            _token: '{{ csrf_token() }}'
-        },
-        success: function(response) {
-            console.log('Notifications marked as read.');
-            document.getElementById('status').value = 'accept';
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error marking notifications as read:', errorThrown);
-        }
-
-        });
-       
+        document.getElementById('status').value = 'accept';
     }
 
     function decline() {

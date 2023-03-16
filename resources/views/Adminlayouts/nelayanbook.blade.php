@@ -59,7 +59,7 @@
                     
                     <div class="col col-md-4">
                         {{-- @foreach($order as $item) --}}
-                        {{-- <img src="{{ asset($order->img_path) }}" alt="gambar" class="img_fluid rounded" style="width:300px"> --}}
+                        <img src="{{ asset($order->img_path) }}" alt="gambar" class="img_fluid rounded" style="width:300px">
                         {{-- @endforeach --}}
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                                     <button class="list-group-item list-group-item-action button1" data-bs-dismiss="modal" id="button1">
                                         <div class="d-flex justify-content-between">
                                             <span id="namanelayan" class="namanelayans">{{ $nelayan->username }}</span>
-                                            <img src="#" alt="gambar">
+                                            {{-- <img src="#" alt="gambar"> --}}
                                         </div>
                                     </button>
                                     @endforeach
