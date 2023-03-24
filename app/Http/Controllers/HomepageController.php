@@ -26,10 +26,11 @@ class HomepageController extends Controller
 
         $user = User::find($id);
 
-
+        $bookedDates = order::pluck('date')->toArray();
         $booking = booking::get();
         return view('Traveler.homepage', [
-            'bookings' => $booking
+            'bookings' => $booking,
+            'bookdate' => $bookedDates
         ]);
     }
 
@@ -41,11 +42,11 @@ class HomepageController extends Controller
         $id = Auth::id();
 
         $user = User::find($id);
-
+        $bookedDates = order::pluck('date')->toArray();
         $order = $user->Order()->get();
         return view('Traveler.Booking', [
             'booking' => $order,
-
+            'bookdate' => $bookedDates
         ]);
     }
 
@@ -61,9 +62,9 @@ class HomepageController extends Controller
         $user = User::find($ids);
 
         $bookings = booking::findOrFail($id);
+        $bookedDates = order::pluck('date')->toArray();
 
-
-        return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id]);
+        return view('Traveler.ProsesPenyewaan', ['bookings' => $bookings, 'id' => $id, 'bookdate' => $bookedDates]);
     }
 
     public function langs($locale)
@@ -121,12 +122,12 @@ class HomepageController extends Controller
             app()->setLocale($locale);
         }
         $id = Auth::id();
-
+        $bookedDates = order::pluck('date')->toArray();
         $user = User::find($id);
 
         $history = $user->order()->get();
 
-        return view('Traveler.History', ['history' => $history]);
+        return view('Traveler.History', ['history' => $history, 'bookdate' => $bookedDates]);
     }
     public function about()
     {
@@ -135,8 +136,8 @@ class HomepageController extends Controller
         $user = User::find($id);
 
         $history = $user->order();
-
-        return view('about');
+        $bookedDates = order::pluck('date')->toArray();
+        return view('about', ['bookdate' => $bookedDates]);
     }
     public function kritik(Request $request)
     {
@@ -155,10 +156,11 @@ class HomepageController extends Controller
     {
         $id = Auth::id();
         $user = User::find($id);
-
+        $bookedDates = order::pluck('date')->toArray();
         $notifications = auth()->user()->unreadNotifications;
         return view('Traveler.NotificationOrder', [
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'bookdate' => $bookedDates
         ]);
     }
     public function markAsReads($id)

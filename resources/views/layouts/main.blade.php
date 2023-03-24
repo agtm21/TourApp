@@ -119,8 +119,8 @@
     {{-- End of navigator bar --}}
 
     {{-- packet list --}}
-    <div class="container">
-        <div class="mt-5"></div>
+    <div class="container" id="container">
+        <div class="mt-5" id="newAlert"></div>
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           {{ session('success') }}
@@ -223,4 +223,33 @@
     //         $('#successModal').modal('open');
     //     @endif
     // });
+    const date = document.getElementById('date');
+   const databaseDate = @json($bookdate);
+   date.addEventListener("change",function(){
+
+       const selectedDate = date.value;
+       for(var property in databaseDate){
+        // console.log(databaseDate[property]);
+           if(databaseDate.hasOwnProperty(property)){
+                var propertyValue = databaseDate[property];
+                if(propertyValue == selectedDate){
+                    const container = document.getElementById('newAlert');
+                    const alertDiv = document.createElement('div');
+                   alertDiv.classList.add('alert', 'alert-danger','sticky-top');
+                   alertDiv.textContent = 'Tanggal Sudah ada yang Pesan!';
+
+                   const alertWrapper = document.createElement('div');
+                   alertWrapper.appendChild(alertDiv);
+
+                   container.appendChild(alertWrapper);
+
+                   setTimeout(() => {
+                       alertWrapper.remove();
+                       location.reload();
+                   }, 3000);
+                }
+           }
+       }
+    //    console.log(selectedDate);
+   });
 </script>

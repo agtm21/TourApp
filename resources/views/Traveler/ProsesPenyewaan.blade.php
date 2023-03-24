@@ -19,6 +19,7 @@
                 <input type="hidden" value="{{$bookings->place }}" name="place">
                 <input type="hidden" value="{{$bookings->img_path  }}" name="img_path">
                 {{-- <input type="hidden" value="sailpay" name="method"> --}}
+                
                 <div class="col">
                     
                     <table class="table table-borderless">
@@ -45,7 +46,7 @@
                             <td>Tanggal Berlayar</td>
                             <td>:</td>
                             <td> 
-                                <input type="date" name="date" id="date" class="form-control">
+                                <input type="date" name="date" id="date" class="form-control" required>
                             </td>
                             
                         </tr>
@@ -53,7 +54,7 @@
                             <td>Jam Berlayar</td>
                             <td>:</td>
                             <td> 
-                                <input type="time" name="time" id="time" class="form-control">
+                                <input type="time" name="time" id="time" class="form-control" required>
                             </td>
                             
                         </tr>
@@ -90,5 +91,8 @@
         </div>
     </div>
 </div>
+{{-- <button id="jsontest" >test</button>    --}}
 </form>
+
 @endsection
+

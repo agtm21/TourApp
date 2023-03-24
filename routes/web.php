@@ -12,7 +12,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserProfileController;
 use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
-
+use App\Models\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +35,10 @@ Route::get('/', function () {
     return view('Landing');
     // return redirect(app()->getLocale());
 });
-
+Route::get('/playground', function () {
+    $bookedDates = order::pluck('date')->toArray();
+    return view('playground', ['bookdate' => $bookedDates]);
+});
 // Route::get('/booking', function () {
 //     return view('Booking');
 // });

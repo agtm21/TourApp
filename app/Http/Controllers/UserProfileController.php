@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\balance;
 use App\Models\topup;
+use App\Models\order;
 use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
@@ -18,9 +19,10 @@ class UserProfileController extends Controller
     }
     public function traveler()
     {
+        $bookedDates = order::pluck('date')->toArray();
         $id = Auth::id(); //ambil id user yang sedang login
         // $balance = balance::where('id_user', $id)->value('balance');
-        return view('Traveler.Profile', ['users' => request()->user()]);
+        return view('Traveler.Profile', ['users' => request()->user(), 'bookdate' => $bookedDates]);
     }
     public function nelayan()
     {
